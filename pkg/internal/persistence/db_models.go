@@ -6,14 +6,15 @@ import (
 
 //
 type Persistence struct {
-	Postgres        *sqlx.DB
-	GrowSpots       IGrowSpotsDB
-	GrowingGroups   IGrowingGroupsDB
-	GrowingLevels   IGrowingLevelsDB
-	Organizations   IOrganizationsDB
-	PlantLifeCycles IPlantLifeCyclesDB
-	Plants          IPlantsDB
-	Users           IUsersDB
+	Postgres         *sqlx.DB
+	GrowSpots        IGrowSpotsDB
+	GrowingGroups    IGrowingGroupsDB
+	GrowingLevels    IGrowingLevelsDB
+	GrowingLocations IGrowingLocationsDB
+	Organizations    IOrganizationsDB
+	PlantLifeCycles  IPlantLifeCyclesDB
+	Plants           IPlantsDB
+	Users            IUsersDB
 }
 
 //
@@ -24,6 +25,9 @@ type IGrowingGroupsDB interface{}
 
 //
 type IGrowingLevelsDB interface{}
+
+//
+type IGrowingLocationsDB interface{}
 
 //
 type IOrganizationsDB interface{}
