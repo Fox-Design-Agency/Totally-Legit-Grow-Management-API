@@ -16,7 +16,8 @@ CREATE TABLE members(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- organizations
@@ -28,7 +29,8 @@ CREATE TABLE organizations(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 
@@ -53,7 +55,8 @@ CREATE TABLE plant_categories(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- plants
@@ -66,7 +69,8 @@ CREATE TABLE plants(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 
@@ -80,7 +84,8 @@ CREATE TABLE model_tasks(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- generated_tasks
@@ -98,7 +103,8 @@ CREATE TABLE generated_tasks(
     has_issue BOOLEAN DEFAULT FALSE,
     reason TEXT,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- plant life cycles
@@ -113,7 +119,8 @@ CREATE TABLE plant_life_cycles(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- plant stages
@@ -132,7 +139,8 @@ CREATE TABLE plant_stages(
     completed TIMESTAMPTZ,
     completed_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 CREATE TABLE nutrients(
@@ -143,7 +151,8 @@ CREATE TABLE nutrients(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 CREATE TABLE plant_stage_care(
@@ -174,7 +183,8 @@ CREATE TABLE plant_stage_care(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 CREATE TABLE plant_stage_care_nutrients(
@@ -261,7 +271,8 @@ CREATE TABLE devices(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 CREATE TABLE device_actions(
@@ -275,7 +286,8 @@ CREATE TABLE device_actions(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- growing groups
@@ -288,7 +300,8 @@ CREATE TABLE growing_groups(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- growing group devices
@@ -301,6 +314,7 @@ CREATE TABLE growing_group_devices(
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
     archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE,
     PRIMARY KEY (device, growing_group)
 );
 
@@ -314,7 +328,8 @@ CREATE TABLE growing_locations(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- growing location devices
@@ -327,6 +342,7 @@ CREATE TABLE growing_location_devices(
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
     archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE,
     PRIMARY KEY (device, growing_location)
 );
 
@@ -341,7 +357,8 @@ CREATE TABLE growing_levels(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- growing level devices
@@ -354,6 +371,7 @@ CREATE TABLE growing_level_devices(
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
     archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE,
     PRIMARY KEY (device, growing_level)
 );
 
@@ -371,7 +389,8 @@ CREATE TABLE grow_spots(
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
-    archived TIMESTAMP
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
 -- grow spot devices
@@ -384,6 +403,7 @@ CREATE TABLE grow_spots_devices(
     updated_by INT REFERENCES members(id) ON DELETE CASCADE,
     meta JSON DEFAULT '{}',
     archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE,
     PRIMARY KEY (device, grow_spot)
 );
 
