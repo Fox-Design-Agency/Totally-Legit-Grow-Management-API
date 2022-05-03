@@ -1,6 +1,8 @@
 package persistence
 
 import (
+	routemodels "smart-grow-management-api/v1/pkg/internal/route-models"
+
 	"github.com/jmoiron/sqlx"
 )
 
@@ -41,7 +43,13 @@ type IGrowingLocationsDB interface{}
 type IMembersDB interface{}
 
 //
-type INutrientsDB interface{}
+type INutrientsDB interface {
+	CreateNutrient(routemodels.CreateNutrientRequest) (*routemodels.CreateNutrientResponse, error)
+	DeleteNutrient(routemodels.DeleteNutrientRequest) error
+	EditNutrient(routemodels.EditNutrientRequest) (*routemodels.EditNutrientResponse, error)
+	GetNutrient(routemodels.GetNutrientRequest) (*routemodels.GetNutrientResponse, error)
+	GetAllNutrients(routemodels.GetAllNutrientsRequest) (*routemodels.GetAllNutrientsResponse, error)
+}
 
 //
 type IOrganizationsDB interface{}

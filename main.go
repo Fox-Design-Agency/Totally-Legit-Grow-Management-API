@@ -87,6 +87,12 @@ func main() {
 	/
 	/**********************************************************************/
 
+	r.HandleFunc("/api/v1/nutrient", svr.CreateNutrient).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/nutrient", svr.DeleteNutrient).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/nutrient", svr.EditNutrient).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/nutrient", svr.GetNutrient).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/nutrients", svr.GetAllNutrients).Methods(http.MethodGet)
+
 	/**********************************************************************
 	/
 	/	Organization Routes
