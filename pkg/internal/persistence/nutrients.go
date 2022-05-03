@@ -50,9 +50,17 @@ func (db *Persistence) GetNutrient(req routemodels.GetNutrientRequest) (*routemo
 	SQL := `
 	SELECT
 		nutrients.id AS id,
-		nutrients.display_name AS display_name
+		nutrients.display_name AS display_name,
+		nutrients.created AS created_at,
+		nutrients.updated AS updated_at,
+		cre_member.id AS created_member_id,
+		cre_member.display_name AS created_member_name,
+		up_member.id AS updated_member_id,
+		up_member.display_name AS updated_member_name
 	FROM nutrients
-	WHERE nutrient.id = $1
+	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
+	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
+	WHERE nutrients.id = $1
 	`
 
 	// Make the appropiate SQL Call
@@ -80,8 +88,8 @@ func (db *Persistence) GetAllNutrients(req routemodels.GetAllNutrientsRequest) (
 		up_member.id AS updated_member_id,
 		up_member.display_name AS updated_member_name
 	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = created_by.vendor
-	LEFT JOIN members AS up_member ON members.id = created_by.vendor
+	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
+	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
 	`
 
 	// Make the appropiate SQL Call

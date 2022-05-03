@@ -55,7 +55,13 @@ type INutrientsDB interface {
 type IOrganizationsDB interface{}
 
 //
-type IPlantCategoriesDB interface{}
+type IPlantCategoriesDB interface {
+	CreatePlantCategory(routemodels.CreatePlantCategoryRequest) (*routemodels.CreatePlantCategoryResponse, error)
+	DeletePlantCategory(routemodels.DeletePlantCategoryRequest) error
+	EditPlantCategory(routemodels.EditPlantCategoryRequest) (*routemodels.EditPlantCategoryResponse, error)
+	GetPlantCategory(routemodels.GetPlantCategoryRequest) (*routemodels.GetPlantCategoryResponse, error)
+	GetAllPlantCategories(routemodels.GetAllPlantCategoriesRequest) (*routemodels.GetAllPlantCategoriesResponse, error)
+}
 
 //
 type IPlantLifeCyclesDB interface{}

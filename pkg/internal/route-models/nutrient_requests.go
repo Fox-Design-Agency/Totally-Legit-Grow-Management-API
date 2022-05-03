@@ -29,7 +29,7 @@ type GetNutrientResponse struct {
 }
 
 type GetAllNutrientsRequest struct {
-	OrganizationID []Nutrient
+	OrganizationID string `json:"organizationID"`
 }
 
 type GetAllNutrientsResponse struct {
