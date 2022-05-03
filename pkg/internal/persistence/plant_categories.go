@@ -2,6 +2,8 @@ package persistence
 
 import routemodels "smart-grow-management-api/v1/pkg/internal/route-models"
 
+var _plantcats IPlantCategoriesDB = &Persistence{}
+
 func (db *Persistence) CreatePlantCategory(req routemodels.CreatePlantCategoryRequest) (*routemodels.CreatePlantCategoryResponse, error) {
 	var result string
 

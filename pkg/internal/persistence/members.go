@@ -2,6 +2,8 @@ package persistence
 
 import routemodels "smart-grow-management-api/v1/pkg/internal/route-models"
 
+var _members IMembersDB = &Persistence{}
+
 func (db *Persistence) CreateMember(req routemodels.CreateMemberRequest) (*routemodels.CreateMemberResponse, error) {
 	var result string
 
@@ -40,7 +42,7 @@ func (db *Persistence) DeleteMember(req routemodels.DeleteMemberRequest) error {
 	return nil
 }
 
-func (db *Persistence) EditMember(req routemodels.EditMemberRequest) (*routemodels.EditNutrientResponse, error) {
+func (db *Persistence) EditMember(req routemodels.EditMemberRequest) (*routemodels.EditMemberResponse, error) {
 	return nil, nil
 }
 

@@ -51,6 +51,30 @@ func main() {
 	/
 	/**********************************************************************/
 
+	r.HandleFunc("/api/v1/device", svr.CreateDevice).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/device/action", svr.CreateDeviceAction).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/device/growing-group", svr.CreateGrowingGroupDevice).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/device/growing-location", svr.CreateGrowingLocationDevice).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/device/growing-level", svr.CreateGrowingLevelDevice).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/device/growing-spot", svr.CreateGrowingSpotDevice).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/device", svr.DeleteDevice).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/device/growing-group", svr.DeleteGrowingGroupDevice).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/device/growing-location", svr.DeleteGrowingLocationDevice).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/device/growing-level", svr.DeleteGrowingLevelDevice).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/device/growing-spot", svr.DeleteGrowingSpotDevice).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/device", svr.EditDevice).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/device", svr.GetDevice).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/device/actions", svr.GetDeviceActions).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/devices", svr.GetAllDevices).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/device/growing-group", svr.GetGrowingGroupDevice).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/device/growing-location", svr.GetGrowingLocationDevice).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/device/growing-level", svr.GetGrowingLevelDevice).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/device/growing-spot", svr.GetGrowingSpotDevice).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/devices/growing-group", svr.GetAllGrowingGroupDevices).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/devices/growing-location", svr.GetAllGrowingLocationDevices).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/devices/growing-level", svr.GetAllGrowingLevelDevices).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/devices/growing-spot", svr.GetAllGrowingSpotDevices).Methods(http.MethodGet)
+
 	/**********************************************************************
 	/
 	/	Grow Spot Routes

@@ -3,7 +3,7 @@ package routemodels
 import "github.com/lib/pq"
 
 type SlimMember struct {
-	ID          string `json:"id" db:"id"`
+	ID          string `json:"id" db:"member_id"`
 	DisplayName string `json:"displayName" db:"display_name"`
 }
 

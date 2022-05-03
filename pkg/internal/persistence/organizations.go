@@ -2,6 +2,8 @@ package persistence
 
 import routemodels "smart-grow-management-api/v1/pkg/internal/route-models"
 
+var _orgs IOrganizationsDB = &Persistence{}
+
 func (db *Persistence) CreateOrganization(req routemodels.CreateOrganizationRequest) (*routemodels.CreateOrganizationResponse, error) {
 	var result string
 

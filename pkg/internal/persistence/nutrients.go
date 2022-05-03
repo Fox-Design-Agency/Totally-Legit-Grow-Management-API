@@ -2,6 +2,8 @@ package persistence
 
 import routemodels "smart-grow-management-api/v1/pkg/internal/route-models"
 
+var _nutrients INutrientsDB = &Persistence{}
+
 func (db *Persistence) CreateNutrient(req routemodels.CreateNutrientRequest) (*routemodels.CreateNutrientResponse, error) {
 	var result string
 
