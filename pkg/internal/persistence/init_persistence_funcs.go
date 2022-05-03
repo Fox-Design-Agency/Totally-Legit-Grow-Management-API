@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq" // should be here
 	migrate "github.com/rubenv/sql-migrate"
 )
 

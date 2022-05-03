@@ -11,14 +11,6 @@ BEGIN
 END;$$ LANGUAGE plpgsql;
 -- +migrate StatementEnd
 
-CREATE TRIGGER new_organization_id
-BEFORE INSERT ON organizations
-FOR EACH ROW EXECUTE PROCEDURE inject_uuid();
-
-CREATE TRIGGER new_user_id
-BEFORE INSERT ON users
-FOR EACH ROW EXECUTE PROCEDURE inject_uuid();
-
 CREATE TRIGGER new_plant_category_id
 BEFORE INSERT ON plant_categories
 FOR EACH ROW EXECUTE PROCEDURE inject_uuid();
@@ -84,8 +76,6 @@ FOR EACH ROW EXECUTE PROCEDURE inject_uuid();
 
 DROP FUNCTION inject_uuid CASCADE;
 
-DROP TRIGGER IF EXISTS new_organization_id ON organizations;
-DROP TRIGGER IF EXISTS new_user_id ON users;
 DROP TRIGGER IF EXISTS new_plant_category_id ON plant_categories;
 DROP TRIGGER IF EXISTS new_plants_id ON plants;
 DROP TRIGGER IF EXISTS new_model_tasks_id ON model_tasks;

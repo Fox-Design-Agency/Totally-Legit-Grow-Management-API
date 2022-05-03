@@ -7,7 +7,7 @@ SET TIME ZONE 'UTC';
 
 -- organizations
 CREATE TABLE organizations(
-    id UUID PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     display_name VARCHAR(256) NOT NULL,
     created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -15,9 +15,9 @@ CREATE TABLE organizations(
     archived TIMESTAMP
 );
 
--- users
-CREATE TABLE users(
-    id UUID PRIMARY KEY,
+-- members
+CREATE TABLE members(
+    id SERIAL PRIMARY KEY,
     display_name VARCHAR(256) NOT NULL,
     created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -25,14 +25,14 @@ CREATE TABLE users(
     archived TIMESTAMP
 );
 
--- organization_users
-CREATE TABLE organization_users(
-    organization UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
-    user UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+-- organization_members
+CREATE TABLE organization_members(
+    organization INT NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+    member INT NOT NULL REFERENCES members(id) ON DELETE CASCADE,
     created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     meta JSON DEFAULT '{}',
-    PRIMARY KEY (organization, user)
+    PRIMARY KEY (organization, member)
 );
 
 -- plant categories
@@ -151,7 +151,7 @@ CREATE TABLE devices(
 -- growing groups
 CREATE TABLE growing_groups(
     id UUID PRIMARY KEY,
-    organization UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+    organization INT NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
     display_name VARCHAR(256) NOT NULL,
     created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -245,8 +245,8 @@ CREATE TABLE grow_spots_devices(
 -- SQL section 'Down' is executed when this migration is rolled back
 
 DROP TABLE IF EXISTS organizations CASCADE;
-DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS organization_users CASCADE;
+DROP TABLE IF EXISTS members CASCADE;
+DROP TABLE IF EXISTS organization_members CASCADE;
 DROP TABLE IF EXISTS plant_categories CASCADE;
 DROP TABLE IF EXISTS plants CASCADE;
 DROP TABLE IF EXISTS model_tasks CASCADE;
