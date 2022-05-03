@@ -5,8 +5,8 @@ import (
 	"log"
 	"net/http"
 
-	"smart-grow-management-api/v1/pkg/server"
-	"smart-grow-management-api/v1/resources/config"
+	"totally-legit-grow-management/v1/pkg/server"
+	"totally-legit-grow-management/v1/resources/config"
 
 	"github.com/gorilla/mux"
 )

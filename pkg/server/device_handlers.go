@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"smart-grow-management-api/v1/pkg/internal/helpers"
-	routemodels "smart-grow-management-api/v1/pkg/internal/route-models"
+	"totally-legit-grow-management/v1/pkg/internal/helpers"
+	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
 func (s *Server) CreateDevice(w http.ResponseWriter, r *http.Request) {

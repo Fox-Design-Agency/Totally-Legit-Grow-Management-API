@@ -1,6 +1,6 @@
-# Smart Grow Management API
+# Totally Legit Grow Management API
 
-This is the repository for the base API for the smart grow system.
+This is the repository for the base API for the totally legit grow system.
 
 ## Table of Contents
 

@@ -1,6 +1,6 @@
 package persistence
 
-import routemodels "smart-grow-management-api/v1/pkg/internal/route-models"
+import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _nutrients INutrientsDB = &Persistence{}
 

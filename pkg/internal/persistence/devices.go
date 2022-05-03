@@ -1,7 +1,7 @@
 package persistence
 
 import (
-	routemodels "smart-grow-management-api/v1/pkg/internal/route-models"
+	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 	"github.com/jmoiron/sqlx"
 )

@@ -1,11 +1,11 @@
-module smart-grow-management-api/v1
+module totally-legit-grow-management/v1
 
 go 1.17
 
 require (
 	github.com/gorilla/mux v1.8.0
 	github.com/jmoiron/sqlx v1.3.5
-	github.com/lib/pq v1.10.0
+	github.com/lib/pq v1.10.5
 	github.com/onsi/ginkgo/v2 v2.1.4
 	github.com/onsi/gomega v1.19.0
 	github.com/rubenv/sql-migrate v1.1.1

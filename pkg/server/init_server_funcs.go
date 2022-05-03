@@ -3,8 +3,8 @@ package server
 import (
 	"log"
 
-	"smart-grow-management-api/v1/pkg/internal/persistence"
-	"smart-grow-management-api/v1/resources/config"
+	"totally-legit-grow-management/v1/pkg/internal/persistence"
+	"totally-legit-grow-management/v1/resources/config"
 )
 
 func NewServer(cfg config.Config) *Server {
