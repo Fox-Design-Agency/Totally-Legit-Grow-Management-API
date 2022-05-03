@@ -3,11 +3,11 @@
 
 INSERT INTO organizations
     (display_name)
-    VALUES ('INITIAL ORG');
+    VALUES ('SYSYEM ORG');
 
 INSERT INTO members
     (display_name)
-    VALUES ('INITIAL MEMBER');
+    VALUES ('SYSTEM USER');
 
 INSERT INTO organization_members
     (organization, member)
