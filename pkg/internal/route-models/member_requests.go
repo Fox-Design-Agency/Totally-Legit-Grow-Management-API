@@ -1,11 +1,37 @@
 package routemodels
 
-type CreatedAtMember struct {
-	CreatedByID   string `json:"createdByID" db:"created_member_id"`
-	CreatedByName string `json:"createdByName" db:"created_member_name"`
+type CreateMemberRequest struct {
+	DisplayName string `json:"displayName"`
 }
 
-type UpdatedAtMember struct {
-	UpdatedByID   string `json:"updatedByID" db:"updated_member_id"`
-	UpdatedByName string `json:"updatedByName" db:"updated_member_name"`
+type CreateMemberResponse struct {
+	ID string `json:"id" db:"id"`
+}
+
+type DeleteMemberRequest struct {
+	ID string `json:"id"`
+}
+
+type EditMemberRequest struct {
+	DisplayName string `json:"displayName"`
+}
+
+type EditMemberResponse struct {
+	Member
+}
+
+type GetMemberRequest struct {
+	ID string `json:"id"`
+}
+
+type GetMemberResponse struct {
+	Member
+}
+
+type GetAllMembersRequest struct {
+	OrganizationID string `json:"organizationID"`
+}
+
+type GetAllMembersResponse struct {
+	Members []Member
 }

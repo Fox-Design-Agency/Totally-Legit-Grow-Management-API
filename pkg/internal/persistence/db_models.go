@@ -40,7 +40,13 @@ type IGrowingLevelsDB interface{}
 type IGrowingLocationsDB interface{}
 
 //
-type IMembersDB interface{}
+type IMembersDB interface {
+	CreateMember(routemodels.CreateMemberRequest) (*routemodels.CreateMemberResponse, error)
+	DeleteMember(routemodels.DeleteMemberRequest) error
+	EditMember(routemodels.EditMemberRequest) (*routemodels.EditMemberResponse, error)
+	GetMember(routemodels.GetMemberRequest) (*routemodels.GetMemberResponse, error)
+	GetAllMembers(routemodels.GetAllMembersRequest) (*routemodels.GetAllMembersResponse, error)
+}
 
 //
 type INutrientsDB interface {
