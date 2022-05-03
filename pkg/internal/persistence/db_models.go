@@ -52,7 +52,13 @@ type INutrientsDB interface {
 }
 
 //
-type IOrganizationsDB interface{}
+type IOrganizationsDB interface {
+	CreateOrganization(routemodels.CreateOrganizationRequest) (*routemodels.CreateOrganizationResponse, error)
+	DeleteOrganization(routemodels.DeleteOrganizationRequest) error
+	EditOrganization(routemodels.EditOrganizationRequest) (*routemodels.EditOrganizationResponse, error)
+	GetOrganization(routemodels.GetOrganizationRequest) (*routemodels.GetOrganizationResponse, error)
+	GetAllOrganizations(routemodels.GetAllOrganizationsRequest) (*routemodels.GetAllOrganizationsResponse, error)
+}
 
 //
 type IPlantCategoriesDB interface {
