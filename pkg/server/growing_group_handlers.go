@@ -67,7 +67,7 @@ func (s *Server) GetGrowingGroup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp, err := s.Persistence.GetGrowingGroup(form)
+	resp, err := s.Persistence.GetGrowingGroupByID(form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return
@@ -84,7 +84,7 @@ func (s *Server) GetAllGrowingGroups(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp, err := s.Persistence.GetAllGrowingGroups(form)
+	resp, err := s.Persistence.GetAllGrowingGroupsByOrganizationID(form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return

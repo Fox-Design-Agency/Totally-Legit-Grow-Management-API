@@ -67,7 +67,7 @@ func (s *Server) GetGrowingLocation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp, err := s.Persistence.GetGrowingLocation(form)
+	resp, err := s.Persistence.GetGrowingLocationByID(form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return
@@ -84,7 +84,7 @@ func (s *Server) GetAllGrowingLocations(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	resp, err := s.Persistence.GetAllGrowingLocations(form)
+	resp, err := s.Persistence.GetAllGrowingLocationsByGrowingGroupID(form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return

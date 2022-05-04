@@ -67,7 +67,7 @@ func (s *Server) GetGrowingLevel(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp, err := s.Persistence.GetGrowingLevel(form)
+	resp, err := s.Persistence.GetGrowingLevelByID(form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return
@@ -84,7 +84,7 @@ func (s *Server) GetAllGrowingLevels(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp, err := s.Persistence.GetAllGrowingLevels(form)
+	resp, err := s.Persistence.GetAllGrowingLevelsByGrowingLocationID(form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return

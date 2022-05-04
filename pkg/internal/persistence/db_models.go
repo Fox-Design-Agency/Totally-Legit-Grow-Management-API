@@ -74,10 +74,10 @@ type IGrowSpotsDB interface {
 	CreateGrowSpotWithTransaction(*sqlx.Tx, routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error)
 	DeleteGrowSpot(routemodels.DeleteGrowSpotRequest) error
 	EditGrowSpot(routemodels.EditGrowSpotRequest) (*routemodels.EditGrowSpotResponse, error)
-	GetGrowSpot(routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error)
-	GetGrowSpotWithTransaction(*sqlx.Tx, routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error)
-	GetAllGrowSpots(routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error)
-	GetAllGrowSpotsTransaction(*sqlx.Tx, routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error)
+	GetGrowSpotByID(routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error)
+	GetGrowSpotByIDWithTransaction(*sqlx.Tx, routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error)
+	GetAllGrowSpotsByGrowLevelID(routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error)
+	GetAllGrowSpotsByGrowLevelIDWithTransaction(*sqlx.Tx, routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error)
 }
 
 //
@@ -86,9 +86,10 @@ type IGrowingGroupsDB interface {
 	CreateGrowingGroupWithTransaction(*sqlx.Tx, routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error)
 	DeleteGrowingGroup(routemodels.DeleteGrowingGroupRequest) error
 	EditGrowingGroup(routemodels.EditGrowingGroupRequest) (*routemodels.EditGrowingGroupResponse, error)
-	GetGrowingGroup(routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error)
-	GetGrowingGroupWithTransaction(*sqlx.Tx, routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error)
-	GetAllGrowingGroups(routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error)
+	GetGrowingGroupByID(routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error)
+	GetGrowingGroupByIDWithTransaction(*sqlx.Tx, routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error)
+	GetAllGrowingGroupsByOrganizationID(routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error)
+	GetAllGrowingGroupsByOrganizationIDWithTransaction(*sqlx.Tx, routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error)
 }
 
 //
@@ -97,9 +98,10 @@ type IGrowingLevelsDB interface {
 	CreateGrowingLevelWithTransaction(*sqlx.Tx, routemodels.CreateGrowingLevelRequest) (*routemodels.CreateGrowingLevelResponse, error)
 	DeleteGrowingLevel(routemodels.DeleteGrowingLevelRequest) error
 	EditGrowingLevel(routemodels.EditGrowingLevelRequest) (*routemodels.EditGrowingLevelResponse, error)
-	GetGrowingLevel(routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error)
-	GetGrowingLevelWithTransaction(*sqlx.Tx, routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error)
-	GetAllGrowingLevels(routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error)
+	GetGrowingLevelByID(routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error)
+	GetGrowingLevelByIDWithTransaction(*sqlx.Tx, routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error)
+	GetAllGrowingLevelsByGrowingLocationID(routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error)
+	GetAllGrowingLevelsByGrowingLocationIDWithTransaction(*sqlx.Tx, routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error)
 }
 
 //
@@ -108,9 +110,10 @@ type IGrowingLocationsDB interface {
 	CreateGrowingLocationWithTransaction(*sqlx.Tx, routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error)
 	DeleteGrowingLocation(routemodels.DeleteGrowingLocationRequest) error
 	EditGrowingLocation(routemodels.EditGrowingLocationRequest) (*routemodels.EditGrowingLocationResponse, error)
-	GetGrowingLocation(routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error)
-	GetGrowingLocationWithTransaction(*sqlx.Tx, routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error)
-	GetAllGrowingLocations(routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error)
+	GetGrowingLocationByID(routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error)
+	GetGrowingLocationByIDWithTransaction(*sqlx.Tx, routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error)
+	GetAllGrowingLocationsByGrowingGroupID(routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error)
+	GetAllGrowingLocationsByGrowingGroupIDWithTransaction(*sqlx.Tx, routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error)
 }
 
 //

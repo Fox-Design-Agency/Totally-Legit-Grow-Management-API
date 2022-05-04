@@ -81,7 +81,7 @@ func (db *Persistence) EditGrowingLocation(req routemodels.EditGrowingLocationRe
 	return nil, nil
 }
 
-func (db *Persistence) GetGrowingLocation(req routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
+func (db *Persistence) GetGrowingLocationByID(req routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
 	var result routemodels.GrowingLocation
 
 	SQL := `
@@ -112,7 +112,7 @@ func (db *Persistence) GetGrowingLocation(req routemodels.GetGrowingLocationRequ
 	}, nil
 }
 
-func (db *Persistence) GetGrowingLocationWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
+func (db *Persistence) GetGrowingLocationByIDWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
 	var result routemodels.GrowingLocation
 
 	SQL := `
@@ -143,7 +143,38 @@ func (db *Persistence) GetGrowingLocationWithTransaction(tx *sqlx.Tx, req routem
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingLocations(req routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
+func (db *Persistence) GetAllGrowingLocationsByGrowingGroupID(req routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
+	var result []routemodels.GrowingLocation
+
+	SQL := `
+	SELECT
+		growing_locations.id AS id,
+		growing_locations.growing_group AS growing_group_id,
+		growing_locations.display_name AS display_name,
+		growing_locations.created AS created_at,
+		growing_locations.updated AS updated_at,
+		cre_member.id AS created_member_id,
+		cre_member.display_name AS created_member_name,
+		up_member.id AS updated_member_id,
+		up_member.display_name AS updated_member_name
+	FROM growing_locations
+	LEFT JOIN members AS cre_member ON members.id = growing_locations.created_by
+	LEFT JOIN members AS up_member ON members.id = growing_locations.updated_by
+	WHERE growing_locations.growing_group = $1
+	`
+
+	// Make the appropiate SQL Call
+	if err := db.Postgres.Select(&result, SQL, req.GrowingGroupID); err != nil {
+		// handle err
+		return nil, err
+	}
+
+	return &routemodels.GetAllGrowingLocationsResponse{
+		GrowingLocations: result,
+	}, nil
+}
+
+func (db *Persistence) GetAllGrowingLocationsByGrowingGroupIDWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
 	var result []routemodels.GrowingLocation
 
 	SQL := `

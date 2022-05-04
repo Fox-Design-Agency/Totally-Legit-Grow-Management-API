@@ -81,7 +81,7 @@ func (db *Persistence) EditGrowingLevel(req routemodels.EditGrowingLevelRequest)
 	return nil, nil
 }
 
-func (db *Persistence) GetGrowingLevel(req routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error) {
+func (db *Persistence) GetGrowingLevelByID(req routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error) {
 	var result routemodels.GrowingLevel
 
 	SQL := `
@@ -112,7 +112,7 @@ func (db *Persistence) GetGrowingLevel(req routemodels.GetGrowingLevelRequest) (
 	}, nil
 }
 
-func (db *Persistence) GetGrowingLevelWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error) {
+func (db *Persistence) GetGrowingLevelByIDWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error) {
 	var result routemodels.GrowingLevel
 
 	SQL := `
@@ -143,7 +143,7 @@ func (db *Persistence) GetGrowingLevelWithTransaction(tx *sqlx.Tx, req routemode
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingLevels(req routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error) {
+func (db *Persistence) GetAllGrowingLevelsByGrowingLocationID(req routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error) {
 	var result []routemodels.GrowingLevel
 
 	SQL := `
@@ -159,10 +159,41 @@ func (db *Persistence) GetAllGrowingLevels(req routemodels.GetAllGrowingLevelsRe
 	FROM growing_levels
 	LEFT JOIN members AS cre_member ON members.id = growing_levels.created_by
 	LEFT JOIN members AS up_member ON members.id = growing_levels.updated_by
+	WHERE growing_levels.growing_location = $1
 	`
 
 	// Make the appropiate SQL Call
 	if err := db.Postgres.Select(&result, SQL); err != nil {
+		// handle err
+		return nil, err
+	}
+
+	return &routemodels.GetAllGrowingLevelsResponse{
+		GrowingLevels: result,
+	}, nil
+}
+
+func (db *Persistence) GetAllGrowingLevelsByGrowingLocationIDWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error) {
+	var result []routemodels.GrowingLevel
+
+	SQL := `
+	SELECT
+		growing_levels.id AS id,
+		growing_levels.display_name AS display_name,
+		growing_levels.created AS created_at,
+		growing_levels.updated AS updated_at,
+		cre_member.id AS created_member_id,
+		cre_member.display_name AS created_member_name,
+		up_member.id AS updated_member_id,
+		up_member.display_name AS updated_member_name
+	FROM growing_levels
+	LEFT JOIN members AS cre_member ON members.id = growing_levels.created_by
+	LEFT JOIN members AS up_member ON members.id = growing_levels.updated_by
+	WHERE growing_levels.growing_location = $1
+	`
+
+	// Make the appropiate SQL Call
+	if err := db.Postgres.Select(&result, SQL, req.GrowingLevelID); err != nil {
 		// handle err
 		return nil, err
 	}

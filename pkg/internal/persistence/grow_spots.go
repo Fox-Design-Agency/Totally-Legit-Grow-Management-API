@@ -81,7 +81,7 @@ func (db *Persistence) EditGrowSpot(req routemodels.EditGrowSpotRequest) (*route
 	return nil, nil
 }
 
-func (db *Persistence) GetGrowSpot(req routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error) {
+func (db *Persistence) GetGrowSpotByID(req routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error) {
 	var result routemodels.GrowSpot
 
 	SQL := `
@@ -112,7 +112,7 @@ func (db *Persistence) GetGrowSpot(req routemodels.GetGrowSpotRequest) (*routemo
 	}, nil
 }
 
-func (db *Persistence) GetGrowSpotWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error) {
+func (db *Persistence) GetGrowSpotByIDWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error) {
 	var result routemodels.GrowSpot
 
 	SQL := `
@@ -143,7 +143,7 @@ func (db *Persistence) GetGrowSpotWithTransaction(tx *sqlx.Tx, req routemodels.G
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowSpots(req routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error) {
+func (db *Persistence) GetAllGrowSpotsByGrowLevelID(req routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error) {
 	var result []routemodels.GrowSpot
 
 	SQL := `
@@ -174,7 +174,7 @@ func (db *Persistence) GetAllGrowSpots(req routemodels.GetAllGrowSpotsRequest) (
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowSpotsTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error) {
+func (db *Persistence) GetAllGrowSpotsByGrowLevelIDWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error) {
 	var result []routemodels.GrowSpot
 
 	SQL := `

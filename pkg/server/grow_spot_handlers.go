@@ -67,7 +67,7 @@ func (s *Server) GetGrowSpot(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp, err := s.Persistence.GetGrowSpot(form)
+	resp, err := s.Persistence.GetGrowSpotByID(form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return
@@ -84,7 +84,7 @@ func (s *Server) GetAllGrowSpots(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp, err := s.Persistence.GetAllGrowSpots(form)
+	resp, err := s.Persistence.GetAllGrowSpotsByGrowLevelID(form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return

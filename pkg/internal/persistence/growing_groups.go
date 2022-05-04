@@ -81,7 +81,7 @@ func (db *Persistence) EditGrowingGroup(req routemodels.EditGrowingGroupRequest)
 	return nil, nil
 }
 
-func (db *Persistence) GetGrowingGroup(req routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
+func (db *Persistence) GetGrowingGroupByID(req routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
 	var result routemodels.GrowingGroup
 
 	SQL := `
@@ -112,7 +112,7 @@ func (db *Persistence) GetGrowingGroup(req routemodels.GetGrowingGroupRequest) (
 	}, nil
 }
 
-func (db *Persistence) GetGrowingGroupWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
+func (db *Persistence) GetGrowingGroupByIDWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
 	var result routemodels.GrowingGroup
 
 	SQL := `
@@ -143,7 +143,7 @@ func (db *Persistence) GetGrowingGroupWithTransaction(tx *sqlx.Tx, req routemode
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingGroups(req routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
+func (db *Persistence) GetAllGrowingGroupsByOrganizationID(req routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
 	var result []routemodels.GrowingGroup
 
 	SQL := `
@@ -165,6 +165,37 @@ func (db *Persistence) GetAllGrowingGroups(req routemodels.GetAllGrowingGroupsRe
 
 	// Make the appropiate SQL Call
 	if err := db.Postgres.Select(&result, SQL, req.OrganizationID); err != nil {
+		// handle err
+		return nil, err
+	}
+
+	return &routemodels.GetAllGrowingGroupsResponse{
+		Groups: result,
+	}, nil
+}
+
+func (db *Persistence) GetAllGrowingGroupsByOrganizationIDWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
+	var result []routemodels.GrowingGroup
+
+	SQL := `
+	SELECT
+		growing_groups.id AS id,
+		growing_groups.organization AS organization_id,
+		growing_groups.display_name AS display_name,
+		growing_groups.created AS created_at,
+		growing_groups.updated AS updated_at,
+			cre_member.id AS created_member_id,
+			cre_member.display_name AS created_member_name,
+			up_member.id AS updated_member_id,
+			up_member.display_name AS updated_member_name
+	FROM growing_groups
+	LEFT JOIN members AS cre_member ON members.id = growing_groups.created_by
+	LEFT JOIN members AS up_member ON members.id = growing_groups.updated_by
+	WHERE growing_groups.organization = $1
+	`
+
+	// Make the appropiate SQL Call
+	if err := tx.Select(&result, SQL, req.OrganizationID); err != nil {
 		// handle err
 		return nil, err
 	}

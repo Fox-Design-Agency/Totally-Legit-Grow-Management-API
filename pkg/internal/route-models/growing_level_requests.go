@@ -30,7 +30,7 @@ type GetGrowingLevelResponse struct {
 }
 
 type GetAllGrowingLevelsRequest struct {
-	OrganizationID string `json:"organizationID"`
+	GrowingLevelID string `json:"growingLevelID"`
 }
 
 type GetAllGrowingLevelsResponse struct {
