@@ -11,9 +11,13 @@ type Persistence struct {
 	Postgres         *sqlx.DB
 	Devices          IDevicesDB
 	GrowSpots        IGrowSpotsDB
+	GrowSpotPlants   IGrowSpotPlantsDB
 	GrowingGroups    IGrowingGroupsDB
 	GrowingLevels    IGrowingLevelsDB
 	GrowingLocations IGrowingLocationsDB
+	GrowingMediums   IGrowingMediumsDB
+	Harvests         IHarvestsDB
+	Inventories      IInventoriesDB
 	Members          IMembersDB
 	Nutrients        INutrientsDB
 	Organizations    IOrganizationsDB
@@ -21,6 +25,8 @@ type Persistence struct {
 	PlantLifeCycles  IPlantLifeCyclesDB
 	PlantStages      IPlantStagesDB
 	Plants           IPlantsDB
+	Products         IProductsDB
+	Seeds            ISeedsDB
 	Tasks            ITasksDB
 }
 
@@ -69,6 +75,9 @@ type IDevicesDB interface {
 }
 
 //
+type IGrowSpotPlantsDB interface{}
+
+//
 type IGrowSpotsDB interface {
 	CreateGrowSpot(routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error)
 	CreateGrowSpotWithTransaction(*sqlx.Tx, routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error)
@@ -115,6 +124,15 @@ type IGrowingLocationsDB interface {
 	GetAllGrowingLocationsByGrowingGroupID(routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error)
 	GetAllGrowingLocationsByGrowingGroupIDWithTransaction(*sqlx.Tx, routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error)
 }
+
+//
+type IGrowingMediumsDB interface{}
+
+//
+type IHarvestsDB interface{}
+
+//
+type IInventoriesDB interface{}
 
 //
 type IMembersDB interface {
@@ -189,7 +207,19 @@ type IPlantStagesDB interface {
 }
 
 //
-type IPlantsDB interface{}
+type IPlantsDB interface {
+	// CreatePlant(routemodels.CreatePlantRequest) (*routemodels.CreatePlantResponse, error)
+	// DeletePlant(routemodels.DeletePlantRequest) error
+	// EditPlant(routemodels.EditPlantRequest) (*routemodels.EditPlantResponse, error)
+	// GetPlant(routemodels.GetPlantRequest) (*routemodels.GetPlantResponse, error)
+	// GetAllPlants(routemodels.GetAllPlanttsRequest) (*routemodels.GetAllPlantsResponse, error)
+}
+
+//
+type IProductsDB interface{}
+
+//
+type ISeedsDB interface{}
 
 //
 type ITasksDB interface{}

@@ -73,6 +73,67 @@ CREATE TABLE plants(
     archived_by INT REFERENCES members(id) ON DELETE CASCADE
 );
 
+-- seeds
+CREATE TABLE seeds(
+    id SERIAL PRIMARY KEY,
+    plant INT NOT NULL REFERENCES plants(id) ON DELETE CASCADE,
+    display_name VARCHAR(256) NOT NULL,
+    supplier VARCHAR(256),
+    created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by INT REFERENCES members(id) ON DELETE CASCADE,
+    updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_by INT REFERENCES members(id) ON DELETE CASCADE,
+    meta JSON DEFAULT '{}',
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
+);
+
+-- seed inventory
+CREATE TABLE seed_inventories(
+    id SERIAL PRIMARY KEY,
+    seed INT NOT NULL REFERENCES seeds(id) ON DELETE CASCADE,
+    display_name VARCHAR(256) NOT NULL,
+    amount_units VARCHAR(16),
+    amount NUMERIC,
+    created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by INT REFERENCES members(id) ON DELETE CASCADE,
+    updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_by INT REFERENCES members(id) ON DELETE CASCADE,
+    meta JSON DEFAULT '{}',
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
+);
+
+-- products (fruits, vegetables, etc)
+CREATE TABLE products(
+    id SERIAL PRIMARY KEY,
+    plant INT NOT NULL REFERENCES plants(id) ON DELETE CASCADE,
+    display_name VARCHAR(256) NOT NULL,
+    created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by INT REFERENCES members(id) ON DELETE CASCADE,
+    updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_by INT REFERENCES members(id) ON DELETE CASCADE,
+    meta JSON DEFAULT '{}',
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
+);
+
+
+-- product inventory
+CREATE TABLE product_inventories(
+    id SERIAL PRIMARY KEY,
+    product INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    display_name VARCHAR(256) NOT NULL,
+    amount_units VARCHAR(16),
+    amount NUMERIC,
+    created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by INT REFERENCES members(id) ON DELETE CASCADE,
+    updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_by INT REFERENCES members(id) ON DELETE CASCADE,
+    meta JSON DEFAULT '{}',
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
+);
 
 -- model_tasks
 CREATE TABLE model_tasks(
@@ -375,14 +436,27 @@ CREATE TABLE growing_level_devices(
     PRIMARY KEY (device, growing_level)
 );
 
+-- growing medium
+CREATE TABLE growing_mediums(
+    id UUID PRIMARY KEY,
+    display_name VARCHAR(256) NOT NULL,
+    created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by INT REFERENCES members(id) ON DELETE CASCADE,
+    updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_by INT REFERENCES members(id) ON DELETE CASCADE,
+    meta JSON DEFAULT '{}',
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
+);
+
 -- grow spots
 CREATE TABLE grow_spots(
-    id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY, 
     growing_level UUID NOT NULL REFERENCES growing_levels(id) ON DELETE CASCADE,
+    growing_medium UUID NOT NULL REFERENCES growing_mediums(id) ON DELETE CASCADE,
     is_individual BOOLEAN DEFAULT TRUE, 
     is_companion BOOLEAN DEFAULT FALSE,
     num_spots INT DEFAULT 1,
-    spot_type VARCHAR(64),
     spot_size VARCHAR(16),
     created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     created_by INT REFERENCES members(id) ON DELETE CASCADE,
@@ -407,6 +481,55 @@ CREATE TABLE grow_spots_devices(
     PRIMARY KEY (device, grow_spot)
 );
 
+-- grow_spot_plant
+CREATE TABLE grow_spot_plants(
+    id SERIAL PRIMARY KEY,
+    plant INT NOT NULL REFERENCES plants(id) ON DELETE CASCADE,
+    plant_life_cycle INT NOT NULL REFERENCES plant_life_cycles(id) ON DELETE CASCADE,
+    grow_spot INT NOT NULL REFERENCES grow_spots(id) ON DELETE CASCADE,
+    seed INT NOT NULL REFERENCES seeds(id) ON DELETE CASCADE,
+    seed_amount_units VARCHAR(16) NOT NULL,
+    seed_amount NUMERIC,
+    created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by INT REFERENCES members(id) ON DELETE CASCADE,
+    updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_by INT REFERENCES members(id) ON DELETE CASCADE,
+    meta JSON DEFAULT '{}',
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
+);
+
+-- grow_spot_plant_harvest
+CREATE TABLE grow_spot_plant_harvest(
+    id SERIAL PRIMARY KEY,
+    grow_spot_plant INT NOT NULL REFERENCES grow_spot_plants(id) ON DELETE CASCADE,
+    product INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    amount_units VARCHAR(16) NOT NULL,
+    amount NUMERIC NOT NULL,
+    created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by INT REFERENCES members(id) ON DELETE CASCADE,
+    updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_by INT REFERENCES members(id) ON DELETE CASCADE,
+    meta JSON DEFAULT '{}',
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
+);
+
+-- grow spot seed harvest
+CREATE TABLE grow_spot_seed_harvest(
+    id SERIAL PRIMARY KEY,
+    grow_spot_plant INT NOT NULL REFERENCES grow_spot_plants(id) ON DELETE CASCADE,
+    seed INT NOT NULL REFERENCES seeds(id) ON DELETE CASCADE,
+    amount_units VARCHAR(16) NOT NULL,
+    amount NUMERIC NOT NULL,
+    created TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_by INT REFERENCES members(id) ON DELETE CASCADE,
+    updated TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_by INT REFERENCES members(id) ON DELETE CASCADE,
+    meta JSON DEFAULT '{}',
+    archived TIMESTAMP,
+    archived_by INT REFERENCES members(id) ON DELETE CASCADE
+);
 
 -- +migrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
