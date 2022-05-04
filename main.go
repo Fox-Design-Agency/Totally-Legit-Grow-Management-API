@@ -177,6 +177,12 @@ func main() {
 	/
 	/**********************************************************************/
 
+	r.HandleFunc("/api/v1/plant-life-cycle", svr.CreatePlantLifeCycle).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/plant-life-cycle", svr.DeletePlantLifeCycle).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/plant-life-cycle", svr.EditPlantLifeCycle).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/plant-life-cycle", svr.GetPlantLifeCycleByID).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/plant-life-cycles", svr.GetAllPlantLifeCycles).Methods(http.MethodGet)
+
 	/**********************************************************************
 	/
 	/	Plant Stages Routes

@@ -110,7 +110,7 @@ CREATE TABLE generated_tasks(
 -- plant life cycles
 CREATE TABLE plant_life_cycles(
     id SERIAL PRIMARY KEY,
-    actual_time_measure NUMERIC,
+    actual_time_measure NUMERIC DEFAULT 0,
     display_name VARCHAR(256) NOT NULL,
     total_time_measure_units TIMEMEASURE NOT NULL,
     est_total_time_measure INT NOT NULL,

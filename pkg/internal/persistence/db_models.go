@@ -153,7 +153,16 @@ type IPlantCategoriesDB interface {
 }
 
 //
-type IPlantLifeCyclesDB interface{}
+type IPlantLifeCyclesDB interface {
+	CreatePlantLifeCycle(routemodels.CreatePlantLifeCycleRequest) (*routemodels.CreatePlantLifeCycleResponse, error)
+	CreatePlantLifeCycleWithTransaction(*sqlx.Tx, routemodels.CreatePlantLifeCycleRequest) (*routemodels.CreatePlantLifeCycleResponse, error)
+	DeletePlantLifeCycle(routemodels.DeletePlantLifeCycleRequest) error
+	EditPlantLifeCycle(routemodels.EditPlantLifeCycleRequest) (*routemodels.EditPlantLifeCycleResponse, error)
+	GetPlantLifeCycleByID(routemodels.GetPlantLifeCycleRequest) (*routemodels.GetPlantLifeCycleResponse, error)
+	GetPlantLifeCycleByIDWithTransaction(*sqlx.Tx, routemodels.GetPlantLifeCycleRequest) (*routemodels.GetPlantLifeCycleResponse, error)
+	GetAllPlantLifeCycles(routemodels.GetAllPlantLifeCyclesRequest) (*routemodels.GetAllPlantLifeCyclesResponse, error)
+	GetAllPlantLifeCyclesWithTransaction(*sqlx.Tx, routemodels.GetAllPlantLifeCyclesRequest) (*routemodels.GetAllPlantLifeCyclesResponse, error)
+}
 
 //
 type IPlantStagesDB interface{}
