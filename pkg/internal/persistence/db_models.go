@@ -69,7 +69,16 @@ type IDevicesDB interface {
 }
 
 //
-type IGrowSpotsDB interface{}
+type IGrowSpotsDB interface {
+	CreateGrowSpot(routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error)
+	CreateGrowSpotWithTransaction(*sqlx.Tx, routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error)
+	DeleteGrowSpot(routemodels.DeleteGrowSpotRequest) error
+	EditGrowSpot(routemodels.EditGrowSpotRequest) (*routemodels.EditGrowSpotResponse, error)
+	GetGrowSpot(routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error)
+	GetGrowSpotWithTransaction(*sqlx.Tx, routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error)
+	GetAllGrowSpots(routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error)
+	GetAllGrowSpotsTransaction(*sqlx.Tx, routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error)
+}
 
 //
 type IGrowingGroupsDB interface {
