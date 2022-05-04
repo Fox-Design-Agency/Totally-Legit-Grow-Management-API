@@ -4,6 +4,7 @@ type SlimDevice struct {
 	ID          string `json:"id" db:"device_id"`
 	DisplayName string `json:"displayName" db:"display_name"`
 }
+
 type SlimDeviceAction struct {
 	ID          string `json:"id" db:"action_id"`
 	DisplayName string `json:"displayName" db:"action_name"`

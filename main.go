@@ -189,6 +189,19 @@ func main() {
 	/
 	/**********************************************************************/
 
+	r.HandleFunc("/api/v1/plant-stage", svr.CreatePlantStage).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/plant-stage/care", svr.CreatePlantStageCare).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/plant-stage/nutrient", svr.CreatePlantStageNutrients).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/plant-stage/connect", svr.ConnectPlantStage).Methods(http.MethodPost)
+	//
+	r.HandleFunc("/api/v1/plant-stage", svr.DeletePlantStage).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/plant-stage", svr.EditPlantStage).Methods(http.MethodPut)
+	//
+	r.HandleFunc("/api/v1/plant-stage", svr.GetPlantStageByID).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/plant-stage/care", svr.GetPlantStageCareByID).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/plant-stage/nutrient", svr.GetPlantStageNutrient).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/plant-stages", svr.GetAllPlantStages).Methods(http.MethodGet)
+
 	/**********************************************************************
 	/
 	/	Plant Routes
