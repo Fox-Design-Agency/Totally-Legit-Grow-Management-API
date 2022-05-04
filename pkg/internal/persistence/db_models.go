@@ -83,7 +83,15 @@ type IGrowingGroupsDB interface {
 }
 
 //
-type IGrowingLevelsDB interface{}
+type IGrowingLevelsDB interface {
+	CreateGrowingLevel(routemodels.CreateGrowingLevelRequest) (*routemodels.CreateGrowingLevelResponse, error)
+	CreateGrowingLevelWithTransaction(*sqlx.Tx, routemodels.CreateGrowingLevelRequest) (*routemodels.CreateGrowingLevelResponse, error)
+	DeleteGrowingLevel(routemodels.DeleteGrowingLevelRequest) error
+	EditGrowingLevel(routemodels.EditGrowingLevelRequest) (*routemodels.EditGrowingLevelResponse, error)
+	GetGrowingLevel(routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error)
+	GetGrowingLevelWithTransaction(*sqlx.Tx, routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error)
+	GetAllGrowingLevels(routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error)
+}
 
 //
 type IGrowingLocationsDB interface {
