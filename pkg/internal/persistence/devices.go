@@ -6,7 +6,7 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-var _devices IDevicesDB = &Persistence{}
+var _ IDevicesDB = &Persistence{}
 
 func (db *Persistence) CreateDevice(req routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
 	var result string

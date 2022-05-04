@@ -2,7 +2,7 @@ package persistence
 
 import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
-var _orgs IOrganizationsDB = &Persistence{}
+var _ IOrganizationsDB = &Persistence{}
 
 func (db *Persistence) CreateOrganization(req routemodels.CreateOrganizationRequest) (*routemodels.CreateOrganizationResponse, error) {
 	var result string

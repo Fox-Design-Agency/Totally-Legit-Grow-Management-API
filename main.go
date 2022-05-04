@@ -87,6 +87,12 @@ func main() {
 	/
 	/**********************************************************************/
 
+	r.HandleFunc("/api/v1/growing-group", svr.CreateGrowingGroup).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/growing-group", svr.DeleteGrowingGroup).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/growing-group", svr.EditGrowingGroup).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/growing-group", svr.GetGrowingGroup).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-groups", svr.GetAllGrowingGroups).Methods(http.MethodGet)
+
 	/**********************************************************************
 	/
 	/	Growing Level Routes

@@ -44,18 +44,8 @@ type IDevicesDB interface {
 	DeleteGrowingLevelDevice(routemodels.DeleteGrowingLevelDeviceRequest) error
 	DeleteGrowingSpotDevice(routemodels.DeleteGrowingSpotDeviceRequest) error
 	EditDevice(routemodels.EditDeviceRequest) (*routemodels.EditDeviceResponse, error)
-	GetDevice(routemodels.GetDeviceRequest) (*routemodels.GetDeviceResponse, error)
-	GetDeviceActions(routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error)
-	GetDeviceActionsWithTransaction(*sqlx.Tx, routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error)
+	//
 	GetAllDevices(routemodels.GetAllDevicesRequest) (*routemodels.GetAllDevicesResponse, error)
-	GetGrowingGroupDevice(routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error)
-	GetGrowingGroupDeviceWithTransaction(*sqlx.Tx, routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error)
-	GetGrowingLocationDevice(routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error)
-	GetGrowingLocationDeviceWithTransaction(*sqlx.Tx, routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error)
-	GetGrowingLevelDevice(routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error)
-	GetGrowingLevelDeviceWithTransaction(*sqlx.Tx, routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error)
-	GetGrowingSpotDevice(routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error)
-	GetGrowingSpotDeviceWithTransaction(*sqlx.Tx, routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error)
 	GetAllGrowingGroupDevices(routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error)
 	GetAllGrowingGroupDeviceWithTransaction(*sqlx.Tx, routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error)
 	GetAllGrowingLocationDevices(routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error)
@@ -64,13 +54,33 @@ type IDevicesDB interface {
 	GetAllGrowingLevelDeviceWithTransaction(*sqlx.Tx, routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error)
 	GetAllGrowingSpotDevices(routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error)
 	GetAllGrowingSpotDeviceWithTransaction(*sqlx.Tx, routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error)
+	//
+	GetDevice(routemodels.GetDeviceRequest) (*routemodels.GetDeviceResponse, error)
+	GetDeviceActions(routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error)
+	GetDeviceActionsWithTransaction(*sqlx.Tx, routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error)
+	GetGrowingGroupDevice(routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error)
+	GetGrowingGroupDeviceWithTransaction(*sqlx.Tx, routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error)
+	GetGrowingLocationDevice(routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error)
+	GetGrowingLocationDeviceWithTransaction(*sqlx.Tx, routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error)
+	GetGrowingLevelDevice(routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error)
+	GetGrowingLevelDeviceWithTransaction(*sqlx.Tx, routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error)
+	GetGrowingSpotDevice(routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error)
+	GetGrowingSpotDeviceWithTransaction(*sqlx.Tx, routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error)
 }
 
 //
 type IGrowSpotsDB interface{}
 
 //
-type IGrowingGroupsDB interface{}
+type IGrowingGroupsDB interface {
+	CreateGrowingGroup(routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error)
+	CreateGrowingGroupWithTransaction(*sqlx.Tx, routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error)
+	DeleteGrowingGroup(routemodels.DeleteGrowingGroupRequest) error
+	EditGrowingGroup(routemodels.EditGrowingGroupRequest) (*routemodels.EditGrowingGroupResponse, error)
+	GetGrowingGroup(routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error)
+	GetGrowingGroupWithTransaction(*sqlx.Tx, routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error)
+	GetAllGrowingGroups(routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error)
+}
 
 //
 type IGrowingLevelsDB interface{}

@@ -2,7 +2,7 @@ package persistence
 
 import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
-var _members IMembersDB = &Persistence{}
+var _ IMembersDB = &Persistence{}
 
 func (db *Persistence) CreateMember(req routemodels.CreateMemberRequest) (*routemodels.CreateMemberResponse, error) {
 	var result string

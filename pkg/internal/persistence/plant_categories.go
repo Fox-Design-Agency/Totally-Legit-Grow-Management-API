@@ -2,7 +2,7 @@ package persistence
 
 import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
-var _plantcats IPlantCategoriesDB = &Persistence{}
+var _ IPlantCategoriesDB = &Persistence{}
 
 func (db *Persistence) CreatePlantCategory(req routemodels.CreatePlantCategoryRequest) (*routemodels.CreatePlantCategoryResponse, error) {
 	var result string

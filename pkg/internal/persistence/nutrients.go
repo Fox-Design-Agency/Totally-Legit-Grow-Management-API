@@ -2,7 +2,7 @@ package persistence
 
 import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
-var _nutrients INutrientsDB = &Persistence{}
+var _ INutrientsDB = &Persistence{}
 
 func (db *Persistence) CreateNutrient(req routemodels.CreateNutrientRequest) (*routemodels.CreateNutrientResponse, error) {
 	var result string
