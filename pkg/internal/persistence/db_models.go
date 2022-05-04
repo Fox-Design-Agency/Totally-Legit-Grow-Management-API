@@ -86,7 +86,15 @@ type IGrowingGroupsDB interface {
 type IGrowingLevelsDB interface{}
 
 //
-type IGrowingLocationsDB interface{}
+type IGrowingLocationsDB interface {
+	CreateGrowingLocation(routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error)
+	CreateGrowingLocationWithTransaction(*sqlx.Tx, routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error)
+	DeleteGrowingLocation(routemodels.DeleteGrowingLocationRequest) error
+	EditGrowingLocation(routemodels.EditGrowingLocationRequest) (*routemodels.EditGrowingLocationResponse, error)
+	GetGrowingLocation(routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error)
+	GetGrowingLocationWithTransaction(*sqlx.Tx, routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error)
+	GetAllGrowingLocations(routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error)
+}
 
 //
 type IMembersDB interface {
