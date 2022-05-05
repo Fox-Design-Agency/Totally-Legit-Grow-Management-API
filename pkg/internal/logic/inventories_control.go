@@ -2,6 +2,8 @@ package logic
 
 import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
+var _ IInventoriesLogic = &Logic{}
+
 //
 func (lg *Logic) CreateInventory(req *routemodels.CreateInventoryRequest) (*routemodels.CreateInventoryResponse, error) {
 	/**********************************************************************

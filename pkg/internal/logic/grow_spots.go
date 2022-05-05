@@ -2,6 +2,8 @@ package logic
 
 import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
+var _ IGrowSpotsLogic = &Logic{}
+
 //
 func (lg *Logic) CreateGrowSpotPlant(req *routemodels.CreateGrowSpotPlantRequest) (*routemodels.CreateGrowSpotPlantResponse, error) {
 	/**********************************************************************

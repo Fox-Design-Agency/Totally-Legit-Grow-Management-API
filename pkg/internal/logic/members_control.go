@@ -2,6 +2,8 @@ package logic
 
 import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
+var _ IMembersLogic = &Logic{}
+
 //
 func (lg *Logic) CreateMember(req *routemodels.CreateMemberRequest) (*routemodels.CreateMemberResponse, error) {
 	/**********************************************************************

@@ -2,6 +2,8 @@ package logic
 
 import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
+var _ IProductsLogic = &Logic{}
+
 //
 func (lg *Logic) CreateProduct(req *routemodels.CreateProductRequest) (*routemodels.CreateProductResponse, error) {
 	/**********************************************************************
@@ -160,7 +162,7 @@ func (lg *Logic) GetProduct(req *routemodels.GetProductRequest) (*routemodels.Ge
 
 //
 func (lg *Logic) GetAllProducts(req *routemodels.GetAllProductsRequest) (*routemodels.GetAllProductsResponse, error) {
-	/*****************GetAllProducts*****************************************************
+	/**********************************************************************
 	/
 	/	Run Validation Checks
 	/

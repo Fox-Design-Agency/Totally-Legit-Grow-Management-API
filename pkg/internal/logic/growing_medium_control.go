@@ -2,6 +2,8 @@ package logic
 
 import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
+var _ IGrowingMediumsLogic = &Logic{}
+
 //
 func (lg *Logic) CreateGrowingMedium(req *routemodels.CreateGrowingMediumRequest) (*routemodels.CreateGrowingMediumResponse, error) {
 	/**********************************************************************

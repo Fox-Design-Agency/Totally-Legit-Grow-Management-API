@@ -16,7 +16,7 @@ type ILogic interface {
 	IGrowSpotsLogic
 	IGrowingGroupsLogic
 	IGrowingLevelsLogic
-	GrowingLocationsLogic
+	IGrowingLocationsLogic
 	IGrowingMediumsLogic
 	IHarvestsLogic
 	IInventoriesLogic
@@ -37,8 +37,8 @@ type IDeviceLogic interface {
 	CreateDevice(*routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error)
 	CreateDeviceAction(*routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error)
 	CreateGrowingGroupDevice(*routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error)
-	CreateGrowingLocationDevice(*routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceRequest, error)
-	CreateGrowingLevelDevice(*routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceRequest, error)
+	CreateGrowingLocationDevice(*routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error)
+	CreateGrowingLevelDevice(*routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error)
 	CreateGrowingSpotDevice(*routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error)
 	DeleteDevice(*routemodels.DeleteDeviceRequest) error
 	DeleteGrowingGroupDevice(*routemodels.DeleteGrowingGroupDeviceRequest) error
@@ -96,7 +96,7 @@ type IGrowingLevelsLogic interface {
 }
 
 //
-type GrowingLocationsLogic interface {
+type IGrowingLocationsLogic interface {
 	CreateGrowingLocation(*routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error)
 	DeleteGrowingLocation(*routemodels.DeleteGrowingLocationRequest) error
 	EditGrowingLocation(*routemodels.EditGrowingLocationRequest) (*routemodels.EditGrowingLocationResponse, error)
