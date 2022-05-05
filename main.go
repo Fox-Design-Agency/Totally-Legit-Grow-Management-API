@@ -71,12 +71,6 @@ func main() {
 
 	/**********************************************************************
 	/
-	/	Grow Spot Plant Routes
-	/
-	/**********************************************************************/
-
-	/**********************************************************************
-	/
 	/	Grow Spot Routes
 	/
 	/**********************************************************************/
@@ -86,6 +80,18 @@ func main() {
 	r.HandleFunc("/api/v1/growing-spot", svr.EditGrowSpot).Methods(http.MethodPut)
 	r.HandleFunc("/api/v1/growing-spot", svr.GetGrowSpot).Methods(http.MethodGet)
 	r.HandleFunc("/api/v1/growing-spots", svr.GetAllGrowSpots).Methods(http.MethodGet)
+
+	/**********************************************************************
+	/
+	/	Grow Spot Plants Routes
+	/
+	/**********************************************************************/
+
+	r.HandleFunc("/api/v1/growing-spot-plant", svr.CreateGrowSpotPlant).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/growing-spot-plant", svr.DeleteGrowSpotPlant).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/growing-spot-plant", svr.EditGrowSpotPlant).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/growing-spot-plant", svr.GetGrowSpotPlant).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-spot-plants", svr.GetAllGrowSpotPlants).Methods(http.MethodGet)
 
 	/**********************************************************************
 	/
@@ -129,17 +135,35 @@ func main() {
 	/
 	/**********************************************************************/
 
+	r.HandleFunc("/api/v1/growing-medium", svr.CreateGrowingMedium).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/growing-medium", svr.DeleteGrowingMedium).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/growing-medium", svr.EditGrowingMedium).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/growing-medium", svr.GetGrowingMedium).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-mediums", svr.GetAllGrowingMediums).Methods(http.MethodGet)
+
 	/**********************************************************************
 	/
 	/	Harvest Routes
 	/
 	/**********************************************************************/
 
+	// r.HandleFunc("/api/v1/harvest", svr.CreateHarvest).Methods(http.MethodPost)
+	// r.HandleFunc("/api/v1/harvest", svr.DeleteHarvest).Methods(http.MethodDelete)
+	// r.HandleFunc("/api/v1/harvest", svr.EditHarvest).Methods(http.MethodPut)
+	// r.HandleFunc("/api/v1/harvest", svr.GetHarvest).Methods(http.MethodGet)
+	// r.HandleFunc("/api/v1/harvests", svr.GetAllHarvests).Methods(http.MethodGet)
+
 	/**********************************************************************
 	/
 	/	Inventory Routes
 	/
 	/**********************************************************************/
+
+	r.HandleFunc("/api/v1/inventory", svr.CreateInventory).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/inventory", svr.DeleteInventory).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/inventory", svr.EditInventory).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/inventory", svr.GetInventory).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/inventories", svr.GetAllInventories).Methods(http.MethodGet)
 
 	/**********************************************************************
 	/
@@ -226,11 +250,23 @@ func main() {
 	/
 	/**********************************************************************/
 
+	r.HandleFunc("/api/v1/plant", svr.CreatePlant).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/plant", svr.DeletePlant).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/plant", svr.EditPlant).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/plant", svr.GetPlant).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/plants", svr.GetAllPlants).Methods(http.MethodGet)
+
 	/**********************************************************************
 	/
 	/	Products Routes
 	/
 	/**********************************************************************/
+
+	r.HandleFunc("/api/v1/product", svr.CreateProduct).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/product", svr.DeleteProduct).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/product", svr.EditProduct).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/product", svr.GetProduct).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/products", svr.GetAllProducts).Methods(http.MethodGet)
 
 	/**********************************************************************
 	/
@@ -238,11 +274,23 @@ func main() {
 	/
 	/**********************************************************************/
 
+	r.HandleFunc("/api/v1/seed", svr.CreateSeed).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/seed", svr.DeleteSeed).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/seed", svr.EditSeed).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/seed", svr.GetSeed).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/seeds", svr.GetAllSeeds).Methods(http.MethodGet)
+
 	/**********************************************************************
 	/
 	/	Task Routes
 	/
 	/**********************************************************************/
+
+	r.HandleFunc("/api/v1/task", svr.CreateTask).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/task", svr.DeleteTask).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/task", svr.EditTask).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/task", svr.GetTask).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/tasks", svr.GetAllTasks).Methods(http.MethodGet)
 
 	/**********************************************************************
 	/
@@ -251,4 +299,10 @@ func main() {
 	/**********************************************************************/
 	log.Println("Running local on port: ", cfg.Port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", cfg.Port), nil))
+
+	/**********************************************************************
+	/
+	/	Run Shutdown Sequence
+	/
+	/**********************************************************************/
 }
