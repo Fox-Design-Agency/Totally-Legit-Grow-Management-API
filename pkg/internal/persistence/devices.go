@@ -8,22 +8,42 @@ import (
 
 var _ IDevicesDB = &Persistence{}
 
+//
 func (db *Persistence) CreateDevice(req *routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
+
 	var result string
 
-	SQL := `
-	INSERT INTO devices
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	args := []interface{}{
+		req.DisplayName,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(CREATE_DEVICE_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateDeviceResponse{
 		ID: result,
 	}, nil

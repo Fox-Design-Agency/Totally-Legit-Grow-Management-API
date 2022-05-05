@@ -69,7 +69,14 @@ Location of the function within the files should inherit from the location of th
 
 #### Persistence Pattern
 
-COMING SOON
+The basic flow of code through the persistence pattern should follow this order with minimal deviation:
+
+1. State the Stuff to Return. Basically what is going to be scanned from the SQL call (if anything) and returned with the expected response.
+2. Define the arguments to be used in the SQL call
+3. Execute the SQL call with a SQL statement defined in an associated const file for SQL strings
+4. Return the Expected Response
+
+There should only be one SQL call in a single function. If multiple calls are required, create them separately and compose them with a transaction in the logic layer. Try and reuse SQL code when possible, but too much reuse could potentially cause unintended side affects when changing the strings.
 
 ### Clear DB Quickly
 
