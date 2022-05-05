@@ -55,7 +55,13 @@ The basic flow of code through the handler funcs should follow this order with m
 
 #### Logic Pattern
 
-COMING SOON
+The basic flow of code through the logic funcs should follow this order with minimal deviation:
+
+1. Run Validation Checks
+2. Start Transaction if desired
+3. Initiate all persistene layer calls in desired sequence
+4. Commit transaction if started
+5. Form Response and return back to Handler Func for response
 
 #### Persistence Pattern
 
