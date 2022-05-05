@@ -53,6 +53,8 @@ The basic flow of code through the handler funcs should follow this order with m
 3. Call associated Logic func
 4. Return appropiate json response
 
+Location of the function within the handler files should inherit based on the section of the route within main. Since this function sets up the request to pass to the logic layer, there should be minimal disagreement on proper placement based on the main route placement.
+
 #### Logic Pattern
 
 The basic flow of code through the logic funcs should follow this order with minimal deviation:
@@ -62,6 +64,8 @@ The basic flow of code through the logic funcs should follow this order with min
 3. Initiate all persistene layer calls in desired sequence
 4. Commit transaction if started
 5. Form Response and return back to Handler Func for response
+
+Location of the function within the files should inherit from the location of the function within the handler files. This layer has the chance to call out to many persistence functions and can cause disagreement with proper file location.
 
 #### Persistence Pattern
 
