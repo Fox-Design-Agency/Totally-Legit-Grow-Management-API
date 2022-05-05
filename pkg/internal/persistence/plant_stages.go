@@ -8,7 +8,7 @@ import (
 
 var _ IPlantStagesDB = &Persistence{}
 
-func (db *Persistence) CreatePlantStage(req routemodels.CreatePlantStageRequest) (*routemodels.CreatePlantStageResponse, error) {
+func (db *Persistence) CreatePlantStage(req *routemodels.CreatePlantStageRequest) (*routemodels.CreatePlantStageResponse, error) {
 	var result string
 
 	SQL := `
@@ -29,7 +29,7 @@ func (db *Persistence) CreatePlantStage(req routemodels.CreatePlantStageRequest)
 	}, nil
 }
 
-func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req routemodels.CreatePlantStageRequest) (*routemodels.CreatePlantStageResponse, error) {
+func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantStageRequest) (*routemodels.CreatePlantStageResponse, error) {
 	var result string
 
 	SQL := `
@@ -50,7 +50,7 @@ func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req routemod
 	}, nil
 }
 
-func (db *Persistence) CreatePlantStageCare(req routemodels.CreatePlantStageCareRequest) (*routemodels.CreatePlantStageCareResponse, error) {
+func (db *Persistence) CreatePlantStageCare(req *routemodels.CreatePlantStageCareRequest) (*routemodels.CreatePlantStageCareResponse, error) {
 	var result string
 
 	SQL := `
@@ -71,7 +71,7 @@ func (db *Persistence) CreatePlantStageCare(req routemodels.CreatePlantStageCare
 	}, nil
 }
 
-func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req routemodels.CreatePlantStageCareRequest) (*routemodels.CreatePlantStageCareResponse, error) {
+func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantStageCareRequest) (*routemodels.CreatePlantStageCareResponse, error) {
 	var result string
 
 	SQL := `
@@ -92,7 +92,7 @@ func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req rout
 	}, nil
 }
 
-func (db *Persistence) CreatePlantStageNutrients(req routemodels.CreatePlantStageNutrientsRequest) (*routemodels.CreatePlantStageNutrientsResponse, error) {
+func (db *Persistence) CreatePlantStageNutrients(req *routemodels.CreatePlantStageNutrientsRequest) (*routemodels.CreatePlantStageNutrientsResponse, error) {
 	var result string
 
 	SQL := `
@@ -113,7 +113,7 @@ func (db *Persistence) CreatePlantStageNutrients(req routemodels.CreatePlantStag
 	}, nil
 }
 
-func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req routemodels.CreatePlantStageNutrientsRequest) (*routemodels.CreatePlantStageNutrientsResponse, error) {
+func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantStageNutrientsRequest) (*routemodels.CreatePlantStageNutrientsResponse, error) {
 	var result string
 
 	SQL := `
@@ -134,7 +134,7 @@ func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req
 	}, nil
 }
 
-func (db *Persistence) ConnectPlantStage(req routemodels.ConnectPlantStageRequest) (*routemodels.ConnectPlantStageResponse, error) {
+func (db *Persistence) ConnectPlantStage(req *routemodels.ConnectPlantStageRequest) (*routemodels.ConnectPlantStageResponse, error) {
 	var result string
 
 	SQL := `
@@ -155,7 +155,7 @@ func (db *Persistence) ConnectPlantStage(req routemodels.ConnectPlantStageReques
 	}, nil
 }
 
-func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req routemodels.ConnectPlantStageRequest) (*routemodels.ConnectPlantStageResponse, error) {
+func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req *routemodels.ConnectPlantStageRequest) (*routemodels.ConnectPlantStageResponse, error) {
 	var result string
 
 	SQL := `
@@ -176,7 +176,7 @@ func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req routemo
 	}, nil
 }
 
-func (db *Persistence) DeletePlantStage(req routemodels.DeletePlantStageRequest) error {
+func (db *Persistence) DeletePlantStage(req *routemodels.DeletePlantStageRequest) error {
 	var result string
 
 	SQL := `
@@ -193,11 +193,11 @@ func (db *Persistence) DeletePlantStage(req routemodels.DeletePlantStageRequest)
 	return nil
 }
 
-func (db *Persistence) EditPlantStage(req routemodels.EditPlantStageRequest) (*routemodels.EditPlantStageResponse, error) {
+func (db *Persistence) EditPlantStage(req *routemodels.EditPlantStageRequest) (*routemodels.EditPlantStageResponse, error) {
 	return nil, nil
 }
 
-func (db *Persistence) GetPlantStageByID(req routemodels.GetPlantStageRequest) (*routemodels.GetPlantStageResponse, error) {
+func (db *Persistence) GetPlantStageByID(req *routemodels.GetPlantStageRequest) (*routemodels.GetPlantStageResponse, error) {
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -227,7 +227,7 @@ func (db *Persistence) GetPlantStageByID(req routemodels.GetPlantStageRequest) (
 	}, nil
 }
 
-func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req routemodels.GetPlantStageRequest) (*routemodels.GetPlantStageResponse, error) {
+func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetPlantStageRequest) (*routemodels.GetPlantStageResponse, error) {
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -257,7 +257,7 @@ func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req routemo
 	}, nil
 }
 
-func (db *Persistence) GetPlantStageCareByID(req routemodels.GetPlantStageCareByIDRequest) (*routemodels.GetPlantStageCareByIDResponse, error) {
+func (db *Persistence) GetPlantStageCareByID(req *routemodels.GetPlantStageCareByIDRequest) (*routemodels.GetPlantStageCareByIDResponse, error) {
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -287,7 +287,7 @@ func (db *Persistence) GetPlantStageCareByID(req routemodels.GetPlantStageCareBy
 	}, nil
 }
 
-func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.Tx, req routemodels.GetPlantStageCareByPlantStageIDRequest) (*routemodels.GetPlantStageCareByPlantStageIDResponse, error) {
+func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetPlantStageCareByPlantStageIDRequest) (*routemodels.GetPlantStageCareByPlantStageIDResponse, error) {
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -317,7 +317,7 @@ func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.T
 	}, nil
 }
 
-func (db *Persistence) GetPlantStageNutrient(req routemodels.GetPlantStageNutrientRequest) (*routemodels.GetPlantStageNutrientResponse, error) {
+func (db *Persistence) GetPlantStageNutrient(req *routemodels.GetPlantStageNutrientRequest) (*routemodels.GetPlantStageNutrientResponse, error) {
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -347,7 +347,7 @@ func (db *Persistence) GetPlantStageNutrient(req routemodels.GetPlantStageNutrie
 	}, nil
 }
 
-func (db *Persistence) GetAllPlantStages(req routemodels.GetAllPlantStagesRequest) (*routemodels.GetAllPlantStagesResponse, error) {
+func (db *Persistence) GetAllPlantStages(req *routemodels.GetAllPlantStagesRequest) (*routemodels.GetAllPlantStagesResponse, error) {
 	var result []routemodels.PlantStage
 
 	SQL := `
@@ -376,7 +376,7 @@ func (db *Persistence) GetAllPlantStages(req routemodels.GetAllPlantStagesReques
 	}, nil
 }
 
-func (db *Persistence) GetAllPlantStagesWithTransaction(tx *sqlx.Tx, req routemodels.GetAllPlantStagesRequest) (*routemodels.GetAllPlantStagesResponse, error) {
+func (db *Persistence) GetAllPlantStagesWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllPlantStagesRequest) (*routemodels.GetAllPlantStagesResponse, error) {
 	var result []routemodels.PlantStage
 
 	SQL := `

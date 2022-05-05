@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ INutrientsDB = &Persistence{}
 
-func (db *Persistence) CreateNutrient(req routemodels.CreateNutrientRequest) (*routemodels.CreateNutrientResponse, error) {
+func (db *Persistence) CreateNutrient(req *routemodels.CreateNutrientRequest) (*routemodels.CreateNutrientResponse, error) {
 	var result string
 
 	SQL := `
@@ -25,7 +25,7 @@ func (db *Persistence) CreateNutrient(req routemodels.CreateNutrientRequest) (*r
 	}, nil
 }
 
-func (db *Persistence) DeleteNutrient(req routemodels.DeleteNutrientRequest) error {
+func (db *Persistence) DeleteNutrient(req *routemodels.DeleteNutrientRequest) error {
 	var result string
 
 	SQL := `
@@ -42,11 +42,11 @@ func (db *Persistence) DeleteNutrient(req routemodels.DeleteNutrientRequest) err
 	return nil
 }
 
-func (db *Persistence) EditNutrient(req routemodels.EditNutrientRequest) (*routemodels.EditNutrientResponse, error) {
+func (db *Persistence) EditNutrient(req *routemodels.EditNutrientRequest) (*routemodels.EditNutrientResponse, error) {
 	return nil, nil
 }
 
-func (db *Persistence) GetNutrient(req routemodels.GetNutrientRequest) (*routemodels.GetNutrientResponse, error) {
+func (db *Persistence) GetNutrient(req *routemodels.GetNutrientRequest) (*routemodels.GetNutrientResponse, error) {
 	var result routemodels.Nutrient
 
 	SQL := `
@@ -76,7 +76,7 @@ func (db *Persistence) GetNutrient(req routemodels.GetNutrientRequest) (*routemo
 	}, nil
 }
 
-func (db *Persistence) GetAllNutrients(req routemodels.GetAllNutrientsRequest) (*routemodels.GetAllNutrientsResponse, error) {
+func (db *Persistence) GetAllNutrients(req *routemodels.GetAllNutrientsRequest) (*routemodels.GetAllNutrientsResponse, error) {
 	var result []routemodels.Nutrient
 
 	SQL := `

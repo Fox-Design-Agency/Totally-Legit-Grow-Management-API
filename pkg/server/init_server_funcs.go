@@ -3,18 +3,18 @@ package server
 import (
 	"log"
 
-	"totally-legit-grow-management/v1/pkg/internal/persistence"
+	"totally-legit-grow-management/v1/pkg/internal/logic"
 	"totally-legit-grow-management/v1/resources/config"
 )
 
 func NewServer(cfg config.Config) *Server {
 
-	db, err := persistence.NewPersistence(cfg.Database.Dialect(), cfg.Database.Connection())
+	control, err := logic.NewLogicControl(cfg)
 	if err != nil {
-		log.Fatal("Couldn't Make DB Connection")
+		log.Fatal("Logic Layer Not Setup!")
 	}
 
 	return &Server{
-		Persistence: db,
+		Logic: control,
 	}
 }

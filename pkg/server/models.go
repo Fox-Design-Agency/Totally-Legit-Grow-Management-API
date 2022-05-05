@@ -1,9 +1,9 @@
 package server
 
 import (
-	"totally-legit-grow-management/v1/pkg/internal/persistence"
+	"totally-legit-grow-management/v1/pkg/internal/logic"
 )
 
 type Server struct {
-	Persistence *persistence.Persistence
+	Logic logic.ILogic
 }

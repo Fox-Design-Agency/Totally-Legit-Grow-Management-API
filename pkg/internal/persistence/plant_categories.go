@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IPlantCategoriesDB = &Persistence{}
 
-func (db *Persistence) CreatePlantCategory(req routemodels.CreatePlantCategoryRequest) (*routemodels.CreatePlantCategoryResponse, error) {
+func (db *Persistence) CreatePlantCategory(req *routemodels.CreatePlantCategoryRequest) (*routemodels.CreatePlantCategoryResponse, error) {
 	var result string
 
 	SQL := `
@@ -25,7 +25,7 @@ func (db *Persistence) CreatePlantCategory(req routemodels.CreatePlantCategoryRe
 	}, nil
 }
 
-func (db *Persistence) DeletePlantCategory(req routemodels.DeletePlantCategoryRequest) error {
+func (db *Persistence) DeletePlantCategory(req *routemodels.DeletePlantCategoryRequest) error {
 	var result string
 
 	SQL := `
@@ -42,11 +42,11 @@ func (db *Persistence) DeletePlantCategory(req routemodels.DeletePlantCategoryRe
 	return nil
 }
 
-func (db *Persistence) EditPlantCategory(req routemodels.EditPlantCategoryRequest) (*routemodels.EditPlantCategoryResponse, error) {
+func (db *Persistence) EditPlantCategory(req *routemodels.EditPlantCategoryRequest) (*routemodels.EditPlantCategoryResponse, error) {
 	return nil, nil
 }
 
-func (db *Persistence) GetPlantCategory(req routemodels.GetPlantCategoryRequest) (*routemodels.GetPlantCategoryResponse, error) {
+func (db *Persistence) GetPlantCategory(req *routemodels.GetPlantCategoryRequest) (*routemodels.GetPlantCategoryResponse, error) {
 	var result routemodels.PlantCategory
 
 	SQL := `
@@ -76,7 +76,7 @@ func (db *Persistence) GetPlantCategory(req routemodels.GetPlantCategoryRequest)
 	}, nil
 }
 
-func (db *Persistence) GetAllPlantCategories(req routemodels.GetAllPlantCategoriesRequest) (*routemodels.GetAllPlantCategoriesResponse, error) {
+func (db *Persistence) GetAllPlantCategories(req *routemodels.GetAllPlantCategoriesRequest) (*routemodels.GetAllPlantCategoriesResponse, error) {
 	var result []routemodels.PlantCategory
 
 	SQL := `

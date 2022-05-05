@@ -9,86 +9,181 @@ import (
 )
 
 func (s *Server) CreateGrowingGroup(w http.ResponseWriter, r *http.Request) {
+	/**********************************************************************
+	/
+	/	Start Telemetry Span
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Parse Form or Set Vars
+	/
+	/**********************************************************************/
 	var form routemodels.CreateGrowingGroupRequest
 	if err := json.NewDecoder(r.Body).Decode(&form); err != nil {
 		log.Println(err)
 		// send error msg
 		return
 	}
-
-	resp, err := s.Persistence.CreateGrowingGroup(form)
+	/**********************************************************************
+	/
+	/	Call Logic Layer
+	/
+	/**********************************************************************/
+	resp, err := s.Logic.CreateGrowingGroup(&form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return
 	}
-
+	/**********************************************************************
+	/
+	/	Return Success
+	/
+	/**********************************************************************/
 	helpers.SendSuccessHeader(w, resp)
 }
 
 func (s *Server) DeleteGrowingGroup(w http.ResponseWriter, r *http.Request) {
+	/**********************************************************************
+	/
+	/	Start Telemetry Span
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Parse Form or Set Vars
+	/
+	/**********************************************************************/
 	var form routemodels.DeleteGrowingGroupRequest
 	if err := json.NewDecoder(r.Body).Decode(&form); err != nil {
 		log.Println(err)
 		// send error msg
 		return
 	}
-
-	err := s.Persistence.DeleteGrowingGroup(form)
+	/**********************************************************************
+	/
+	/	Call Logic Layer
+	/
+	/**********************************************************************/
+	err := s.Logic.DeleteGrowingGroup(&form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return
 	}
-
+	/**********************************************************************
+	/
+	/	Return Success
+	/
+	/**********************************************************************/
 	helpers.SendSuccessHeader(w, nil)
 }
 
 func (s *Server) EditGrowingGroup(w http.ResponseWriter, r *http.Request) {
+	/**********************************************************************
+	/
+	/	Start Telemetry Span
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Parse Form or Set Vars
+	/
+	/**********************************************************************/
 	var form routemodels.EditGrowingGroupRequest
 	if err := json.NewDecoder(r.Body).Decode(&form); err != nil {
 		log.Println(err)
 		// send error msg
 		return
 	}
-
-	resp, err := s.Persistence.EditGrowingGroup(form)
+	/**********************************************************************
+	/
+	/	Call Logic Layer
+	/
+	/**********************************************************************/
+	resp, err := s.Logic.EditGrowingGroup(&form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return
 	}
-
+	/**********************************************************************
+	/
+	/	Return Success
+	/
+	/**********************************************************************/
 	helpers.SendSuccessHeader(w, resp)
 }
 
 func (s *Server) GetGrowingGroup(w http.ResponseWriter, r *http.Request) {
+	/**********************************************************************
+	/
+	/	Start Telemetry Span
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Parse Form or Set Vars
+	/
+	/**********************************************************************/
 	var form routemodels.GetGrowingGroupRequest
 	if err := json.NewDecoder(r.Body).Decode(&form); err != nil {
 		log.Println(err)
 		// send error msg
 		return
 	}
-
-	resp, err := s.Persistence.GetGrowingGroupByID(form)
+	/**********************************************************************
+	/
+	/	Call Logic Layer
+	/
+	/**********************************************************************/
+	resp, err := s.Logic.GetGrowingGroupByID(&form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return
 	}
-
+	/**********************************************************************
+	/
+	/	Return Success
+	/
+	/**********************************************************************/
 	helpers.SendSuccessHeader(w, resp)
 }
 
 func (s *Server) GetAllGrowingGroups(w http.ResponseWriter, r *http.Request) {
+	/**********************************************************************
+	/
+	/	Start Telemetry Span
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Parse Form or Set Vars
+	/
+	/**********************************************************************/
 	var form routemodels.GetAllGrowingGroupsRequest
 	if err := json.NewDecoder(r.Body).Decode(&form); err != nil {
 		log.Println(err)
 		// send error msg
 		return
 	}
-
-	resp, err := s.Persistence.GetAllGrowingGroupsByOrganizationID(form)
+	/**********************************************************************
+	/
+	/	Call Logic Layer
+	/
+	/**********************************************************************/
+	resp, err := s.Logic.GetAllGrowingGroupsByOrganizationID(&form)
 	if err != nil {
 		helpers.SendErrorHeader(w, http.StatusBadRequest, nil)
 		return
 	}
-
+	/**********************************************************************
+	/
+	/	Return Success
+	/
+	/**********************************************************************/
 	helpers.SendSuccessHeader(w, resp)
 }

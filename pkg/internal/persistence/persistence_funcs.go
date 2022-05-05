@@ -8,6 +8,8 @@ import (
 	migrate "github.com/rubenv/sql-migrate"
 )
 
+var _ IPersistence = &Persistence{}
+
 // MigrateDBUP runs the migration files up
 func (db *Persistence) MigrateDBUP() error {
 	// run the migrate here

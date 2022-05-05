@@ -8,7 +8,7 @@ import (
 
 var _ IGrowingLocationsDB = &Persistence{}
 
-func (db *Persistence) CreateGrowingLocation(req routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error) {
+func (db *Persistence) CreateGrowingLocation(req *routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error) {
 	var result string
 
 	SQL := `
@@ -34,7 +34,7 @@ func (db *Persistence) CreateGrowingLocation(req routemodels.CreateGrowingLocati
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingLocationWithTransaction(tx *sqlx.Tx, req routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error) {
+func (db *Persistence) CreateGrowingLocationWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error) {
 	var result string
 
 	SQL := `
@@ -60,7 +60,7 @@ func (db *Persistence) CreateGrowingLocationWithTransaction(tx *sqlx.Tx, req rou
 	}, nil
 }
 
-func (db *Persistence) DeleteGrowingLocation(req routemodels.DeleteGrowingLocationRequest) error {
+func (db *Persistence) DeleteGrowingLocation(req *routemodels.DeleteGrowingLocationRequest) error {
 	var result string
 
 	SQL := `
@@ -77,11 +77,11 @@ func (db *Persistence) DeleteGrowingLocation(req routemodels.DeleteGrowingLocati
 	return nil
 }
 
-func (db *Persistence) EditGrowingLocation(req routemodels.EditGrowingLocationRequest) (*routemodels.EditGrowingLocationResponse, error) {
+func (db *Persistence) EditGrowingLocation(req *routemodels.EditGrowingLocationRequest) (*routemodels.EditGrowingLocationResponse, error) {
 	return nil, nil
 }
 
-func (db *Persistence) GetGrowingLocationByID(req routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
+func (db *Persistence) GetGrowingLocationByID(req *routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
 	var result routemodels.GrowingLocation
 
 	SQL := `
@@ -112,7 +112,7 @@ func (db *Persistence) GetGrowingLocationByID(req routemodels.GetGrowingLocation
 	}, nil
 }
 
-func (db *Persistence) GetGrowingLocationByIDWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
+func (db *Persistence) GetGrowingLocationByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
 	var result routemodels.GrowingLocation
 
 	SQL := `
@@ -143,7 +143,7 @@ func (db *Persistence) GetGrowingLocationByIDWithTransaction(tx *sqlx.Tx, req ro
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingLocationsByGrowingGroupID(req routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
+func (db *Persistence) GetAllGrowingLocationsByGrowingGroupID(req *routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
 	var result []routemodels.GrowingLocation
 
 	SQL := `
@@ -174,7 +174,7 @@ func (db *Persistence) GetAllGrowingLocationsByGrowingGroupID(req routemodels.Ge
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingLocationsByGrowingGroupIDWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
+func (db *Persistence) GetAllGrowingLocationsByGrowingGroupIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
 	var result []routemodels.GrowingLocation
 
 	SQL := `

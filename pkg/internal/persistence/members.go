@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IMembersDB = &Persistence{}
 
-func (db *Persistence) CreateMember(req routemodels.CreateMemberRequest) (*routemodels.CreateMemberResponse, error) {
+func (db *Persistence) CreateMember(req *routemodels.CreateMemberRequest) (*routemodels.CreateMemberResponse, error) {
 	var result string
 
 	SQL := `
@@ -25,7 +25,7 @@ func (db *Persistence) CreateMember(req routemodels.CreateMemberRequest) (*route
 	}, nil
 }
 
-func (db *Persistence) DeleteMember(req routemodels.DeleteMemberRequest) error {
+func (db *Persistence) DeleteMember(req *routemodels.DeleteMemberRequest) error {
 	var result string
 
 	SQL := `
@@ -42,11 +42,11 @@ func (db *Persistence) DeleteMember(req routemodels.DeleteMemberRequest) error {
 	return nil
 }
 
-func (db *Persistence) EditMember(req routemodels.EditMemberRequest) (*routemodels.EditMemberResponse, error) {
+func (db *Persistence) EditMember(req *routemodels.EditMemberRequest) (*routemodels.EditMemberResponse, error) {
 	return nil, nil
 }
 
-func (db *Persistence) GetMember(req routemodels.GetMemberRequest) (*routemodels.GetMemberResponse, error) {
+func (db *Persistence) GetMember(req *routemodels.GetMemberRequest) (*routemodels.GetMemberResponse, error) {
 	var result routemodels.Member
 
 	SQL := `
@@ -76,7 +76,7 @@ func (db *Persistence) GetMember(req routemodels.GetMemberRequest) (*routemodels
 	}, nil
 }
 
-func (db *Persistence) GetAllMembers(req routemodels.GetAllMembersRequest) (*routemodels.GetAllMembersResponse, error) {
+func (db *Persistence) GetAllMembers(req *routemodels.GetAllMembersRequest) (*routemodels.GetAllMembersResponse, error) {
 	var result []routemodels.Member
 
 	SQL := `

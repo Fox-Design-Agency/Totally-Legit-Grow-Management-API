@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IOrganizationsDB = &Persistence{}
 
-func (db *Persistence) CreateOrganization(req routemodels.CreateOrganizationRequest) (*routemodels.CreateOrganizationResponse, error) {
+func (db *Persistence) CreateOrganization(req *routemodels.CreateOrganizationRequest) (*routemodels.CreateOrganizationResponse, error) {
 	var result string
 
 	SQL := `
@@ -25,7 +25,7 @@ func (db *Persistence) CreateOrganization(req routemodels.CreateOrganizationRequ
 	}, nil
 }
 
-func (db *Persistence) DeleteOrganization(req routemodels.DeleteOrganizationRequest) error {
+func (db *Persistence) DeleteOrganization(req *routemodels.DeleteOrganizationRequest) error {
 	var result string
 
 	SQL := `
@@ -42,11 +42,11 @@ func (db *Persistence) DeleteOrganization(req routemodels.DeleteOrganizationRequ
 	return nil
 }
 
-func (db *Persistence) EditOrganization(req routemodels.EditOrganizationRequest) (*routemodels.EditOrganizationResponse, error) {
+func (db *Persistence) EditOrganization(req *routemodels.EditOrganizationRequest) (*routemodels.EditOrganizationResponse, error) {
 	return nil, nil
 }
 
-func (db *Persistence) GetOrganization(req routemodels.GetOrganizationRequest) (*routemodels.GetOrganizationResponse, error) {
+func (db *Persistence) GetOrganization(req *routemodels.GetOrganizationRequest) (*routemodels.GetOrganizationResponse, error) {
 	var result routemodels.Organization
 
 	SQL := `
@@ -76,7 +76,7 @@ func (db *Persistence) GetOrganization(req routemodels.GetOrganizationRequest) (
 	}, nil
 }
 
-func (db *Persistence) GetAllOrganizations(req routemodels.GetAllOrganizationsRequest) (*routemodels.GetAllOrganizationsResponse, error) {
+func (db *Persistence) GetAllOrganizations(req *routemodels.GetAllOrganizationsRequest) (*routemodels.GetAllOrganizationsResponse, error) {
 	var result []routemodels.Organization
 
 	SQL := `

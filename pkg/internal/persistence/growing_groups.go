@@ -8,7 +8,7 @@ import (
 
 var _ IGrowingGroupsDB = &Persistence{}
 
-func (db *Persistence) CreateGrowingGroup(req routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error) {
+func (db *Persistence) CreateGrowingGroup(req *routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error) {
 	var result string
 
 	SQL := `
@@ -34,7 +34,7 @@ func (db *Persistence) CreateGrowingGroup(req routemodels.CreateGrowingGroupRequ
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingGroupWithTransaction(tx *sqlx.Tx, req routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error) {
+func (db *Persistence) CreateGrowingGroupWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error) {
 	var result string
 
 	SQL := `
@@ -60,7 +60,7 @@ func (db *Persistence) CreateGrowingGroupWithTransaction(tx *sqlx.Tx, req routem
 	}, nil
 }
 
-func (db *Persistence) DeleteGrowingGroup(req routemodels.DeleteGrowingGroupRequest) error {
+func (db *Persistence) DeleteGrowingGroup(req *routemodels.DeleteGrowingGroupRequest) error {
 	var result string
 
 	SQL := `
@@ -77,11 +77,11 @@ func (db *Persistence) DeleteGrowingGroup(req routemodels.DeleteGrowingGroupRequ
 	return nil
 }
 
-func (db *Persistence) EditGrowingGroup(req routemodels.EditGrowingGroupRequest) (*routemodels.EditGrowingGroupResponse, error) {
+func (db *Persistence) EditGrowingGroup(req *routemodels.EditGrowingGroupRequest) (*routemodels.EditGrowingGroupResponse, error) {
 	return nil, nil
 }
 
-func (db *Persistence) GetGrowingGroupByID(req routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
+func (db *Persistence) GetGrowingGroupByID(req *routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
 	var result routemodels.GrowingGroup
 
 	SQL := `
@@ -112,7 +112,7 @@ func (db *Persistence) GetGrowingGroupByID(req routemodels.GetGrowingGroupReques
 	}, nil
 }
 
-func (db *Persistence) GetGrowingGroupByIDWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
+func (db *Persistence) GetGrowingGroupByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
 	var result routemodels.GrowingGroup
 
 	SQL := `
@@ -143,7 +143,7 @@ func (db *Persistence) GetGrowingGroupByIDWithTransaction(tx *sqlx.Tx, req route
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingGroupsByOrganizationID(req routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
+func (db *Persistence) GetAllGrowingGroupsByOrganizationID(req *routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
 	var result []routemodels.GrowingGroup
 
 	SQL := `
@@ -174,7 +174,7 @@ func (db *Persistence) GetAllGrowingGroupsByOrganizationID(req routemodels.GetAl
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingGroupsByOrganizationIDWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
+func (db *Persistence) GetAllGrowingGroupsByOrganizationIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
 	var result []routemodels.GrowingGroup
 
 	SQL := `

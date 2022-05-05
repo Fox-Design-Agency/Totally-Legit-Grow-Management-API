@@ -23,7 +23,7 @@ func main() {
 	// define server
 	svr := server.NewServer(cfg)
 
-	err := svr.Persistence.MigrateDBUP()
+	err := svr.Logic.MigrateDBUP()
 	if err != nil {
 		// migrations couldn't happen
 		log.Println(err)

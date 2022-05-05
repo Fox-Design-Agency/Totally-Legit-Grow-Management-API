@@ -8,7 +8,7 @@ import (
 
 var _ IDevicesDB = &Persistence{}
 
-func (db *Persistence) CreateDevice(req routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
+func (db *Persistence) CreateDevice(req *routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
 	var result string
 
 	SQL := `
@@ -29,7 +29,7 @@ func (db *Persistence) CreateDevice(req routemodels.CreateDeviceRequest) (*route
 	}, nil
 }
 
-func (db *Persistence) CreateDeviceWithTransaction(tx *sqlx.Tx, req routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
+func (db *Persistence) CreateDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
 	var result string
 
 	SQL := `
@@ -50,7 +50,7 @@ func (db *Persistence) CreateDeviceWithTransaction(tx *sqlx.Tx, req routemodels.
 	}, nil
 }
 
-func (db *Persistence) CreateDeviceAction(req routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error) {
+func (db *Persistence) CreateDeviceAction(req *routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error) {
 	var result string
 
 	SQL := `
@@ -77,7 +77,7 @@ func (db *Persistence) CreateDeviceAction(req routemodels.CreateDeviceActionRequ
 	}, nil
 }
 
-func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error) {
+func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req *routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error) {
 	var result string
 
 	SQL := `
@@ -104,7 +104,7 @@ func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req routem
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingGroupDevice(req routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error) {
+func (db *Persistence) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error) {
 
 	SQL := `
 	INSERT INTO growing_group_devices
@@ -128,7 +128,7 @@ func (db *Persistence) CreateGrowingGroupDevice(req routemodels.CreateGrowingGro
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error) {
+func (db *Persistence) CreateGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error) {
 
 	SQL := `
 	INSERT INTO growing_group_devices
@@ -152,7 +152,7 @@ func (db *Persistence) CreateGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingLocationDevice(req routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error) {
+func (db *Persistence) CreateGrowingLocationDevice(req *routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error) {
 
 	SQL := `
 	INSERT INTO growing_location_devices
@@ -176,7 +176,7 @@ func (db *Persistence) CreateGrowingLocationDevice(req routemodels.CreateGrowing
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error) {
+func (db *Persistence) CreateGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error) {
 
 	SQL := `
 	INSERT INTO growing_location_devices
@@ -200,7 +200,7 @@ func (db *Persistence) CreateGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingLevelDevice(req routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error) {
+func (db *Persistence) CreateGrowingLevelDevice(req *routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error) {
 
 	SQL := `
 	INSERT INTO growing_level_devices
@@ -224,7 +224,7 @@ func (db *Persistence) CreateGrowingLevelDevice(req routemodels.CreateGrowingLev
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingLevelDeviceWithTransaction(sql *sqlx.Tx, req routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error) {
+func (db *Persistence) CreateGrowingLevelDeviceWithTransaction(sql *sqlx.Tx, req *routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error) {
 
 	SQL := `
 	INSERT INTO growing_level_devices
@@ -248,7 +248,7 @@ func (db *Persistence) CreateGrowingLevelDeviceWithTransaction(sql *sqlx.Tx, req
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingSpotDevice(req routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error) {
+func (db *Persistence) CreateGrowingSpotDevice(req *routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error) {
 
 	SQL := `
 	INSERT INTO grow_spots_devices
@@ -272,7 +272,7 @@ func (db *Persistence) CreateGrowingSpotDevice(req routemodels.CreateGrowingSpot
 	}, nil
 }
 
-func (db *Persistence) CreateGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error) {
+func (db *Persistence) CreateGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error) {
 
 	SQL := `
 	INSERT INTO grow_spots_devices
@@ -296,7 +296,7 @@ func (db *Persistence) CreateGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req r
 	}, nil
 }
 
-func (db *Persistence) DeleteDevice(req routemodels.DeleteDeviceRequest) error {
+func (db *Persistence) DeleteDevice(req *routemodels.DeleteDeviceRequest) error {
 	var result string
 
 	SQL := `
@@ -313,7 +313,7 @@ func (db *Persistence) DeleteDevice(req routemodels.DeleteDeviceRequest) error {
 	return nil
 }
 
-func (db *Persistence) DeleteGrowingGroupDevice(req routemodels.DeleteGrowingGroupDeviceRequest) error {
+func (db *Persistence) DeleteGrowingGroupDevice(req *routemodels.DeleteGrowingGroupDeviceRequest) error {
 	var result string
 
 	SQL := `
@@ -335,7 +335,7 @@ func (db *Persistence) DeleteGrowingGroupDevice(req routemodels.DeleteGrowingGro
 	return nil
 }
 
-func (db *Persistence) DeleteGrowingLocationDevice(req routemodels.DeleteGrowingLocationDeviceRequest) error {
+func (db *Persistence) DeleteGrowingLocationDevice(req *routemodels.DeleteGrowingLocationDeviceRequest) error {
 	var result string
 
 	SQL := `
@@ -357,7 +357,7 @@ func (db *Persistence) DeleteGrowingLocationDevice(req routemodels.DeleteGrowing
 	return nil
 }
 
-func (db *Persistence) DeleteGrowingLevelDevice(req routemodels.DeleteGrowingLevelDeviceRequest) error {
+func (db *Persistence) DeleteGrowingLevelDevice(req *routemodels.DeleteGrowingLevelDeviceRequest) error {
 	var result string
 
 	SQL := `
@@ -379,7 +379,7 @@ func (db *Persistence) DeleteGrowingLevelDevice(req routemodels.DeleteGrowingLev
 	return nil
 }
 
-func (db *Persistence) DeleteGrowingSpotDevice(req routemodels.DeleteGrowingSpotDeviceRequest) error {
+func (db *Persistence) DeleteGrowingSpotDevice(req *routemodels.DeleteGrowingSpotDeviceRequest) error {
 	var result string
 
 	SQL := `
@@ -401,11 +401,11 @@ func (db *Persistence) DeleteGrowingSpotDevice(req routemodels.DeleteGrowingSpot
 	return nil
 }
 
-func (db *Persistence) EditDevice(req routemodels.EditDeviceRequest) (*routemodels.EditDeviceResponse, error) {
+func (db *Persistence) EditDevice(req *routemodels.EditDeviceRequest) (*routemodels.EditDeviceResponse, error) {
 	return nil, nil
 }
 
-func (db *Persistence) GetDevice(req routemodels.GetDeviceRequest) (*routemodels.GetDeviceResponse, error) {
+func (db *Persistence) GetDevice(req *routemodels.GetDeviceRequest) (*routemodels.GetDeviceResponse, error) {
 	var result routemodels.Device
 
 	SQL := `
@@ -435,7 +435,7 @@ func (db *Persistence) GetDevice(req routemodels.GetDeviceRequest) (*routemodels
 	}, nil
 }
 
-func (db *Persistence) GetDeviceActions(req routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error) {
+func (db *Persistence) GetDeviceActions(req *routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error) {
 	var result []routemodels.DeviceAction
 
 	SQL := `
@@ -468,7 +468,7 @@ func (db *Persistence) GetDeviceActions(req routemodels.GetDeviceActionsRequest)
 	}, nil
 }
 
-func (db *Persistence) GetDeviceActionsWithTransaction(tx *sqlx.Tx, req routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error) {
+func (db *Persistence) GetDeviceActionsWithTransaction(tx *sqlx.Tx, req *routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error) {
 	var result []routemodels.DeviceAction
 
 	SQL := `
@@ -501,7 +501,7 @@ func (db *Persistence) GetDeviceActionsWithTransaction(tx *sqlx.Tx, req routemod
 	}, nil
 }
 
-func (db *Persistence) GetAllDevices(req routemodels.GetAllDevicesRequest) (*routemodels.GetAllDevicesResponse, error) {
+func (db *Persistence) GetAllDevices(req *routemodels.GetAllDevicesRequest) (*routemodels.GetAllDevicesResponse, error) {
 	var result []routemodels.Device
 
 	SQL := `
@@ -530,7 +530,7 @@ func (db *Persistence) GetAllDevices(req routemodels.GetAllDevicesRequest) (*rou
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingGroupDevices(req routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error) {
+func (db *Persistence) GetAllGrowingGroupDevices(req *routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error) {
 	var result []routemodels.Device
 
 	SQL := `
@@ -563,7 +563,7 @@ func (db *Persistence) GetAllGrowingGroupDevices(req routemodels.GetAllGrowingGr
 		Devices: result,
 	}, nil
 }
-func (db *Persistence) GetAllGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error) {
+func (db *Persistence) GetAllGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error) {
 	var result []routemodels.Device
 
 	SQL := `
@@ -597,7 +597,7 @@ func (db *Persistence) GetAllGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingLocationDevices(req routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error) {
+func (db *Persistence) GetAllGrowingLocationDevices(req *routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error) {
 	var result []routemodels.Device
 
 	SQL := `
@@ -631,7 +631,7 @@ func (db *Persistence) GetAllGrowingLocationDevices(req routemodels.GetAllGrowin
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error) {
+func (db *Persistence) GetAllGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error) {
 	var result []routemodels.Device
 
 	SQL := `
@@ -665,7 +665,7 @@ func (db *Persistence) GetAllGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingLevelDevices(req routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error) {
+func (db *Persistence) GetAllGrowingLevelDevices(req *routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error) {
 	var result []routemodels.Device
 
 	SQL := `
@@ -699,7 +699,7 @@ func (db *Persistence) GetAllGrowingLevelDevices(req routemodels.GetAllGrowingLe
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error) {
+func (db *Persistence) GetAllGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error) {
 	var result []routemodels.Device
 
 	SQL := `
@@ -734,7 +734,7 @@ func (db *Persistence) GetAllGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req 
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingSpotDevices(req routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error) {
+func (db *Persistence) GetAllGrowingSpotDevices(req *routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error) {
 	var result []routemodels.Device
 
 	SQL := `
@@ -769,7 +769,7 @@ func (db *Persistence) GetAllGrowingSpotDevices(req routemodels.GetAllGrowingSpo
 	}, nil
 }
 
-func (db *Persistence) GetAllGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error) {
+func (db *Persistence) GetAllGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error) {
 	var result []routemodels.Device
 
 	SQL := `
@@ -804,7 +804,7 @@ func (db *Persistence) GetAllGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req r
 	}, nil
 }
 
-func (db *Persistence) GetGrowingGroupDevice(req routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error) {
+func (db *Persistence) GetGrowingGroupDevice(req *routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error) {
 	var result routemodels.Device
 
 	SQL := `
@@ -840,7 +840,7 @@ func (db *Persistence) GetGrowingGroupDevice(req routemodels.GetGrowingGroupDevi
 	}, nil
 }
 
-func (db *Persistence) GetGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error) {
+func (db *Persistence) GetGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error) {
 	var result routemodels.Device
 
 	SQL := `
@@ -876,7 +876,7 @@ func (db *Persistence) GetGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req rou
 	}, nil
 }
 
-func (db *Persistence) GetGrowingLocationDevice(req routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error) {
+func (db *Persistence) GetGrowingLocationDevice(req *routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error) {
 	var result routemodels.Device
 
 	SQL := `
@@ -912,7 +912,7 @@ func (db *Persistence) GetGrowingLocationDevice(req routemodels.GetGrowingLocati
 	}, nil
 }
 
-func (db *Persistence) GetGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error) {
+func (db *Persistence) GetGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error) {
 	var result routemodels.Device
 
 	SQL := `
@@ -948,7 +948,7 @@ func (db *Persistence) GetGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req 
 	}, nil
 }
 
-func (db *Persistence) GetGrowingLevelDevice(req routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error) {
+func (db *Persistence) GetGrowingLevelDevice(req *routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error) {
 	var result routemodels.Device
 
 	SQL := `
@@ -984,7 +984,7 @@ func (db *Persistence) GetGrowingLevelDevice(req routemodels.GetGrowingLevelDevi
 	}, nil
 }
 
-func (db *Persistence) GetGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error) {
+func (db *Persistence) GetGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error) {
 	var result routemodels.Device
 
 	SQL := `
@@ -1020,7 +1020,7 @@ func (db *Persistence) GetGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req rou
 	}, nil
 }
 
-func (db *Persistence) GetGrowingSpotDevice(req routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error) {
+func (db *Persistence) GetGrowingSpotDevice(req *routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error) {
 	var result routemodels.Device
 
 	SQL := `
@@ -1056,7 +1056,7 @@ func (db *Persistence) GetGrowingSpotDevice(req routemodels.GetGrowingSpotDevice
 	}, nil
 }
 
-func (db *Persistence) GetGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error) {
+func (db *Persistence) GetGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error) {
 	var result routemodels.Device
 
 	SQL := `
