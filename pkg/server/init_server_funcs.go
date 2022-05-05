@@ -7,11 +7,19 @@ import (
 	"totally-legit-grow-management/v1/resources/config"
 )
 
-func NewServer(cfg config.Config) *Server {
+func NewServer(cfg config.Config, shouldMigrate bool) *Server {
 
 	control, err := logic.NewLogicControl(cfg)
 	if err != nil {
 		log.Fatal("Logic Layer Not Setup!")
+	}
+
+	if shouldMigrate {
+		err := control.Persistence.MigrateDBUP()
+		if err != nil {
+			// migrations couldn't happen
+			log.Println(err)
+		}
 	}
 
 	return &Server{

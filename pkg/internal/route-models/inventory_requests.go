@@ -28,10 +28,10 @@ type GetInventoryResponse struct {
 	Inventory
 }
 
-type GetAllInventorysRequest struct {
+type GetAllInventoriesRequest struct {
 	OrganizationID string `json:"organizationID"`
 }
 
-type GetAllInventorysResponse struct {
+type GetAllInventoriesResponse struct {
 	Inventories []Inventory
 }

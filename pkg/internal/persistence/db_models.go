@@ -161,7 +161,7 @@ type IHarvestsDB interface {
 type IInventoriesDB interface {
 	CreateInventory(*routemodels.CreateInventoryRequest) (*routemodels.CreateInventoryResponse, error)
 	DeleteInventory(*routemodels.DeleteInventoryRequest) error
-	EditPlant(*routemodels.EditInventoryRequest) (*routemodels.EditInventoryResponse, error)
+	EditInventory(*routemodels.EditInventoryRequest) (*routemodels.EditInventoryResponse, error)
 	GetInventory(*routemodels.GetInventoryRequest) (*routemodels.GetInventoryResponse, error)
 	GetAllInventories(*routemodels.GetAllInventoriesRequest) (*routemodels.GetAllInventoriesResponse, error)
 }
@@ -251,7 +251,7 @@ type IPlantsDB interface {
 type IProductsDB interface {
 	CreateProduct(*routemodels.CreateProductRequest) (*routemodels.CreateProductResponse, error)
 	DeleteProduct(*routemodels.DeleteProductRequest) error
-	EditPlant(*routemodels.EditProductRequest) (*routemodels.EditProductResponse, error)
+	EditProduct(*routemodels.EditProductRequest) (*routemodels.EditProductResponse, error)
 	GetProduct(*routemodels.GetProductRequest) (*routemodels.GetProductResponse, error)
 	GetAllProducts(*routemodels.GetAllProductsRequest) (*routemodels.GetAllProductsResponse, error)
 }

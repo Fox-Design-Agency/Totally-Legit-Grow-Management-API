@@ -21,13 +21,7 @@ func main() {
 	cfg := config.LoadConfig()
 
 	// define server
-	svr := server.NewServer(cfg)
-
-	err := svr.Logic.MigrateDBUP()
-	if err != nil {
-		// migrations couldn't happen
-		log.Println(err)
-	}
+	svr := server.NewServer(cfg, true)
 
 	/**********************************************************************
 	/
