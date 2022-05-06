@@ -9,6 +9,11 @@ import (
 var _ IPlantLifeCyclesDB = &Persistence{}
 
 func (db *Persistence) CreatePlantLifeCycle(req *routemodels.CreatePlantLifeCycleRequest) (*routemodels.CreatePlantLifeCycleResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -18,24 +23,45 @@ func (db *Persistence) CreatePlantLifeCycle(req *routemodels.CreatePlantLifeCycl
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 		req.TotalTimeMeasureUnits,
 		req.EstTotalTimeMeasure,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreatePlantLifeCycleResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) CreatePlantLifeCycleWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantLifeCycleRequest) (*routemodels.CreatePlantLifeCycleResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -63,6 +89,11 @@ func (db *Persistence) CreatePlantLifeCycleWithTransaction(tx *sqlx.Tx, req *rou
 }
 
 func (db *Persistence) DeletePlantLifeCycle(req *routemodels.DeletePlantLifeCycleRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -80,10 +111,20 @@ func (db *Persistence) DeletePlantLifeCycle(req *routemodels.DeletePlantLifeCycl
 }
 
 func (db *Persistence) EditPlantLifeCycle(req *routemodels.EditPlantLifeCycleRequest) (*routemodels.EditPlantLifeCycleResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetPlantLifeCycleByID(req *routemodels.GetPlantLifeCycleRequest) (*routemodels.GetPlantLifeCycleResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.PlantLifeCycle
 
 	SQL := `
@@ -117,6 +158,11 @@ func (db *Persistence) GetPlantLifeCycleByID(req *routemodels.GetPlantLifeCycleR
 }
 
 func (db *Persistence) GetPlantLifeCycleByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetPlantLifeCycleRequest) (*routemodels.GetPlantLifeCycleResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.PlantLifeCycle
 
 	SQL := `
@@ -150,6 +196,11 @@ func (db *Persistence) GetPlantLifeCycleByIDWithTransaction(tx *sqlx.Tx, req *ro
 }
 
 func (db *Persistence) GetAllPlantLifeCycles(req *routemodels.GetAllPlantLifeCyclesRequest) (*routemodels.GetAllPlantLifeCyclesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.PlantLifeCycle
 
 	SQL := `
@@ -182,6 +233,11 @@ func (db *Persistence) GetAllPlantLifeCycles(req *routemodels.GetAllPlantLifeCyc
 }
 
 func (db *Persistence) GetAllPlantLifeCyclesWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllPlantLifeCyclesRequest) (*routemodels.GetAllPlantLifeCyclesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.PlantLifeCycle
 
 	SQL := `

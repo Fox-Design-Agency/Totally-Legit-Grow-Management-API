@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ IGrowSpotPlantsDB = &Persistence{}
 
 func (db *Persistence) CreateGrowSpotPlant(req *routemodels.CreateGrowSpotPlantRequest) (*routemodels.CreateGrowSpotPlantResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -14,22 +19,43 @@ func (db *Persistence) CreateGrowSpotPlant(req *routemodels.CreateGrowSpotPlantR
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowSpotPlantResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeleteGrowSpotPlant(req *routemodels.DeleteGrowSpotPlantRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -47,10 +73,20 @@ func (db *Persistence) DeleteGrowSpotPlant(req *routemodels.DeleteGrowSpotPlantR
 }
 
 func (db *Persistence) EditGrowSpotPlant(req *routemodels.EditGrowSpotPlantRequest) (*routemodels.EditGrowSpotPlantResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetGrowSpotPlant(req *routemodels.GetGrowSpotPlantRequest) (*routemodels.GetGrowSpotPlantResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.GrowSpotPlant
 
 	SQL := `
@@ -80,6 +116,11 @@ func (db *Persistence) GetGrowSpotPlant(req *routemodels.GetGrowSpotPlantRequest
 }
 
 func (db *Persistence) GetAllGrowSpotPlants(req *routemodels.GetAllGrowSpotPlantsRequest) (*routemodels.GetAllGrowSpotPlantsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.GrowSpotPlant
 
 	SQL := `

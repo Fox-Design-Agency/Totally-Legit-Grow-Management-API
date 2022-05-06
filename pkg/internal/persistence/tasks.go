@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ ITasksDB = &Persistence{}
 
 func (db *Persistence) CreateTask(req *routemodels.CreateTaskRequest) (*routemodels.CreateTaskResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -14,22 +19,43 @@ func (db *Persistence) CreateTask(req *routemodels.CreateTaskRequest) (*routemod
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateTaskResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeleteTask(req *routemodels.DeleteTaskRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -47,10 +73,20 @@ func (db *Persistence) DeleteTask(req *routemodels.DeleteTaskRequest) error {
 }
 
 func (db *Persistence) EditTask(req *routemodels.EditTaskRequest) (*routemodels.EditTaskResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetTask(req *routemodels.GetTaskRequest) (*routemodels.GetTaskResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Task
 
 	SQL := `
@@ -81,6 +117,11 @@ func (db *Persistence) GetTask(req *routemodels.GetTaskRequest) (*routemodels.Ge
 }
 
 func (db *Persistence) GetAllTasks(req *routemodels.GetAllTasksRequest) (*routemodels.GetAllTasksResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Task
 
 	SQL := `

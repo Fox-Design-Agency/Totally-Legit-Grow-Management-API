@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ ISeedsDB = &Persistence{}
 
 func (db *Persistence) CreateSeed(req *routemodels.CreateSeedRequest) (*routemodels.CreateSeedResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -14,22 +19,43 @@ func (db *Persistence) CreateSeed(req *routemodels.CreateSeedRequest) (*routemod
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateSeedResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeleteSeed(req *routemodels.DeleteSeedRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -47,10 +73,20 @@ func (db *Persistence) DeleteSeed(req *routemodels.DeleteSeedRequest) error {
 }
 
 func (db *Persistence) EditSeed(req *routemodels.EditSeedRequest) (*routemodels.EditSeedResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetSeed(req *routemodels.GetSeedRequest) (*routemodels.GetSeedResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Seed
 
 	SQL := `
@@ -81,6 +117,11 @@ func (db *Persistence) GetSeed(req *routemodels.GetSeedRequest) (*routemodels.Ge
 }
 
 func (db *Persistence) GetAllSeeds(req *routemodels.GetAllSeedsRequest) (*routemodels.GetAllSeedsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Seed
 
 	SQL := `

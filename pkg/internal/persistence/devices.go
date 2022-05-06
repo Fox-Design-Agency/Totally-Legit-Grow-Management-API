@@ -49,8 +49,20 @@ func (db *Persistence) CreateDevice(req *routemodels.CreateDeviceRequest) (*rout
 	}, nil
 }
 
+//
 func (db *Persistence) CreateDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 
 	SQL := `
 	INSERT INTO devices
@@ -59,18 +71,44 @@ func (db *Persistence) CreateDeviceWithTransaction(tx *sqlx.Tx, req *routemodels
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := tx.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	args := []interface{}{
+		req.DisplayName,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateDeviceResponse{
 		ID: result,
 	}, nil
 }
 
+//
 func (db *Persistence) CreateDeviceAction(req *routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -79,6 +117,12 @@ func (db *Persistence) CreateDeviceAction(req *routemodels.CreateDeviceActionReq
 	VALUES ($1, $2, $3, $4)
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.ID,
 		req.DisplayName,
@@ -86,18 +130,34 @@ func (db *Persistence) CreateDeviceAction(req *routemodels.CreateDeviceActionReq
 		req.Information,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateDeviceActionResponse{
 		ID: result,
 	}, nil
 }
 
+//
 func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req *routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -106,6 +166,12 @@ func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req *route
 	VALUES ($1, $2, $3, $4)
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.ID,
 		req.DisplayName,
@@ -113,18 +179,34 @@ func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req *route
 		req.Information,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := tx.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateDeviceActionResponse{
 		ID: result,
 	}, nil
 }
 
+//
 func (db *Persistence) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 
 	SQL := `
 	INSERT INTO growing_group_devices
@@ -132,47 +214,90 @@ func (db *Persistence) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGr
 	VALUES ($1, $2)
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingGroupID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingGroupDeviceResponse{
 		ID: "",
 	}, nil
 }
 
+//
 func (db *Persistence) CreateGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 
 	SQL := `
 	INSERT INTO growing_group_devices
 	(device, growing_group)
 	VALUES ($1, $2)
 	`
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingGroupID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := tx.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingGroupDeviceResponse{
 		ID: "",
 	}, nil
 }
 
+//
 func (db *Persistence) CreateGrowingLocationDevice(req *routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 
 	SQL := `
 	INSERT INTO growing_location_devices
@@ -180,23 +305,45 @@ func (db *Persistence) CreateGrowingLocationDevice(req *routemodels.CreateGrowin
 	VALUES ($1, $2)
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingLocationID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingLocationDeviceResponse{
 		ID: "",
 	}, nil
 }
 
+//
 func (db *Persistence) CreateGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 
 	SQL := `
 	INSERT INTO growing_location_devices
@@ -204,23 +351,45 @@ func (db *Persistence) CreateGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	VALUES ($1, $2)
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingLocationID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingLocationDeviceResponse{
 		ID: "",
 	}, nil
 }
 
+//
 func (db *Persistence) CreateGrowingLevelDevice(req *routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 
 	SQL := `
 	INSERT INTO growing_level_devices
@@ -228,23 +397,45 @@ func (db *Persistence) CreateGrowingLevelDevice(req *routemodels.CreateGrowingLe
 	VALUES ($1, $2)
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingLevelID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingLevelDeviceResponse{
 		ID: "",
 	}, nil
 }
 
+//
 func (db *Persistence) CreateGrowingLevelDeviceWithTransaction(sql *sqlx.Tx, req *routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 
 	SQL := `
 	INSERT INTO growing_level_devices
@@ -252,23 +443,45 @@ func (db *Persistence) CreateGrowingLevelDeviceWithTransaction(sql *sqlx.Tx, req
 	VALUES ($1, $2)
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingLevelID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingLevelDeviceResponse{
 		ID: "",
 	}, nil
 }
 
+//
 func (db *Persistence) CreateGrowingSpotDevice(req *routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 
 	SQL := `
 	INSERT INTO grow_spots_devices
@@ -276,23 +489,45 @@ func (db *Persistence) CreateGrowingSpotDevice(req *routemodels.CreateGrowingSpo
 	VALUES ($1, $2)
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingLevelID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingSpotDeviceResponse{
 		ID: "",
 	}, nil
 }
 
+//
 func (db *Persistence) CreateGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 
 	SQL := `
 	INSERT INTO grow_spots_devices
@@ -300,23 +535,45 @@ func (db *Persistence) CreateGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *
 	VALUES ($1, $2)
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingLevelID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingSpotDeviceResponse{
 		ID: "",
 	}, nil
 }
 
+//
 func (db *Persistence) DeleteDevice(req *routemodels.DeleteDeviceRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -324,16 +581,41 @@ func (db *Persistence) DeleteDevice(req *routemodels.DeleteDeviceRequest) error 
 	WHERE devices.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.ID).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil
 }
 
+//
 func (db *Persistence) DeleteGrowingGroupDevice(req *routemodels.DeleteGrowingGroupDeviceRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -341,21 +623,42 @@ func (db *Persistence) DeleteGrowingGroupDevice(req *routemodels.DeleteGrowingGr
 	WHERE growing_group_devices.device = $1
 		AND growing_group_devices.growing_group = $2
 	`
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingGroupID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil
 }
 
+//
 func (db *Persistence) DeleteGrowingLocationDevice(req *routemodels.DeleteGrowingLocationDeviceRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -363,21 +666,43 @@ func (db *Persistence) DeleteGrowingLocationDevice(req *routemodels.DeleteGrowin
 	WHERE growing_location_devices.device = $1
 		AND growing_location_devices.growing_location = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingLocationID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil
 }
 
+//
 func (db *Persistence) DeleteGrowingLevelDevice(req *routemodels.DeleteGrowingLevelDeviceRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -385,21 +710,43 @@ func (db *Persistence) DeleteGrowingLevelDevice(req *routemodels.DeleteGrowingLe
 	WHERE growing_level_devices.device = $1
 		AND growing_level_devices.growing_location = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingLevelID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil
 }
 
+//
 func (db *Persistence) DeleteGrowingSpotDevice(req *routemodels.DeleteGrowingSpotDeviceRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -407,25 +754,71 @@ func (db *Persistence) DeleteGrowingSpotDevice(req *routemodels.DeleteGrowingSpo
 	WHERE grow_spots_devices.device = $1
 		AND grow_spots_devices.growing_location = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.DeviceID,
 		req.GrowingSpotID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil
 }
 
+//
 func (db *Persistence) EditDevice(req *routemodels.EditDeviceRequest) (*routemodels.EditDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
+//
 func (db *Persistence) GetDevice(req *routemodels.GetDeviceRequest) (*routemodels.GetDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Device
 
 	SQL := `
@@ -444,18 +837,43 @@ func (db *Persistence) GetDevice(req *routemodels.GetDeviceRequest) (*routemodel
 	WHERE devices.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Get(&result, SQL, req.ID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetDeviceResponse{
 		Device: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetDeviceActions(req *routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.DeviceAction
 
 	SQL := `
@@ -477,18 +895,43 @@ func (db *Persistence) GetDeviceActions(req *routemodels.GetDeviceActionsRequest
 	WHERE device_actions.device = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Select(&result, SQL, req.DeviceID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DeviceID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetDeviceActionsResponse{
 		Actions: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetDeviceActionsWithTransaction(tx *sqlx.Tx, req *routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.DeviceAction
 
 	SQL := `
@@ -510,18 +953,43 @@ func (db *Persistence) GetDeviceActionsWithTransaction(tx *sqlx.Tx, req *routemo
 	WHERE device_actions.device = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := tx.Select(&result, SQL, req.DeviceID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DeviceID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetDeviceActionsResponse{
 		Actions: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetAllDevices(req *routemodels.GetAllDevicesRequest) (*routemodels.GetAllDevicesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Device
 
 	SQL := `
@@ -539,18 +1007,40 @@ func (db *Persistence) GetAllDevices(req *routemodels.GetAllDevicesRequest) (*ro
 	LEFT JOIN members AS up_member ON members.id = devices.updated_by
 	`
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Select(&result, SQL); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllDevicesResponse{
 		Devices: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetAllGrowingGroupDevices(req *routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Device
 
 	SQL := `
@@ -569,21 +1059,44 @@ func (db *Persistence) GetAllGrowingGroupDevices(req *routemodels.GetAllGrowingG
 	LEFT JOIN members AS up_member ON members.id = growing_group_devices.updated_by
 	WHERE growing_group_devices.growing_group = $1
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingGroupID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingGroupDevicesResponse{
 		Devices: result,
 	}, nil
 }
+
+//
 func (db *Persistence) GetAllGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Device
 
 	SQL := `
@@ -602,22 +1115,44 @@ func (db *Persistence) GetAllGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	LEFT JOIN members AS up_member ON members.id = growing_group_devices.updated_by
 	WHERE growing_group_devices.growing_group = $1
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingGroupID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := tx.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingGroupDevicesResponse{
 		Devices: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetAllGrowingLocationDevices(req *routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Device
 
 	SQL := `
@@ -636,22 +1171,44 @@ func (db *Persistence) GetAllGrowingLocationDevices(req *routemodels.GetAllGrowi
 	LEFT JOIN members AS up_member ON members.id = growing_location_devices.updated_by
 	WHERE growing_location_devices.growing_group = $1
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingLocationID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingLocationDevicesResponse{
 		Devices: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetAllGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Device
 
 	SQL := `
@@ -670,22 +1227,44 @@ func (db *Persistence) GetAllGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	LEFT JOIN members AS up_member ON members.id = growing_location_devices.updated_by
 	WHERE growing_location_devices.growing_group = $1
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingLocationID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := tx.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingLocationDevicesResponse{
 		Devices: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetAllGrowingLevelDevices(req *routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Device
 
 	SQL := `
@@ -704,22 +1283,44 @@ func (db *Persistence) GetAllGrowingLevelDevices(req *routemodels.GetAllGrowingL
 	LEFT JOIN members AS up_member ON members.id = growing_level_devices.updated_by
 	WHERE growing_level_devices.growing_group = $1
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingLevelID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingLevelDevicesResponse{
 		Devices: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetAllGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Device
 
 	SQL := `
@@ -739,22 +1340,44 @@ func (db *Persistence) GetAllGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req 
 	WHERE growing_level_devices.growing_group = $1
 		AND growing_level_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingLevelID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := tx.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingLevelDevicesResponse{
 		Devices: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetAllGrowingSpotDevices(req *routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Device
 
 	SQL := `
@@ -774,22 +1397,44 @@ func (db *Persistence) GetAllGrowingSpotDevices(req *routemodels.GetAllGrowingSp
 	WHERE grow_spots_devices.growing_group = $1
 		AND grow_spots_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingSpotID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingSpotDevicesResponse{
 		Devices: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetAllGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Device
 
 	SQL := `
@@ -809,22 +1454,44 @@ func (db *Persistence) GetAllGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *
 	WHERE grow_spots_devices.growing_group = $1
 		AND grow_spots_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingSpotID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := tx.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingSpotDevicesResponse{
 		Devices: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetGrowingGroupDevice(req *routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Device
 
 	SQL := `
@@ -844,23 +1511,45 @@ func (db *Persistence) GetGrowingGroupDevice(req *routemodels.GetGrowingGroupDev
 	WHERE growing_group_devices.growing_group = $1
 		AND growing_group_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingGroupID,
 		req.DeviceID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingGroupDeviceResponse{
 		Device: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Device
 
 	SQL := `
@@ -880,23 +1569,45 @@ func (db *Persistence) GetGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *ro
 	WHERE growing_group_devices.growing_group = $1
 		AND growing_group_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingGroupID,
 		req.DeviceID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := tx.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingGroupDeviceResponse{
 		Device: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetGrowingLocationDevice(req *routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Device
 
 	SQL := `
@@ -916,23 +1627,45 @@ func (db *Persistence) GetGrowingLocationDevice(req *routemodels.GetGrowingLocat
 	WHERE growing_location_devices.growing_group = $1
 		AND growing_location_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingLocationID,
 		req.DeviceID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingLocationDeviceResponse{
 		Device: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Device
 
 	SQL := `
@@ -952,23 +1685,45 @@ func (db *Persistence) GetGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req 
 	WHERE growing_location_devices.growing_group = $1
 		AND growing_location_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingLocationID,
 		req.DeviceID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingLocationDeviceResponse{
 		Device: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetGrowingLevelDevice(req *routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Device
 
 	SQL := `
@@ -988,23 +1743,45 @@ func (db *Persistence) GetGrowingLevelDevice(req *routemodels.GetGrowingLevelDev
 	WHERE growing_level_devices.growing_group = $1
 		AND growing_level_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingLevelID,
 		req.DeviceID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingLevelDeviceResponse{
 		Device: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Device
 
 	SQL := `
@@ -1024,23 +1801,45 @@ func (db *Persistence) GetGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *ro
 	WHERE growing_level_devices.growing_group = $1
 		AND growing_level_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingLevelID,
 		req.DeviceID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := tx.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingLevelDeviceResponse{
 		Device: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetGrowingSpotDevice(req *routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Device
 
 	SQL := `
@@ -1060,23 +1859,45 @@ func (db *Persistence) GetGrowingSpotDevice(req *routemodels.GetGrowingSpotDevic
 	WHERE grow_spots_devices.growing_group = $1
 		AND grow_spots_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingSpotID,
 		req.DeviceID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingSpotDeviceResponse{
 		Device: result,
 	}, nil
 }
 
+//
 func (db *Persistence) GetGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Device
 
 	SQL := `
@@ -1096,17 +1917,33 @@ func (db *Persistence) GetGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *rou
 	WHERE grow_spots_devices.growing_group = $1
 		AND grow_spots_devices.device = $2
 	`
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 	args := []interface{}{
 		req.GrowingSpotID,
 		req.DeviceID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := tx.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingSpotDeviceResponse{
 		Device: result,
 	}, nil

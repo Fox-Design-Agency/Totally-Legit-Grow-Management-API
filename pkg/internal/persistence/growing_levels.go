@@ -9,6 +9,11 @@ import (
 var _ IGrowingLevelsDB = &Persistence{}
 
 func (db *Persistence) CreateGrowingLevel(req *routemodels.CreateGrowingLevelRequest) (*routemodels.CreateGrowingLevelResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -18,23 +23,44 @@ func (db *Persistence) CreateGrowingLevel(req *routemodels.CreateGrowingLevelReq
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 		req.GrowingLocationID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingLevelResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) CreateGrowingLevelWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingLevelRequest) (*routemodels.CreateGrowingLevelResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -61,6 +87,11 @@ func (db *Persistence) CreateGrowingLevelWithTransaction(tx *sqlx.Tx, req *route
 }
 
 func (db *Persistence) DeleteGrowingLevel(req *routemodels.DeleteGrowingLevelRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -78,10 +109,20 @@ func (db *Persistence) DeleteGrowingLevel(req *routemodels.DeleteGrowingLevelReq
 }
 
 func (db *Persistence) EditGrowingLevel(req *routemodels.EditGrowingLevelRequest) (*routemodels.EditGrowingLevelResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetGrowingLevelByID(req *routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.GrowingLevel
 
 	SQL := `
@@ -113,6 +154,11 @@ func (db *Persistence) GetGrowingLevelByID(req *routemodels.GetGrowingLevelReque
 }
 
 func (db *Persistence) GetGrowingLevelByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.GrowingLevel
 
 	SQL := `
@@ -144,6 +190,11 @@ func (db *Persistence) GetGrowingLevelByIDWithTransaction(tx *sqlx.Tx, req *rout
 }
 
 func (db *Persistence) GetAllGrowingLevelsByGrowingLocationID(req *routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.GrowingLevel
 
 	SQL := `
@@ -174,6 +225,11 @@ func (db *Persistence) GetAllGrowingLevelsByGrowingLocationID(req *routemodels.G
 }
 
 func (db *Persistence) GetAllGrowingLevelsByGrowingLocationIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.GrowingLevel
 
 	SQL := `

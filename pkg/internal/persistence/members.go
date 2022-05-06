@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ IMembersDB = &Persistence{}
 
 func (db *Persistence) CreateMember(req *routemodels.CreateMemberRequest) (*routemodels.CreateMemberResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -14,18 +19,41 @@ func (db *Persistence) CreateMember(req *routemodels.CreateMemberRequest) (*rout
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateMemberResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeleteMember(req *routemodels.DeleteMemberRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -43,10 +71,20 @@ func (db *Persistence) DeleteMember(req *routemodels.DeleteMemberRequest) error 
 }
 
 func (db *Persistence) EditMember(req *routemodels.EditMemberRequest) (*routemodels.EditMemberResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetMember(req *routemodels.GetMemberRequest) (*routemodels.GetMemberResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Member
 
 	SQL := `
@@ -77,6 +115,11 @@ func (db *Persistence) GetMember(req *routemodels.GetMemberRequest) (*routemodel
 }
 
 func (db *Persistence) GetAllMembers(req *routemodels.GetAllMembersRequest) (*routemodels.GetAllMembersResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Member
 
 	SQL := `

@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ IHarvestsDB = &Persistence{}
 
 func (db *Persistence) CreateHarvest(req *routemodels.CreateHarvestRequest) (*routemodels.CreateHarvestResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -14,22 +19,43 @@ func (db *Persistence) CreateHarvest(req *routemodels.CreateHarvestRequest) (*ro
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateHarvestResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeleteHarvest(req *routemodels.DeleteHarvestRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -47,10 +73,20 @@ func (db *Persistence) DeleteHarvest(req *routemodels.DeleteHarvestRequest) erro
 }
 
 func (db *Persistence) EditHarvest(req *routemodels.EditHarvestRequest) (*routemodels.EditHarvestResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetHarvest(req *routemodels.GetHarvestRequest) (*routemodels.GetHarvestResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Harvest
 
 	SQL := `
@@ -81,6 +117,11 @@ func (db *Persistence) GetHarvest(req *routemodels.GetHarvestRequest) (*routemod
 }
 
 func (db *Persistence) GetAllHarvests(*routemodels.GetAllHarvestsRequest) (*routemodels.GetAllHarvestsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Harvest
 
 	SQL := `

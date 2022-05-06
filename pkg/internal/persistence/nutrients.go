@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ INutrientsDB = &Persistence{}
 
 func (db *Persistence) CreateNutrient(req *routemodels.CreateNutrientRequest) (*routemodels.CreateNutrientResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -14,18 +19,41 @@ func (db *Persistence) CreateNutrient(req *routemodels.CreateNutrientRequest) (*
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateNutrientResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeleteNutrient(req *routemodels.DeleteNutrientRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -43,10 +71,20 @@ func (db *Persistence) DeleteNutrient(req *routemodels.DeleteNutrientRequest) er
 }
 
 func (db *Persistence) EditNutrient(req *routemodels.EditNutrientRequest) (*routemodels.EditNutrientResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetNutrient(req *routemodels.GetNutrientRequest) (*routemodels.GetNutrientResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Nutrient
 
 	SQL := `
@@ -77,6 +115,11 @@ func (db *Persistence) GetNutrient(req *routemodels.GetNutrientRequest) (*routem
 }
 
 func (db *Persistence) GetAllNutrients(req *routemodels.GetAllNutrientsRequest) (*routemodels.GetAllNutrientsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Nutrient
 
 	SQL := `

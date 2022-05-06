@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ IOrganizationsDB = &Persistence{}
 
 func (db *Persistence) CreateOrganization(req *routemodels.CreateOrganizationRequest) (*routemodels.CreateOrganizationResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -13,19 +18,41 @@ func (db *Persistence) CreateOrganization(req *routemodels.CreateOrganizationReq
 	VALUES ($1)
 	RETURNING id
 	`
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateOrganizationResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeleteOrganization(req *routemodels.DeleteOrganizationRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -43,10 +70,20 @@ func (db *Persistence) DeleteOrganization(req *routemodels.DeleteOrganizationReq
 }
 
 func (db *Persistence) EditOrganization(req *routemodels.EditOrganizationRequest) (*routemodels.EditOrganizationResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetOrganization(req *routemodels.GetOrganizationRequest) (*routemodels.GetOrganizationResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Organization
 
 	SQL := `
@@ -77,6 +114,11 @@ func (db *Persistence) GetOrganization(req *routemodels.GetOrganizationRequest) 
 }
 
 func (db *Persistence) GetAllOrganizations(req *routemodels.GetAllOrganizationsRequest) (*routemodels.GetAllOrganizationsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Organization
 
 	SQL := `

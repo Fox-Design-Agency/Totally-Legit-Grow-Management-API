@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ IProductsDB = &Persistence{}
 
 func (db *Persistence) CreateProduct(req *routemodels.CreateProductRequest) (*routemodels.CreateProductResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -14,22 +19,43 @@ func (db *Persistence) CreateProduct(req *routemodels.CreateProductRequest) (*ro
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateProductResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeleteProduct(req *routemodels.DeleteProductRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -47,10 +73,20 @@ func (db *Persistence) DeleteProduct(req *routemodels.DeleteProductRequest) erro
 }
 
 func (db *Persistence) EditProduct(req *routemodels.EditProductRequest) (*routemodels.EditProductResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetProduct(req *routemodels.GetProductRequest) (*routemodels.GetProductResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Product
 
 	SQL := `
@@ -81,6 +117,11 @@ func (db *Persistence) GetProduct(req *routemodels.GetProductRequest) (*routemod
 }
 
 func (db *Persistence) GetAllProducts(req *routemodels.GetAllProductsRequest) (*routemodels.GetAllProductsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Product
 
 	SQL := `

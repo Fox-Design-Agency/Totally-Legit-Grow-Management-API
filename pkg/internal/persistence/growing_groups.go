@@ -9,6 +9,11 @@ import (
 var _ IGrowingGroupsDB = &Persistence{}
 
 func (db *Persistence) CreateGrowingGroup(req *routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -18,23 +23,44 @@ func (db *Persistence) CreateGrowingGroup(req *routemodels.CreateGrowingGroupReq
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 		req.OrganizationID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingGroupResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) CreateGrowingGroupWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -61,6 +87,11 @@ func (db *Persistence) CreateGrowingGroupWithTransaction(tx *sqlx.Tx, req *route
 }
 
 func (db *Persistence) DeleteGrowingGroup(req *routemodels.DeleteGrowingGroupRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -78,10 +109,20 @@ func (db *Persistence) DeleteGrowingGroup(req *routemodels.DeleteGrowingGroupReq
 }
 
 func (db *Persistence) EditGrowingGroup(req *routemodels.EditGrowingGroupRequest) (*routemodels.EditGrowingGroupResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetGrowingGroupByID(req *routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.GrowingGroup
 
 	SQL := `
@@ -113,6 +154,11 @@ func (db *Persistence) GetGrowingGroupByID(req *routemodels.GetGrowingGroupReque
 }
 
 func (db *Persistence) GetGrowingGroupByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.GrowingGroup
 
 	SQL := `
@@ -144,6 +190,11 @@ func (db *Persistence) GetGrowingGroupByIDWithTransaction(tx *sqlx.Tx, req *rout
 }
 
 func (db *Persistence) GetAllGrowingGroupsByOrganizationID(req *routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.GrowingGroup
 
 	SQL := `
@@ -175,6 +226,11 @@ func (db *Persistence) GetAllGrowingGroupsByOrganizationID(req *routemodels.GetA
 }
 
 func (db *Persistence) GetAllGrowingGroupsByOrganizationIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.GrowingGroup
 
 	SQL := `

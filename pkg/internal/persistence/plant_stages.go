@@ -9,6 +9,11 @@ import (
 var _ IPlantStagesDB = &Persistence{}
 
 func (db *Persistence) CreatePlantStage(req *routemodels.CreatePlantStageRequest) (*routemodels.CreatePlantStageResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -18,18 +23,41 @@ func (db *Persistence) CreatePlantStage(req *routemodels.CreatePlantStageRequest
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreatePlantStageResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantStageRequest) (*routemodels.CreatePlantStageResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -51,6 +79,11 @@ func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req *routemo
 }
 
 func (db *Persistence) CreatePlantStageCare(req *routemodels.CreatePlantStageCareRequest) (*routemodels.CreatePlantStageCareResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -72,6 +105,11 @@ func (db *Persistence) CreatePlantStageCare(req *routemodels.CreatePlantStageCar
 }
 
 func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantStageCareRequest) (*routemodels.CreatePlantStageCareResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -93,6 +131,11 @@ func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req *rou
 }
 
 func (db *Persistence) CreatePlantStageNutrients(req *routemodels.CreatePlantStageNutrientsRequest) (*routemodels.CreatePlantStageNutrientsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -114,6 +157,11 @@ func (db *Persistence) CreatePlantStageNutrients(req *routemodels.CreatePlantSta
 }
 
 func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantStageNutrientsRequest) (*routemodels.CreatePlantStageNutrientsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -135,6 +183,11 @@ func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req
 }
 
 func (db *Persistence) ConnectPlantStage(req *routemodels.ConnectPlantStageRequest) (*routemodels.ConnectPlantStageResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -156,6 +209,11 @@ func (db *Persistence) ConnectPlantStage(req *routemodels.ConnectPlantStageReque
 }
 
 func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req *routemodels.ConnectPlantStageRequest) (*routemodels.ConnectPlantStageResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -177,6 +235,11 @@ func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req *routem
 }
 
 func (db *Persistence) DeletePlantStage(req *routemodels.DeletePlantStageRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -194,10 +257,20 @@ func (db *Persistence) DeletePlantStage(req *routemodels.DeletePlantStageRequest
 }
 
 func (db *Persistence) EditPlantStage(req *routemodels.EditPlantStageRequest) (*routemodels.EditPlantStageResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetPlantStageByID(req *routemodels.GetPlantStageRequest) (*routemodels.GetPlantStageResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -228,6 +301,11 @@ func (db *Persistence) GetPlantStageByID(req *routemodels.GetPlantStageRequest) 
 }
 
 func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetPlantStageRequest) (*routemodels.GetPlantStageResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -258,6 +336,11 @@ func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req *routem
 }
 
 func (db *Persistence) GetPlantStageCareByID(req *routemodels.GetPlantStageCareByIDRequest) (*routemodels.GetPlantStageCareByIDResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -288,6 +371,11 @@ func (db *Persistence) GetPlantStageCareByID(req *routemodels.GetPlantStageCareB
 }
 
 func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetPlantStageCareByPlantStageIDRequest) (*routemodels.GetPlantStageCareByPlantStageIDResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -318,6 +406,11 @@ func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.T
 }
 
 func (db *Persistence) GetPlantStageNutrient(req *routemodels.GetPlantStageNutrientRequest) (*routemodels.GetPlantStageNutrientResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.PlantStage
 
 	SQL := `
@@ -348,6 +441,11 @@ func (db *Persistence) GetPlantStageNutrient(req *routemodels.GetPlantStageNutri
 }
 
 func (db *Persistence) GetAllPlantStages(req *routemodels.GetAllPlantStagesRequest) (*routemodels.GetAllPlantStagesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.PlantStage
 
 	SQL := `
@@ -377,6 +475,11 @@ func (db *Persistence) GetAllPlantStages(req *routemodels.GetAllPlantStagesReque
 }
 
 func (db *Persistence) GetAllPlantStagesWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllPlantStagesRequest) (*routemodels.GetAllPlantStagesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.PlantStage
 
 	SQL := `

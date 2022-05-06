@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ IPlantCategoriesDB = &Persistence{}
 
 func (db *Persistence) CreatePlantCategory(req *routemodels.CreatePlantCategoryRequest) (*routemodels.CreatePlantCategoryResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -14,18 +19,41 @@ func (db *Persistence) CreatePlantCategory(req *routemodels.CreatePlantCategoryR
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreatePlantCategoryResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeletePlantCategory(req *routemodels.DeletePlantCategoryRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -43,10 +71,20 @@ func (db *Persistence) DeletePlantCategory(req *routemodels.DeletePlantCategoryR
 }
 
 func (db *Persistence) EditPlantCategory(req *routemodels.EditPlantCategoryRequest) (*routemodels.EditPlantCategoryResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetPlantCategory(req *routemodels.GetPlantCategoryRequest) (*routemodels.GetPlantCategoryResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.PlantCategory
 
 	SQL := `
@@ -77,6 +115,11 @@ func (db *Persistence) GetPlantCategory(req *routemodels.GetPlantCategoryRequest
 }
 
 func (db *Persistence) GetAllPlantCategories(req *routemodels.GetAllPlantCategoriesRequest) (*routemodels.GetAllPlantCategoriesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.PlantCategory
 
 	SQL := `

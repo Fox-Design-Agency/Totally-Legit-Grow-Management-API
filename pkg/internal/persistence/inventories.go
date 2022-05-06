@@ -5,6 +5,11 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 var _ IInventoriesDB = &Persistence{}
 
 func (db *Persistence) CreateInventory(req *routemodels.CreateInventoryRequest) (*routemodels.CreateInventoryResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -14,22 +19,43 @@ func (db *Persistence) CreateInventory(req *routemodels.CreateInventoryRequest) 
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateInventoryResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) DeleteInventory(req *routemodels.DeleteInventoryRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -47,10 +73,20 @@ func (db *Persistence) DeleteInventory(req *routemodels.DeleteInventoryRequest) 
 }
 
 func (db *Persistence) EditInventory(req *routemodels.EditInventoryRequest) (*routemodels.EditInventoryResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	return nil, nil
 }
 
 func (db *Persistence) GetInventory(req *routemodels.GetInventoryRequest) (*routemodels.GetInventoryResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.Inventory
 
 	SQL := `
@@ -81,6 +117,11 @@ func (db *Persistence) GetInventory(req *routemodels.GetInventoryRequest) (*rout
 }
 
 func (db *Persistence) GetAllInventories(req *routemodels.GetAllInventoriesRequest) (*routemodels.GetAllInventoriesResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.Inventory
 
 	SQL := `

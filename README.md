@@ -1,9 +1,10 @@
 # Totally Legit Grow Management API
 
-This is the repository for the base API for the totally legit grow system.
+This is the base API that works in conjunction with several other repos to form the Totally Legit Grow System.
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [Getting Started](#getting-started)
   - [Running Locally](#running-locally)
 - [Notes](#notes)
@@ -13,6 +14,27 @@ This is the repository for the base API for the totally legit grow system.
     - [Logic Pattern](#logic-pattern)
     - [Persistence Pattern](#persistence-pattern)
   - [Clear DB Quickly](#clear-db-quickly)
+
+## Overview
+
+This API is responsible for creating and managing grow system. This is through defining global items, such as:
+
+- Seeds
+- Plants
+- Products
+- Plant Life Cycles and Care
+- Grow Mediums
+
+And also defining the growing environment and expected conditions those globals are utilized and produced through:
+
+- Growing Groups
+- Growing Locations
+- Growing Levels
+- Grow Spots
+
+This system will allow the user to make and track observations on intervals, make and track harvests to specific plants, seeds, and defined lifecycles, and average data to make better predictions. The lifecycle definitions work with a Task Bot. The Task Bot will create generated tasks based on the definitions to create actionable steps to help you manage your grow. A phase bot will likewise look at the plant life cycle and stages to create actionable tasks to manage plant stages. The Task Resolver Bot will look through the generated tasks to see if there are any connected devices with appropiate actions to see if it can resolve the task itself.
+
+This system is being built with the intention on running from a home server on an internal network.
 
 ## Getting Started
 

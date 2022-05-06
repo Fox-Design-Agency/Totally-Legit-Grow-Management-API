@@ -9,6 +9,11 @@ import (
 var _ IGrowSpotsDB = &Persistence{}
 
 func (db *Persistence) CreateGrowSpot(req *routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -18,23 +23,44 @@ func (db *Persistence) CreateGrowSpot(req *routemodels.CreateGrowSpotRequest) (*
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 		req.GrowingLevelID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowSpotResponse{
 		ID: result,
 	}, nil
 }
 
 func (db *Persistence) CreateGrowSpotWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -61,6 +87,11 @@ func (db *Persistence) CreateGrowSpotWithTransaction(tx *sqlx.Tx, req *routemode
 }
 
 func (db *Persistence) DeleteGrowSpot(req *routemodels.DeleteGrowSpotRequest) error {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result string
 
 	SQL := `
@@ -82,6 +113,11 @@ func (db *Persistence) EditGrowSpot(req *routemodels.EditGrowSpotRequest) (*rout
 }
 
 func (db *Persistence) GetGrowSpotByID(req *routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.GrowSpot
 
 	SQL := `
@@ -113,6 +149,11 @@ func (db *Persistence) GetGrowSpotByID(req *routemodels.GetGrowSpotRequest) (*ro
 }
 
 func (db *Persistence) GetGrowSpotByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result routemodels.GrowSpot
 
 	SQL := `
@@ -144,6 +185,11 @@ func (db *Persistence) GetGrowSpotByIDWithTransaction(tx *sqlx.Tx, req *routemod
 }
 
 func (db *Persistence) GetAllGrowSpotsByGrowLevelID(req *routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.GrowSpot
 
 	SQL := `
@@ -175,6 +221,11 @@ func (db *Persistence) GetAllGrowSpotsByGrowLevelID(req *routemodels.GetAllGrowS
 }
 
 func (db *Persistence) GetAllGrowSpotsByGrowLevelIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error) {
+	/**********************************************************************
+	/
+	/	State Stuff to Return
+	/
+	/**********************************************************************/
 	var result []routemodels.GrowSpot
 
 	SQL := `
