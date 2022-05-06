@@ -62,9 +62,9 @@ With the ENV variables set, this project can be currently run in isolation by na
 The general flow of routes should be defined in this order:
 
 1. route is defined under the appropiate section in main.go. Sections have been created by following semi natural divisions in the DB. There will be overlap. When overlap occurs precidence to location should be given to the routes utilization on the frontend. IE if the route is mostly being called from a product page but also requires harvest information, then the route should be in the product section. If the route is called in multiple places an even number of times, then its placement will be subject to the developer with reason.
-2. The route will then call the coresponding Handler func, see (handler func section)[#handler-pattern] for more information on this layer.
-3. From the Handler layer, the request will move through to the Logic layer, see (logic layer section)[#logic-pattern] for more information on this layer.
-4. Once the logic checks have completed, the logic layer will potentially call multiple functions in the persistence layer, see (persistence layer section)[#persistence-pattern] for more information on this layer.
+2. The route will then call the coresponding Handler func, see [handler func section](#handler-pattern) for more information on this layer.
+3. From the Handler layer, the request will move through to the Logic layer, see [logic layer section](#logic-pattern) for more information on this layer.
+4. Once the logic checks have completed, the logic layer will potentially call multiple functions in the persistence layer, see [persistence layer section](#persistence-pattern) for more information on this layer.
 
 #### Handler Pattern
 
