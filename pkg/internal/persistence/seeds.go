@@ -63,12 +63,32 @@ func (db *Persistence) DeleteSeed(req *routemodels.DeleteSeedRequest) error {
 	WHERE growing_mediums.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.ID).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil
 }
 
@@ -76,6 +96,26 @@ func (db *Persistence) EditSeed(req *routemodels.EditSeedRequest) (*routemodels.
 	/**********************************************************************
 	/
 	/	State Stuff to Return
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	//args := []interface{}{}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Return Expected Response
 	/
 	/**********************************************************************/
 	return nil, nil
@@ -104,13 +144,32 @@ func (db *Persistence) GetSeed(req *routemodels.GetSeedRequest) (*routemodels.Ge
 	LEFT JOIN members AS up_member ON members.id = growing_mediums.updated_by
 	WHERE growing_mediums.id = $1
 	`
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Get(&result, SQL, req.ID); err != nil {
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetSeedResponse{
 		Seed: result,
 	}, nil
@@ -138,13 +197,30 @@ func (db *Persistence) GetAllSeeds(req *routemodels.GetAllSeedsRequest) (*routem
 	LEFT JOIN members AS cre_member ON members.id = growing_mediums.created_by
 	LEFT JOIN members AS up_member ON members.id = growing_mediums.updated_by
 	`
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Select(&result, SQL); err != nil {
+	args := []interface{}{}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllSeedsResponse{
 		Seeds: result,
 	}, nil

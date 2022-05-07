@@ -67,12 +67,30 @@ func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req *routemo
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := tx.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreatePlantStageResponse{
 		ID: result,
 	}, nil
@@ -93,12 +111,30 @@ func (db *Persistence) CreatePlantStageCare(req *routemodels.CreatePlantStageCar
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreatePlantStageCareResponse{
 		ID: result,
 	}, nil
@@ -119,12 +155,30 @@ func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req *rou
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := tx.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreatePlantStageCareResponse{
 		ID: result,
 	}, nil
@@ -145,12 +199,30 @@ func (db *Persistence) CreatePlantStageNutrients(req *routemodels.CreatePlantSta
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreatePlantStageNutrientsResponse{
 		ID: result,
 	}, nil
@@ -171,12 +243,30 @@ func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := tx.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreatePlantStageNutrientsResponse{
 		ID: result,
 	}, nil
@@ -197,12 +287,30 @@ func (db *Persistence) ConnectPlantStage(req *routemodels.ConnectPlantStageReque
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.ConnectPlantStageResponse{
 		ID: result,
 	}, nil
@@ -223,12 +331,30 @@ func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req *routem
 	RETURNING id
 	`
 
-	// Make the appropiate SQL Call
-	if err := tx.QueryRow(SQL, req.DisplayName).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.DisplayName,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.ConnectPlantStageResponse{
 		ID: result,
 	}, nil
@@ -247,12 +373,30 @@ func (db *Persistence) DeletePlantStage(req *routemodels.DeletePlantStageRequest
 	WHERE nutrients.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.ID).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.ID,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil
 }
 
@@ -260,6 +404,24 @@ func (db *Persistence) EditPlantStage(req *routemodels.EditPlantStageRequest) (*
 	/**********************************************************************
 	/
 	/	State Stuff to Return
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	//args := []interface{}{}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Return Expected Response
 	/
 	/**********************************************************************/
 	return nil, nil
@@ -289,12 +451,31 @@ func (db *Persistence) GetPlantStageByID(req *routemodels.GetPlantStageRequest) 
 	WHERE nutrients.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Get(&result, SQL, req.ID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Get(&result, SQL, args); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetPlantStageResponse{
 		PlantStage: result,
 	}, nil
@@ -324,12 +505,31 @@ func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req *routem
 	WHERE nutrients.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := tx.Get(&result, SQL, req.ID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetPlantStageResponse{
 		PlantStage: result,
 	}, nil
@@ -359,12 +559,30 @@ func (db *Persistence) GetPlantStageCareByID(req *routemodels.GetPlantStageCareB
 	WHERE nutrients.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Get(&result, SQL, req.ID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.ID,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetPlantStageCareByIDResponse{
 		PlantStage: result,
 	}, nil
@@ -394,12 +612,30 @@ func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.T
 	WHERE nutrients.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := tx.Get(&result, SQL, req.OrganizationID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.OrganizationID,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetPlantStageCareByPlantStageIDResponse{
 		PlantStage: result,
 	}, nil
@@ -429,12 +665,30 @@ func (db *Persistence) GetPlantStageNutrient(req *routemodels.GetPlantStageNutri
 	WHERE nutrients.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Get(&result, SQL, req.OrganizationID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{
+		req.OrganizationID,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetPlantStageNutrientResponse{
 		PlantStage: result,
 	}, nil
@@ -463,12 +717,28 @@ func (db *Persistence) GetAllPlantStages(req *routemodels.GetAllPlantStagesReque
 	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Select(&result, SQL); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllPlantStagesResponse{
 		PlantStages: result,
 	}, nil
@@ -497,12 +767,28 @@ func (db *Persistence) GetAllPlantStagesWithTransaction(tx *sqlx.Tx, req *routem
 	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
 	`
 
-	// Make the appropiate SQL Call
-	if err := tx.Select(&result, SQL); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+	args := []interface{}{}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllPlantStagesResponse{
 		PlantStages: result,
 	}, nil

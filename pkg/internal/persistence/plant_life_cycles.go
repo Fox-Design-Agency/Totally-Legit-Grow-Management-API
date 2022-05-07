@@ -71,18 +71,34 @@ func (db *Persistence) CreatePlantLifeCycleWithTransaction(tx *sqlx.Tx, req *rou
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 		req.TotalTimeMeasureUnits,
 		req.EstTotalTimeMeasure,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreatePlantLifeCycleResponse{
 		ID: result,
 	}, nil
@@ -101,12 +117,32 @@ func (db *Persistence) DeletePlantLifeCycle(req *routemodels.DeletePlantLifeCycl
 	WHERE plant_life_cycles.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.ID).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil
 }
 
@@ -114,6 +150,25 @@ func (db *Persistence) EditPlantLifeCycle(req *routemodels.EditPlantLifeCycleReq
 	/**********************************************************************
 	/
 	/	State Stuff to Return
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	//args := []interface{}{}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Return Expected Response
 	/
 	/**********************************************************************/
 	return nil, nil
@@ -146,12 +201,32 @@ func (db *Persistence) GetPlantLifeCycleByID(req *routemodels.GetPlantLifeCycleR
 	WHERE plant_life_cycles.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Get(&result, SQL, req.ID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetPlantLifeCycleResponse{
 		PlantLifeCycle: result,
 	}, nil
@@ -183,13 +258,31 @@ func (db *Persistence) GetPlantLifeCycleByIDWithTransaction(tx *sqlx.Tx, req *ro
 	LEFT JOIN members AS up_member ON members.id = plant_life_cycles.updated_by
 	WHERE plant_life_cycles.id = $1
 	`
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 
-	// Make the appropiate SQL Call
-	if err := tx.Get(&result, SQL, req.ID); err != nil {
+	args := []interface{}{
+		req.ID,
+	}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetPlantLifeCycleResponse{
 		PlantLifeCycle: result,
 	}, nil
@@ -220,13 +313,29 @@ func (db *Persistence) GetAllPlantLifeCycles(req *routemodels.GetAllPlantLifeCyc
 	LEFT JOIN members AS cre_member ON members.id = plant_life_cycles.created_by
 	LEFT JOIN members AS up_member ON members.id = plant_life_cycles.updated_by
 	`
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Select(&result, SQL); err != nil {
+	args := []interface{}{}
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllPlantLifeCyclesResponse{
 		PlantLifeCycles: result,
 	}, nil
@@ -257,13 +366,30 @@ func (db *Persistence) GetAllPlantLifeCyclesWithTransaction(tx *sqlx.Tx, req *ro
 	LEFT JOIN members AS cre_member ON members.id = plant_life_cycles.created_by
 	LEFT JOIN members AS up_member ON members.id = plant_life_cycles.updated_by
 	`
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
 
-	// Make the appropiate SQL Call
-	if err := tx.Select(&result, SQL); err != nil {
+	args := []interface{}{}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := tx.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllPlantLifeCyclesResponse{
 		PlantLifeCycles: result,
 	}, nil

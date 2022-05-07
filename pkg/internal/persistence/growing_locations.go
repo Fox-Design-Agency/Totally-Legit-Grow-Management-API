@@ -70,17 +70,33 @@ func (db *Persistence) CreateGrowingLocationWithTransaction(tx *sqlx.Tx, req *ro
 	RETURNING id
 	`
 
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
 	args := []interface{}{
 		req.DisplayName,
 		req.GrowingGroupID,
 	}
 
-	// Make the appropiate SQL Call
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
 	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.CreateGrowingLocationResponse{
 		ID: result,
 	}, nil
@@ -99,12 +115,32 @@ func (db *Persistence) DeleteGrowingLocation(req *routemodels.DeleteGrowingLocat
 	WHERE growing_locations.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.QueryRow(SQL, req.ID).Scan(result); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return nil
 }
 
@@ -112,6 +148,24 @@ func (db *Persistence) EditGrowingLocation(req *routemodels.EditGrowingLocationR
 	/**********************************************************************
 	/
 	/	State Stuff to Return
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	/**********************************************************************
+	/
+	/	Return Expected Response
 	/
 	/**********************************************************************/
 	return nil, nil
@@ -142,12 +196,32 @@ func (db *Persistence) GetGrowingLocationByID(req *routemodels.GetGrowingLocatio
 	WHERE growing_locations.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Get(&result, SQL, req.ID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingLocationResponse{
 		GrowingLocation: result,
 	}, nil
@@ -178,12 +252,32 @@ func (db *Persistence) GetGrowingLocationByIDWithTransaction(tx *sqlx.Tx, req *r
 	WHERE growing_locations.id = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Get(&result, SQL, req.ID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	args := []interface{}{
+		req.ID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetGrowingLocationResponse{
 		GrowingLocation: result,
 	}, nil
@@ -214,12 +308,32 @@ func (db *Persistence) GetAllGrowingLocationsByGrowingGroupID(req *routemodels.G
 	WHERE growing_locations.growing_group = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Select(&result, SQL, req.GrowingGroupID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	args := []interface{}{
+		req.GrowingGroupID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingLocationsResponse{
 		GrowingLocations: result,
 	}, nil
@@ -250,12 +364,32 @@ func (db *Persistence) GetAllGrowingLocationsByGrowingGroupIDWithTransaction(tx 
 	WHERE growing_locations.growing_group = $1
 	`
 
-	// Make the appropiate SQL Call
-	if err := db.Postgres.Select(&result, SQL, req.GrowingGroupID); err != nil {
+	/**********************************************************************
+	/
+	/	Define Arguments For SQL Call
+	/
+	/**********************************************************************/
+
+	args := []interface{}{
+		req.GrowingGroupID,
+	}
+
+	/**********************************************************************
+	/
+	/	Do The SQL Call
+	/
+	/**********************************************************************/
+
+	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
 
+	/**********************************************************************
+	/
+	/	Return Expected Response
+	/
+	/**********************************************************************/
 	return &routemodels.GetAllGrowingLocationsResponse{
 		GrowingLocations: result,
 	}, nil
