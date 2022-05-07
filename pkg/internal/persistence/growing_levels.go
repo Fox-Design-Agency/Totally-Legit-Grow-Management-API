@@ -16,13 +16,6 @@ func (db *Persistence) CreateGrowingLevel(req *routemodels.CreateGrowingLevelReq
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO growing_levels
-	(display_name, growing_location)
-	VALUES ($1, $2)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -40,7 +33,7 @@ func (db *Persistence) CreateGrowingLevel(req *routemodels.CreateGrowingLevelReq
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CREATE_GROWING_LEVEL_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -63,13 +56,6 @@ func (db *Persistence) CreateGrowingLevelWithTransaction(tx *sqlx.Tx, req *route
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO growing_levels
-	(display_name, growing_location)
-	VALUES ($1, $2)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -87,7 +73,7 @@ func (db *Persistence) CreateGrowingLevelWithTransaction(tx *sqlx.Tx, req *route
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CREATE_GROWING_LEVEL_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -108,12 +94,6 @@ func (db *Persistence) DeleteGrowingLevel(req *routemodels.DeleteGrowingLevelReq
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
-
-	SQL := `
-	UPDATE growing_levels SET archived = NOW()
-	WHERE growing_levels.id = $1
-	`
 
 	/**********************************************************************
 	/
@@ -131,7 +111,7 @@ func (db *Persistence) DeleteGrowingLevel(req *routemodels.DeleteGrowingLevelReq
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_GROWING_LEVEL_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -179,23 +159,6 @@ func (db *Persistence) GetGrowingLevelByID(req *routemodels.GetGrowingLevelReque
 	/**********************************************************************/
 	var result routemodels.GrowingLevel
 
-	SQL := `
-	SELECT
-		growing_levels.id AS id,
-		growing_levels.growing_location AS growing_location_id,
-		growing_levels.display_name AS display_name,
-		growing_levels.created AS created_at,
-		growing_levels.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_levels
-	LEFT JOIN members AS cre_member ON members.id = growing_levels.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_levels.updated_by
-	WHERE growing_levels.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -212,7 +175,7 @@ func (db *Persistence) GetGrowingLevelByID(req *routemodels.GetGrowingLevelReque
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROWING_LEVEL_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -235,23 +198,6 @@ func (db *Persistence) GetGrowingLevelByIDWithTransaction(tx *sqlx.Tx, req *rout
 	/**********************************************************************/
 	var result routemodels.GrowingLevel
 
-	SQL := `
-	SELECT
-		growing_levels.id AS id,
-		growing_levels.growing_location AS growing_location_id,
-		growing_levels.display_name AS display_name,
-		growing_levels.created AS created_at,
-		growing_levels.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_levels
-	LEFT JOIN members AS cre_member ON members.id = growing_levels.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_levels.updated_by
-	WHERE growing_levels.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -268,7 +214,7 @@ func (db *Persistence) GetGrowingLevelByIDWithTransaction(tx *sqlx.Tx, req *rout
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROWING_LEVEL_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -291,22 +237,6 @@ func (db *Persistence) GetAllGrowingLevelsByGrowingLocationID(req *routemodels.G
 	/**********************************************************************/
 	var result []routemodels.GrowingLevel
 
-	SQL := `
-	SELECT
-		growing_levels.id AS id,
-		growing_levels.display_name AS display_name,
-		growing_levels.created AS created_at,
-		growing_levels.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_levels
-	LEFT JOIN members AS cre_member ON members.id = growing_levels.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_levels.updated_by
-	WHERE growing_levels.growing_location = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -321,7 +251,7 @@ func (db *Persistence) GetAllGrowingLevelsByGrowingLocationID(req *routemodels.G
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_GROWING_LEVELS_BY_GROWING_LOCATION_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -344,22 +274,6 @@ func (db *Persistence) GetAllGrowingLevelsByGrowingLocationIDWithTransaction(tx 
 	/**********************************************************************/
 	var result []routemodels.GrowingLevel
 
-	SQL := `
-	SELECT
-		growing_levels.id AS id,
-		growing_levels.display_name AS display_name,
-		growing_levels.created AS created_at,
-		growing_levels.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_levels
-	LEFT JOIN members AS cre_member ON members.id = growing_levels.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_levels.updated_by
-	WHERE growing_levels.growing_location = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -376,7 +290,7 @@ func (db *Persistence) GetAllGrowingLevelsByGrowingLocationIDWithTransaction(tx 
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_GROWING_LEVELS_BY_GROWING_LOCATION_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
