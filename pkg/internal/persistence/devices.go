@@ -64,19 +64,6 @@ func (db *Persistence) CreateDeviceWithTransaction(tx *sqlx.Tx, req *routemodels
 	/
 	/**********************************************************************/
 
-	SQL := `
-	INSERT INTO devices
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
-	/**********************************************************************
-	/
-	/	Define Arguments For SQL Call
-	/
-	/**********************************************************************/
-
 	args := []interface{}{
 		req.DisplayName,
 	}
@@ -87,7 +74,7 @@ func (db *Persistence) CreateDeviceWithTransaction(tx *sqlx.Tx, req *routemodels
 	/
 	/**********************************************************************/
 
-	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := tx.QueryRow(CREATE_DEVICE_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -111,12 +98,6 @@ func (db *Persistence) CreateDeviceAction(req *routemodels.CreateDeviceActionReq
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO device_actions
-	(device, display_name, invoke_route, info)
-	VALUES ($1, $2, $3, $4)
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -136,7 +117,7 @@ func (db *Persistence) CreateDeviceAction(req *routemodels.CreateDeviceActionReq
 	/
 	/**********************************************************************/
 
-	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
+	if _, err := db.Postgres.Exec(CREATE_DEVICE_ACTIONS_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -160,12 +141,6 @@ func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req *route
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO device_actions
-	(device, display_name, invoke_route, info)
-	VALUES ($1, $2, $3, $4)
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -185,7 +160,7 @@ func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req *route
 	/
 	/**********************************************************************/
 
-	if _, err := tx.Exec(SQL, args...); err != nil {
+	if _, err := tx.Exec(CREATE_DEVICE_ACTIONS_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -208,12 +183,6 @@ func (db *Persistence) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGr
 	/
 	/**********************************************************************/
 
-	SQL := `
-	INSERT INTO growing_group_devices
-	(device, growing_group)
-	VALUES ($1, $2)
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -231,7 +200,7 @@ func (db *Persistence) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGr
 	/
 	/**********************************************************************/
 
-	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
+	if _, err := db.Postgres.Exec(CREATE_GROWING_GROUPO_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -254,11 +223,6 @@ func (db *Persistence) CreateGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	/
 	/**********************************************************************/
 
-	SQL := `
-	INSERT INTO growing_group_devices
-	(device, growing_group)
-	VALUES ($1, $2)
-	`
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -276,7 +240,7 @@ func (db *Persistence) CreateGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	/
 	/**********************************************************************/
 
-	if _, err := tx.Exec(SQL, args...); err != nil {
+	if _, err := tx.Exec(CREATE_GROWING_GROUPO_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -299,12 +263,6 @@ func (db *Persistence) CreateGrowingLocationDevice(req *routemodels.CreateGrowin
 	/
 	/**********************************************************************/
 
-	SQL := `
-	INSERT INTO growing_location_devices
-	(device, growing_location)
-	VALUES ($1, $2)
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -322,7 +280,7 @@ func (db *Persistence) CreateGrowingLocationDevice(req *routemodels.CreateGrowin
 	/
 	/**********************************************************************/
 
-	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
+	if _, err := db.Postgres.Exec(CREATE_GROWING_LOCATION_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -345,12 +303,6 @@ func (db *Persistence) CreateGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	/
 	/**********************************************************************/
 
-	SQL := `
-	INSERT INTO growing_location_devices
-	(device, growing_location)
-	VALUES ($1, $2)
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -368,7 +320,7 @@ func (db *Persistence) CreateGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	/
 	/**********************************************************************/
 
-	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
+	if _, err := db.Postgres.Exec(CREATE_GROWING_LOCATION_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -391,12 +343,6 @@ func (db *Persistence) CreateGrowingLevelDevice(req *routemodels.CreateGrowingLe
 	/
 	/**********************************************************************/
 
-	SQL := `
-	INSERT INTO growing_level_devices
-	(device, growing_level)
-	VALUES ($1, $2)
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -414,7 +360,7 @@ func (db *Persistence) CreateGrowingLevelDevice(req *routemodels.CreateGrowingLe
 	/
 	/**********************************************************************/
 
-	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
+	if _, err := db.Postgres.Exec(CREATE_GROWING_LEVEL_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -437,12 +383,6 @@ func (db *Persistence) CreateGrowingLevelDeviceWithTransaction(sql *sqlx.Tx, req
 	/
 	/**********************************************************************/
 
-	SQL := `
-	INSERT INTO growing_level_devices
-	(device, growing_level)
-	VALUES ($1, $2)
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -460,7 +400,7 @@ func (db *Persistence) CreateGrowingLevelDeviceWithTransaction(sql *sqlx.Tx, req
 	/
 	/**********************************************************************/
 
-	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
+	if _, err := db.Postgres.Exec(CREATE_GROWING_LEVEL_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -483,12 +423,6 @@ func (db *Persistence) CreateGrowingSpotDevice(req *routemodels.CreateGrowingSpo
 	/
 	/**********************************************************************/
 
-	SQL := `
-	INSERT INTO grow_spots_devices
-	(device, grow_spot)
-	VALUES ($1, $2)
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -506,7 +440,7 @@ func (db *Persistence) CreateGrowingSpotDevice(req *routemodels.CreateGrowingSpo
 	/
 	/**********************************************************************/
 
-	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
+	if _, err := db.Postgres.Exec(CREATE_GROW_SPOT_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -529,12 +463,6 @@ func (db *Persistence) CreateGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *
 	/
 	/**********************************************************************/
 
-	SQL := `
-	INSERT INTO grow_spots_devices
-	(device, grow_spot)
-	VALUES ($1, $2)
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -552,7 +480,7 @@ func (db *Persistence) CreateGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *
 	/
 	/**********************************************************************/
 
-	if _, err := db.Postgres.Exec(SQL, args...); err != nil {
+	if _, err := db.Postgres.Exec(CREATE_GROW_SPOT_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -574,12 +502,6 @@ func (db *Persistence) DeleteDevice(req *routemodels.DeleteDeviceRequest) error 
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
-
-	SQL := `
-	UPDATE devices SET archived = NOW()
-	WHERE devices.id = $1
-	`
 
 	/**********************************************************************
 	/
@@ -596,7 +518,7 @@ func (db *Persistence) DeleteDevice(req *routemodels.DeleteDeviceRequest) error 
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -616,13 +538,7 @@ func (db *Persistence) DeleteGrowingGroupDevice(req *routemodels.DeleteGrowingGr
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
 
-	SQL := `
-	UPDATE growing_group_devices SET archived = NOW()
-	WHERE growing_group_devices.device = $1
-		AND growing_group_devices.growing_group = $2
-	`
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -639,7 +555,7 @@ func (db *Persistence) DeleteGrowingGroupDevice(req *routemodels.DeleteGrowingGr
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_GROWING_GROUP_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -659,13 +575,6 @@ func (db *Persistence) DeleteGrowingLocationDevice(req *routemodels.DeleteGrowin
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
-
-	SQL := `
-	UPDATE growing_location_devices SET archived = NOW()
-	WHERE growing_location_devices.device = $1
-		AND growing_location_devices.growing_location = $2
-	`
 
 	/**********************************************************************
 	/
@@ -683,7 +592,7 @@ func (db *Persistence) DeleteGrowingLocationDevice(req *routemodels.DeleteGrowin
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_GROWING_LOCATION_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -703,13 +612,6 @@ func (db *Persistence) DeleteGrowingLevelDevice(req *routemodels.DeleteGrowingLe
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
-
-	SQL := `
-	UPDATE growing_level_devices SET archived = NOW()
-	WHERE growing_level_devices.device = $1
-		AND growing_level_devices.growing_location = $2
-	`
 
 	/**********************************************************************
 	/
@@ -727,7 +629,7 @@ func (db *Persistence) DeleteGrowingLevelDevice(req *routemodels.DeleteGrowingLe
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_GROWING_LEVEL_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -747,13 +649,6 @@ func (db *Persistence) DeleteGrowingSpotDevice(req *routemodels.DeleteGrowingSpo
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
-
-	SQL := `
-	UPDATE grow_spots_devices SET archived = NOW()
-	WHERE grow_spots_devices.device = $1
-		AND grow_spots_devices.growing_location = $2
-	`
 
 	/**********************************************************************
 	/
@@ -771,7 +666,7 @@ func (db *Persistence) DeleteGrowingSpotDevice(req *routemodels.DeleteGrowingSpo
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_GROW_SPOT_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -821,22 +716,6 @@ func (db *Persistence) GetDevice(req *routemodels.GetDeviceRequest) (*routemodel
 	/**********************************************************************/
 	var result routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM devices
-	LEFT JOIN members AS cre_member ON members.id = devices.created_by
-	LEFT JOIN members AS up_member ON members.id = devices.updated_by
-	WHERE devices.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -852,7 +731,7 @@ func (db *Persistence) GetDevice(req *routemodels.GetDeviceRequest) (*routemodel
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_DEVICE_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -876,25 +755,6 @@ func (db *Persistence) GetDeviceActions(req *routemodels.GetDeviceActionsRequest
 	/**********************************************************************/
 	var result []routemodels.DeviceAction
 
-	SQL := `
-	SELECT
-		device_actions.id AS id,
-		device_actions.display_name AS display_name,
-		device_actions.invoke_route AS invoke_route,
-		device_actions.info AS action_info,
-		device_actions.created AS created_at,
-		device_actions.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM device_actions
-	JOIN devices ON devices.id = device_actions.device
-	LEFT JOIN members AS cre_member ON members.id = device_actions.created_by
-	LEFT JOIN members AS up_member ON members.id = device_actions.updated_by
-	WHERE device_actions.device = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -910,7 +770,7 @@ func (db *Persistence) GetDeviceActions(req *routemodels.GetDeviceActionsRequest
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_DEVICE_ACTIONS_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -934,25 +794,6 @@ func (db *Persistence) GetDeviceActionsWithTransaction(tx *sqlx.Tx, req *routemo
 	/**********************************************************************/
 	var result []routemodels.DeviceAction
 
-	SQL := `
-	SELECT
-		device_actions.id AS id,
-		device_actions.display_name AS display_name,
-		device_actions.invoke_route AS invoke_route,
-		device_actions.info AS action_info,
-		device_actions.created AS created_at,
-		device_actions.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM device_actions
-	JOIN devices ON devices.id = device_actions.device
-	LEFT JOIN members AS cre_member ON members.id = device_actions.created_by
-	LEFT JOIN members AS up_member ON members.id = device_actions.updated_by
-	WHERE device_actions.device = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -968,7 +809,7 @@ func (db *Persistence) GetDeviceActionsWithTransaction(tx *sqlx.Tx, req *routemo
 	/
 	/**********************************************************************/
 
-	if err := tx.Select(&result, SQL, args...); err != nil {
+	if err := tx.Select(&result, GET_DEVICE_ACTIONS_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -992,21 +833,6 @@ func (db *Persistence) GetAllDevices(req *routemodels.GetAllDevicesRequest) (*ro
 	/**********************************************************************/
 	var result []routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM devices
-	LEFT JOIN members AS cre_member ON members.id = devices.created_by
-	LEFT JOIN members AS up_member ON members.id = devices.updated_by
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1019,7 +845,7 @@ func (db *Persistence) GetAllDevices(req *routemodels.GetAllDevicesRequest) (*ro
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_DEVICES_SQL); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1043,23 +869,6 @@ func (db *Persistence) GetAllGrowingGroupDevices(req *routemodels.GetAllGrowingG
 	/**********************************************************************/
 	var result []routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_group_devices
-	JOIN devices ON devices.device = growing_group_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_group_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_group_devices.updated_by
-	WHERE growing_group_devices.growing_group = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1075,7 +884,7 @@ func (db *Persistence) GetAllGrowingGroupDevices(req *routemodels.GetAllGrowingG
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_GROWING_GROUP_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1099,23 +908,6 @@ func (db *Persistence) GetAllGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	/**********************************************************************/
 	var result []routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_group_devices
-	JOIN devices ON devices.device = growing_group_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_group_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_group_devices.updated_by
-	WHERE growing_group_devices.growing_group = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1131,7 +923,7 @@ func (db *Persistence) GetAllGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	/
 	/**********************************************************************/
 
-	if err := tx.Select(&result, SQL, args...); err != nil {
+	if err := tx.Select(&result, GET_ALL_GROWING_GROUP_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1155,23 +947,6 @@ func (db *Persistence) GetAllGrowingLocationDevices(req *routemodels.GetAllGrowi
 	/**********************************************************************/
 	var result []routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_location_devices
-	JOIN devices ON devices.device = growing_location_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_location_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_location_devices.updated_by
-	WHERE growing_location_devices.growing_group = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1187,7 +962,7 @@ func (db *Persistence) GetAllGrowingLocationDevices(req *routemodels.GetAllGrowi
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_GROWING_LOCATION_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1211,23 +986,6 @@ func (db *Persistence) GetAllGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	/**********************************************************************/
 	var result []routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_location_devices
-	JOIN devices ON devices.device = growing_location_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_location_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_location_devices.updated_by
-	WHERE growing_location_devices.growing_group = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1243,7 +1001,7 @@ func (db *Persistence) GetAllGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	/
 	/**********************************************************************/
 
-	if err := tx.Select(&result, SQL, args...); err != nil {
+	if err := tx.Select(&result, GET_ALL_GROWING_LOCATION_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1267,23 +1025,6 @@ func (db *Persistence) GetAllGrowingLevelDevices(req *routemodels.GetAllGrowingL
 	/**********************************************************************/
 	var result []routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_level_devices
-	JOIN devices ON devices.device = growing_level_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_level_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_level_devices.updated_by
-	WHERE growing_level_devices.growing_group = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1299,7 +1040,7 @@ func (db *Persistence) GetAllGrowingLevelDevices(req *routemodels.GetAllGrowingL
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_ALL_GROWING_LEVEL_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1323,24 +1064,6 @@ func (db *Persistence) GetAllGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req 
 	/**********************************************************************/
 	var result []routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_level_devices
-	JOIN devices ON devices.device = growing_level_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_level_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_level_devices.updated_by
-	WHERE growing_level_devices.growing_group = $1
-		AND growing_level_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1356,7 +1079,7 @@ func (db *Persistence) GetAllGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req 
 	/
 	/**********************************************************************/
 
-	if err := tx.Select(&result, SQL, args...); err != nil {
+	if err := tx.Select(&result, GET_ALL_GROWING_LEVEL_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1380,24 +1103,6 @@ func (db *Persistence) GetAllGrowingSpotDevices(req *routemodels.GetAllGrowingSp
 	/**********************************************************************/
 	var result []routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM grow_spots_devices
-	JOIN devices ON devices.device = grow_spots_devices.device
-	LEFT JOIN members AS cre_member ON members.id = grow_spots_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = grow_spots_devices.updated_by
-	WHERE grow_spots_devices.growing_group = $1
-		AND grow_spots_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1413,7 +1118,7 @@ func (db *Persistence) GetAllGrowingSpotDevices(req *routemodels.GetAllGrowingSp
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_GROWING_SPOT_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1437,24 +1142,6 @@ func (db *Persistence) GetAllGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *
 	/**********************************************************************/
 	var result []routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM grow_spots_devices
-	JOIN devices ON devices.device = grow_spots_devices.device
-	LEFT JOIN members AS cre_member ON members.id = grow_spots_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = grow_spots_devices.updated_by
-	WHERE grow_spots_devices.growing_group = $1
-		AND grow_spots_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1470,7 +1157,7 @@ func (db *Persistence) GetAllGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *
 	/
 	/**********************************************************************/
 
-	if err := tx.Select(&result, SQL, args...); err != nil {
+	if err := tx.Select(&result, GET_ALL_GROWING_SPOT_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1494,24 +1181,6 @@ func (db *Persistence) GetGrowingGroupDevice(req *routemodels.GetGrowingGroupDev
 	/**********************************************************************/
 	var result routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_group_devices
-	JOIN devices ON devices.device = growing_group_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_group_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_group_devices.updated_by
-	WHERE growing_group_devices.growing_group = $1
-		AND growing_group_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1528,7 +1197,7 @@ func (db *Persistence) GetGrowingGroupDevice(req *routemodels.GetGrowingGroupDev
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROWING_GROUP_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1552,24 +1221,6 @@ func (db *Persistence) GetGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *ro
 	/**********************************************************************/
 	var result routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_group_devices
-	JOIN devices ON devices.device = growing_group_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_group_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_group_devices.updated_by
-	WHERE growing_group_devices.growing_group = $1
-		AND growing_group_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1586,7 +1237,7 @@ func (db *Persistence) GetGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *ro
 	/
 	/**********************************************************************/
 
-	if err := tx.Get(&result, SQL, args...); err != nil {
+	if err := tx.Get(&result, GET_GROWING_GROUP_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1610,24 +1261,6 @@ func (db *Persistence) GetGrowingLocationDevice(req *routemodels.GetGrowingLocat
 	/**********************************************************************/
 	var result routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_location_devices
-	JOIN devices ON devices.device = growing_location_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_location_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_location_devices.updated_by
-	WHERE growing_location_devices.growing_group = $1
-		AND growing_location_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1644,7 +1277,7 @@ func (db *Persistence) GetGrowingLocationDevice(req *routemodels.GetGrowingLocat
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROWING_LOCATION_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1668,24 +1301,6 @@ func (db *Persistence) GetGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req 
 	/**********************************************************************/
 	var result routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_location_devices
-	JOIN devices ON devices.device = growing_location_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_location_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_location_devices.updated_by
-	WHERE growing_location_devices.growing_group = $1
-		AND growing_location_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1702,7 +1317,7 @@ func (db *Persistence) GetGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req 
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROWING_LOCATION_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1726,24 +1341,6 @@ func (db *Persistence) GetGrowingLevelDevice(req *routemodels.GetGrowingLevelDev
 	/**********************************************************************/
 	var result routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_level_devices
-	JOIN devices ON devices.device = growing_level_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_level_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_level_devices.updated_by
-	WHERE growing_level_devices.growing_group = $1
-		AND growing_level_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1760,7 +1357,7 @@ func (db *Persistence) GetGrowingLevelDevice(req *routemodels.GetGrowingLevelDev
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROWING_LEVEL_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1784,24 +1381,6 @@ func (db *Persistence) GetGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *ro
 	/**********************************************************************/
 	var result routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_level_devices
-	JOIN devices ON devices.device = growing_level_devices.device
-	LEFT JOIN members AS cre_member ON members.id = growing_level_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_level_devices.updated_by
-	WHERE growing_level_devices.growing_group = $1
-		AND growing_level_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1818,7 +1397,7 @@ func (db *Persistence) GetGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *ro
 	/
 	/**********************************************************************/
 
-	if err := tx.Get(&result, SQL, args...); err != nil {
+	if err := tx.Get(&result, GET_GROWING_LEVEL_DEVICE_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1842,24 +1421,6 @@ func (db *Persistence) GetGrowingSpotDevice(req *routemodels.GetGrowingSpotDevic
 	/**********************************************************************/
 	var result routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM grow_spots_devices
-	JOIN devices ON devices.device = grow_spots_devices.device
-	LEFT JOIN members AS cre_member ON members.id = grow_spots_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = grow_spots_devices.updated_by
-	WHERE grow_spots_devices.growing_group = $1
-		AND grow_spots_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1876,7 +1437,7 @@ func (db *Persistence) GetGrowingSpotDevice(req *routemodels.GetGrowingSpotDevic
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROWING_SPOT_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -1900,24 +1461,6 @@ func (db *Persistence) GetGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *rou
 	/**********************************************************************/
 	var result routemodels.Device
 
-	SQL := `
-	SELECT
-		devices.id AS id,
-		devices.display_name AS display_name,
-		devices.created AS created_at,
-		devices.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM grow_spots_devices
-	JOIN devices ON devices.device = grow_spots_devices.device
-	LEFT JOIN members AS cre_member ON members.id = grow_spots_devices.created_by
-	LEFT JOIN members AS up_member ON members.id = grow_spots_devices.updated_by
-	WHERE grow_spots_devices.growing_group = $1
-		AND grow_spots_devices.device = $2
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -1934,7 +1477,7 @@ func (db *Persistence) GetGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *rou
 	/
 	/**********************************************************************/
 
-	if err := tx.Get(&result, SQL, args...); err != nil {
+	if err := tx.Get(&result, GET_GROWING_SPOT_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
