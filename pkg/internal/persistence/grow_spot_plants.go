@@ -12,13 +12,6 @@ func (db *Persistence) CreateGrowSpotPlant(req *routemodels.CreateGrowSpotPlantR
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO grow_spot_plants
-	(plant, plant_life_cycle, grow_spot, seed, seed_amount_units, seed_amount)
-	VALUES ($1, $2, $3, $4, $5, $6)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -35,7 +28,7 @@ func (db *Persistence) CreateGrowSpotPlant(req *routemodels.CreateGrowSpotPlantR
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CREATE_GROW_SPOT_PLANT_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -56,12 +49,6 @@ func (db *Persistence) DeleteGrowSpotPlant(req *routemodels.DeleteGrowSpotPlantR
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
-
-	SQL := `
-	UPDATE grow_spot_plants SET archived = NOW()
-	WHERE grow_spot_plants.id = $1
-	`
 
 	/**********************************************************************
 	/
@@ -79,7 +66,7 @@ func (db *Persistence) DeleteGrowSpotPlant(req *routemodels.DeleteGrowSpotPlantR
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_GROW_SPOT_PLANT_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -127,21 +114,6 @@ func (db *Persistence) GetGrowSpotPlant(req *routemodels.GetGrowSpotPlantRequest
 	/**********************************************************************/
 	var result routemodels.GrowSpotPlant
 
-	SQL := `
-	SELECT
-		grow_spot_plants.id AS id,
-		grow_spot_plants.created AS created_at,
-		grow_spot_plants.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM grow_spot_plants
-	LEFT JOIN members AS cre_member ON members.id = grow_spot_plants.created_by
-	LEFT JOIN members AS up_member ON members.id = grow_spot_plants.updated_by
-	WHERE grow_spot_plants.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -158,7 +130,7 @@ func (db *Persistence) GetGrowSpotPlant(req *routemodels.GetGrowSpotPlantRequest
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROW_SPOT_PLANT_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -181,20 +153,6 @@ func (db *Persistence) GetAllGrowSpotPlants(req *routemodels.GetAllGrowSpotPlant
 	/**********************************************************************/
 	var result []routemodels.GrowSpotPlant
 
-	SQL := `
-	SELECT
-		grow_spot_plants.id AS id,
-		grow_spot_plants.created AS created_at,
-		grow_spot_plants.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM grow_spot_plants
-	LEFT JOIN members AS cre_member ON members.id = grow_spot_plants.created_by
-	LEFT JOIN members AS up_member ON members.id = grow_spot_plants.updated_by
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -209,7 +167,7 @@ func (db *Persistence) GetAllGrowSpotPlants(req *routemodels.GetAllGrowSpotPlant
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_GROW_SPOT_PLANTS_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
