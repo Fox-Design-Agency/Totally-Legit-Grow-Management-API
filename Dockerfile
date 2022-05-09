@@ -1,3 +1,8 @@
+# Copyright 2022 Fox Design Agency. All rights reserved.
+# Use of this source code is governed by a MIT-style
+# license that can be found in the LICENSE file.
+
+
 # Use the official Golang image to create a build artifact.
 # This is based on Debian and sets the GOPATH to /go.
 # https://hub.docker.com/_/golang

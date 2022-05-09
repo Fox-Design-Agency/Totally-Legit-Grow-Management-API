@@ -1,3 +1,7 @@
+// Copyright 2022 Fox Design Agency. All rights reserved.
+// Use of this source code is governed by a MIT-style
+// license that can be found in the LICENSE file.
+
 package persistence
 
 import (
@@ -10,7 +14,7 @@ import (
 
 var _ IPersistence = &Persistence{}
 
-// MigrateDBUP runs the migration files up
+// MigrateDBUP runs the migration files found in the resources folder up
 func (db *Persistence) MigrateDBUP() error {
 	// run the migrate here
 	migrations := &migrate.FileMigrationSource{
@@ -26,7 +30,7 @@ func (db *Persistence) MigrateDBUP() error {
 	return nil
 }
 
-//MigrateDBDown runs the migration files down
+//MigrateDBDown runs the migration files found in the resources folder down
 func (db *Persistence) MigrateDBDown() error {
 	// run the migrate here
 	migrations := &migrate.FileMigrationSource{
@@ -42,6 +46,10 @@ func (db *Persistence) MigrateDBDown() error {
 	return nil
 }
 
+// StartTransaction will begin a transaction for the logic layer
+// to utilize and compose persistence layers calls that require
+// a transaction. This transaction will need to be commited within
+// the logic layer prior to a successful return.
 func (db *Persistence) StartTransaction() (*sqlx.Tx, error) {
 	tx, err := db.Postgres.Beginx()
 	if err != nil {
