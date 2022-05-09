@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IGrowingMediumsDB = &Persistence{}
 
+// CreateGrowingLocation will insert a new Growing Medium into the persistence layer and return the created ID
 func (db *Persistence) CreateGrowingMedium(req *routemodels.CreateGrowingMediumRequest) (*routemodels.CreateGrowingMediumResponse, error) {
 	/**********************************************************************
 	/
@@ -43,6 +44,7 @@ func (db *Persistence) CreateGrowingMedium(req *routemodels.CreateGrowingMediumR
 	}, nil
 }
 
+// DeleteGrowingMedium will set the Growing Medium to be archived
 func (db *Persistence) DeleteGrowingMedium(req *routemodels.DeleteGrowingMediumRequest) error {
 	/**********************************************************************
 	/
@@ -79,6 +81,7 @@ func (db *Persistence) DeleteGrowingMedium(req *routemodels.DeleteGrowingMediumR
 	return nil
 }
 
+// EditGrowingMedium is not currently implemented
 func (db *Persistence) EditGrowingMedium(req *routemodels.EditGrowingMediumRequest) (*routemodels.EditGrowingMediumResponse, error) {
 	/**********************************************************************
 	/
@@ -108,6 +111,7 @@ func (db *Persistence) EditGrowingMedium(req *routemodels.EditGrowingMediumReque
 	return nil, nil
 }
 
+// GetGrowingMedium will get a Growing Medium By ID from the persistence layer
 func (db *Persistence) GetGrowingMedium(req *routemodels.GetGrowingMediumRequest) (*routemodels.GetGrowingMediumResponse, error) {
 	/**********************************************************************
 	/
@@ -147,6 +151,7 @@ func (db *Persistence) GetGrowingMedium(req *routemodels.GetGrowingMediumRequest
 	}, nil
 }
 
+// GetAllGrowingMediums will get all Growing Mediums from the persistence layer
 func (db *Persistence) GetAllGrowingMediums(req *routemodels.GetAllGrowingMediumsRequest) (*routemodels.GetAllGrowingMediumsResponse, error) {
 	/**********************************************************************
 	/

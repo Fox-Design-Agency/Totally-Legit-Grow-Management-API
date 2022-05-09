@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IHarvestsDB = &Persistence{}
 
+// CreateHarvest will insert a new Harvest into the persistence layer and return the created ID
 func (db *Persistence) CreateHarvest(req *routemodels.CreateHarvestRequest) (*routemodels.CreateHarvestResponse, error) {
 	/**********************************************************************
 	/
@@ -43,6 +44,7 @@ func (db *Persistence) CreateHarvest(req *routemodels.CreateHarvestRequest) (*ro
 	}, nil
 }
 
+// DeleteHarvest will set the Harvest to be archived
 func (db *Persistence) DeleteHarvest(req *routemodels.DeleteHarvestRequest) error {
 	/**********************************************************************
 	/
@@ -79,6 +81,7 @@ func (db *Persistence) DeleteHarvest(req *routemodels.DeleteHarvestRequest) erro
 	return nil
 }
 
+// EditHarvest is not currently implemented
 func (db *Persistence) EditHarvest(req *routemodels.EditHarvestRequest) (*routemodels.EditHarvestResponse, error) {
 	/**********************************************************************
 	/
@@ -108,6 +111,7 @@ func (db *Persistence) EditHarvest(req *routemodels.EditHarvestRequest) (*routem
 	return nil, nil
 }
 
+// GetHarvest will get a Harvest By ID from the persistence layer
 func (db *Persistence) GetHarvest(req *routemodels.GetHarvestRequest) (*routemodels.GetHarvestResponse, error) {
 	/**********************************************************************
 	/
@@ -147,6 +151,7 @@ func (db *Persistence) GetHarvest(req *routemodels.GetHarvestRequest) (*routemod
 	}, nil
 }
 
+// GetHarvest will get all Harvests from the persistence layer
 func (db *Persistence) GetAllHarvests(*routemodels.GetAllHarvestsRequest) (*routemodels.GetAllHarvestsResponse, error) {
 	/**********************************************************************
 	/

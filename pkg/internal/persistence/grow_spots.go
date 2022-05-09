@@ -8,6 +8,7 @@ import (
 
 var _ IGrowSpotsDB = &Persistence{}
 
+// CreateGrowSpot will insert a new Grow Spot into the persistence layer and return the created ID
 func (db *Persistence) CreateGrowSpot(req *routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error) {
 	/**********************************************************************
 	/
@@ -48,6 +49,7 @@ func (db *Persistence) CreateGrowSpot(req *routemodels.CreateGrowSpotRequest) (*
 	}, nil
 }
 
+// CreateGrowSpotWithTransaction will insert a new Grow Spot into the persistence layer within a transaction and return the created ID
 func (db *Persistence) CreateGrowSpotWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error) {
 	/**********************************************************************
 	/
@@ -88,6 +90,7 @@ func (db *Persistence) CreateGrowSpotWithTransaction(tx *sqlx.Tx, req *routemode
 	}, nil
 }
 
+// DeleteGrowSpot will set the Growing Spot to be archived
 func (db *Persistence) DeleteGrowSpot(req *routemodels.DeleteGrowSpotRequest) error {
 	/**********************************************************************
 	/
@@ -123,6 +126,7 @@ func (db *Persistence) DeleteGrowSpot(req *routemodels.DeleteGrowSpotRequest) er
 	return nil
 }
 
+// EditGrowSpot is not currently implemented
 func (db *Persistence) EditGrowSpot(req *routemodels.EditGrowSpotRequest) (*routemodels.EditGrowSpotResponse, error) {
 	/**********************************************************************
 	/
@@ -135,6 +139,8 @@ func (db *Persistence) EditGrowSpot(req *routemodels.EditGrowSpotRequest) (*rout
 	/	Define Arguments For SQL Call
 	/
 	/**********************************************************************/
+
+	//args := []interface{}{}
 
 	/**********************************************************************
 	/
@@ -150,6 +156,7 @@ func (db *Persistence) EditGrowSpot(req *routemodels.EditGrowSpotRequest) (*rout
 	return nil, nil
 }
 
+// GetGrowSpotByID will get a Grow Spot By ID from the persistence layer
 func (db *Persistence) GetGrowSpotByID(req *routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error) {
 	/**********************************************************************
 	/
@@ -188,6 +195,7 @@ func (db *Persistence) GetGrowSpotByID(req *routemodels.GetGrowSpotRequest) (*ro
 	}, nil
 }
 
+// GetGrowSpotByIDWithTransaction will get a Grow Spot By ID from the persistence layer within a transaction
 func (db *Persistence) GetGrowSpotByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error) {
 	/**********************************************************************
 	/
@@ -226,6 +234,7 @@ func (db *Persistence) GetGrowSpotByIDWithTransaction(tx *sqlx.Tx, req *routemod
 	}, nil
 }
 
+// GetAllGrowSpotsByGrowLevelID will get all Grow Spot By Grow Level ID from the persistence layer
 func (db *Persistence) GetAllGrowSpotsByGrowLevelID(req *routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error) {
 	/**********************************************************************
 	/
@@ -262,6 +271,7 @@ func (db *Persistence) GetAllGrowSpotsByGrowLevelID(req *routemodels.GetAllGrowS
 	}, nil
 }
 
+// GetAllGrowSpotsByGrowLevelIDWithTransaction will get all Grow Spot By Grow Level ID from the persistence layer within a transaction
 func (db *Persistence) GetAllGrowSpotsByGrowLevelIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error) {
 	/**********************************************************************
 	/

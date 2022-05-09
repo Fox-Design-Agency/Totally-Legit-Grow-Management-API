@@ -8,6 +8,7 @@ import (
 
 var _ IGrowingGroupsDB = &Persistence{}
 
+// CreateGrowingGroup will insert a new Growing Group into the persistence layer and return the created ID
 func (db *Persistence) CreateGrowingGroup(req *routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error) {
 	/**********************************************************************
 	/
@@ -48,6 +49,8 @@ func (db *Persistence) CreateGrowingGroup(req *routemodels.CreateGrowingGroupReq
 	}, nil
 }
 
+// CreateGrowingGroupWithTransaction will insert a new Growing Group into the persistence layer
+// within a transaction and return the created ID
 func (db *Persistence) CreateGrowingGroupWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingGroupRequest) (*routemodels.CreateGrowingGroupResponse, error) {
 	/**********************************************************************
 	/
@@ -88,6 +91,7 @@ func (db *Persistence) CreateGrowingGroupWithTransaction(tx *sqlx.Tx, req *route
 	}, nil
 }
 
+// DeleteGrowingGroup will set the Growing Group to be archived
 func (db *Persistence) DeleteGrowingGroup(req *routemodels.DeleteGrowingGroupRequest) error {
 	/**********************************************************************
 	/
@@ -124,6 +128,7 @@ func (db *Persistence) DeleteGrowingGroup(req *routemodels.DeleteGrowingGroupReq
 	return nil
 }
 
+// EditGrowingGroup is not currently implemented
 func (db *Persistence) EditGrowingGroup(req *routemodels.EditGrowingGroupRequest) (*routemodels.EditGrowingGroupResponse, error) {
 	/**********************************************************************
 	/
@@ -135,6 +140,8 @@ func (db *Persistence) EditGrowingGroup(req *routemodels.EditGrowingGroupRequest
 	/	Define Arguments For SQL Call
 	/
 	/**********************************************************************/
+
+	//args := []interface{}{}
 
 	/**********************************************************************
 	/
@@ -150,6 +157,7 @@ func (db *Persistence) EditGrowingGroup(req *routemodels.EditGrowingGroupRequest
 	return nil, nil
 }
 
+// GetGrowingGroupByID will get a Grow Group By ID from the persistence layer
 func (db *Persistence) GetGrowingGroupByID(req *routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
 	/**********************************************************************
 	/
@@ -189,6 +197,7 @@ func (db *Persistence) GetGrowingGroupByID(req *routemodels.GetGrowingGroupReque
 	}, nil
 }
 
+// GetGrowingGroupByIDWithTransaction will get a Grow Group By ID from the persistence layer within a transaction
 func (db *Persistence) GetGrowingGroupByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingGroupRequest) (*routemodels.GetGrowingGroupResponse, error) {
 	/**********************************************************************
 	/
@@ -228,6 +237,7 @@ func (db *Persistence) GetGrowingGroupByIDWithTransaction(tx *sqlx.Tx, req *rout
 	}, nil
 }
 
+// GetAllGrowingGroupsByOrganizationID will get all Grow Groups By Organization ID from the persistence layer
 func (db *Persistence) GetAllGrowingGroupsByOrganizationID(req *routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
 	/**********************************************************************
 	/
@@ -267,6 +277,8 @@ func (db *Persistence) GetAllGrowingGroupsByOrganizationID(req *routemodels.GetA
 	}, nil
 }
 
+// GetAllGrowingGroupsByOrganizationIDWithTransaction will get all Grow Groups By Organization ID from the persistence layer
+// within a transaction
 func (db *Persistence) GetAllGrowingGroupsByOrganizationIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingGroupsRequest) (*routemodels.GetAllGrowingGroupsResponse, error) {
 	/**********************************************************************
 	/

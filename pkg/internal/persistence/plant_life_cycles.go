@@ -8,6 +8,7 @@ import (
 
 var _ IPlantLifeCyclesDB = &Persistence{}
 
+// CreatePlantLifeCycle will insert a new Plant Life Cycle into the persistence layer and return the created ID
 func (db *Persistence) CreatePlantLifeCycle(req *routemodels.CreatePlantLifeCycleRequest) (*routemodels.CreatePlantLifeCycleResponse, error) {
 	/**********************************************************************
 	/
@@ -49,6 +50,8 @@ func (db *Persistence) CreatePlantLifeCycle(req *routemodels.CreatePlantLifeCycl
 	}, nil
 }
 
+// CreatePlantLifeCycleWithTransaction will insert a new Plant Life Cycle into the persistence layer
+// within a transaction and return the created ID
 func (db *Persistence) CreatePlantLifeCycleWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantLifeCycleRequest) (*routemodels.CreatePlantLifeCycleResponse, error) {
 	/**********************************************************************
 	/
@@ -90,6 +93,7 @@ func (db *Persistence) CreatePlantLifeCycleWithTransaction(tx *sqlx.Tx, req *rou
 	}, nil
 }
 
+// DeletePlantLifeCycle will set the Plant Life Cycle to be archived
 func (db *Persistence) DeletePlantLifeCycle(req *routemodels.DeletePlantLifeCycleRequest) error {
 	/**********************************************************************
 	/
@@ -127,6 +131,7 @@ func (db *Persistence) DeletePlantLifeCycle(req *routemodels.DeletePlantLifeCycl
 	return nil
 }
 
+// EditPlantLifeCycle is not currently implemented
 func (db *Persistence) EditPlantLifeCycle(req *routemodels.EditPlantLifeCycleRequest) (*routemodels.EditPlantLifeCycleResponse, error) {
 	/**********************************************************************
 	/
@@ -155,6 +160,7 @@ func (db *Persistence) EditPlantLifeCycle(req *routemodels.EditPlantLifeCycleReq
 	return nil, nil
 }
 
+// GetPlantLifeCycleByID will get a Plant Life Cycle By ID from the persistence layer
 func (db *Persistence) GetPlantLifeCycleByID(req *routemodels.GetPlantLifeCycleRequest) (*routemodels.GetPlantLifeCycleResponse, error) {
 	/**********************************************************************
 	/
@@ -194,6 +200,7 @@ func (db *Persistence) GetPlantLifeCycleByID(req *routemodels.GetPlantLifeCycleR
 	}, nil
 }
 
+// GetPlantLifeCycleByIDWithTransaction will get a Plant Life Cycle By ID from the persistence layer within a transaction
 func (db *Persistence) GetPlantLifeCycleByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetPlantLifeCycleRequest) (*routemodels.GetPlantLifeCycleResponse, error) {
 	/**********************************************************************
 	/
@@ -232,6 +239,7 @@ func (db *Persistence) GetPlantLifeCycleByIDWithTransaction(tx *sqlx.Tx, req *ro
 	}, nil
 }
 
+// GetAllPlantLifeCycles will get all Plant Life Cycles from the persistence layer
 func (db *Persistence) GetAllPlantLifeCycles(req *routemodels.GetAllPlantLifeCyclesRequest) (*routemodels.GetAllPlantLifeCyclesResponse, error) {
 	/**********************************************************************
 	/
@@ -268,6 +276,7 @@ func (db *Persistence) GetAllPlantLifeCycles(req *routemodels.GetAllPlantLifeCyc
 	}, nil
 }
 
+// GetAllPlantLifeCyclesWithTransaction will get all Plant Life Cycles from the persistence layer within a transaction
 func (db *Persistence) GetAllPlantLifeCyclesWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllPlantLifeCyclesRequest) (*routemodels.GetAllPlantLifeCyclesResponse, error) {
 	/**********************************************************************
 	/

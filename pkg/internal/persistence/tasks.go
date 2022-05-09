@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ ITasksDB = &Persistence{}
 
+// CreateTask will insert a new Task into the persistence layer and return the created ID
 func (db *Persistence) CreateTask(req *routemodels.CreateTaskRequest) (*routemodels.CreateTaskResponse, error) {
 	/**********************************************************************
 	/
@@ -43,6 +44,7 @@ func (db *Persistence) CreateTask(req *routemodels.CreateTaskRequest) (*routemod
 	}, nil
 }
 
+// DeleteTask will set the Task to be archived
 func (db *Persistence) DeleteTask(req *routemodels.DeleteTaskRequest) error {
 	/**********************************************************************
 	/
@@ -80,6 +82,7 @@ func (db *Persistence) DeleteTask(req *routemodels.DeleteTaskRequest) error {
 	return nil
 }
 
+// EditTask is not currently implemented
 func (db *Persistence) EditTask(req *routemodels.EditTaskRequest) (*routemodels.EditTaskResponse, error) {
 	/**********************************************************************
 	/
@@ -109,6 +112,7 @@ func (db *Persistence) EditTask(req *routemodels.EditTaskRequest) (*routemodels.
 	return nil, nil
 }
 
+// GetTask will get a Task By ID from the persistence layer
 func (db *Persistence) GetTask(req *routemodels.GetTaskRequest) (*routemodels.GetTaskResponse, error) {
 	/**********************************************************************
 	/
@@ -148,6 +152,7 @@ func (db *Persistence) GetTask(req *routemodels.GetTaskRequest) (*routemodels.Ge
 	}, nil
 }
 
+// GetAllTasks will get all Tasks from the persistence layer
 func (db *Persistence) GetAllTasks(req *routemodels.GetAllTasksRequest) (*routemodels.GetAllTasksResponse, error) {
 	/**********************************************************************
 	/

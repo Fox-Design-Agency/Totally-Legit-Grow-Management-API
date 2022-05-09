@@ -8,6 +8,7 @@ import (
 
 var _ IGrowingLocationsDB = &Persistence{}
 
+// CreateGrowingLocation will insert a new Growing Location into the persistence layer and return the created ID
 func (db *Persistence) CreateGrowingLocation(req *routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error) {
 	/**********************************************************************
 	/
@@ -48,6 +49,8 @@ func (db *Persistence) CreateGrowingLocation(req *routemodels.CreateGrowingLocat
 	}, nil
 }
 
+// CreateGrowingLocationWithTransaction will insert a new Growing Location into the persistence layer
+// within a transaction and return the created ID
 func (db *Persistence) CreateGrowingLocationWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error) {
 	/**********************************************************************
 	/
@@ -88,6 +91,7 @@ func (db *Persistence) CreateGrowingLocationWithTransaction(tx *sqlx.Tx, req *ro
 	}, nil
 }
 
+// DeleteGrowingLocation will set the Growing Location to be archived
 func (db *Persistence) DeleteGrowingLocation(req *routemodels.DeleteGrowingLocationRequest) error {
 	/**********************************************************************
 	/
@@ -124,6 +128,7 @@ func (db *Persistence) DeleteGrowingLocation(req *routemodels.DeleteGrowingLocat
 	return nil
 }
 
+// EditGrowingLocation is not currently implemented
 func (db *Persistence) EditGrowingLocation(req *routemodels.EditGrowingLocationRequest) (*routemodels.EditGrowingLocationResponse, error) {
 	/**********************************************************************
 	/
@@ -136,6 +141,8 @@ func (db *Persistence) EditGrowingLocation(req *routemodels.EditGrowingLocationR
 	/	Define Arguments For SQL Call
 	/
 	/**********************************************************************/
+
+	//args := []interface{}{}
 
 	/**********************************************************************
 	/
@@ -151,6 +158,7 @@ func (db *Persistence) EditGrowingLocation(req *routemodels.EditGrowingLocationR
 	return nil, nil
 }
 
+// GetGrowingLocationByID will get a Growing Location By ID from the persistence layer
 func (db *Persistence) GetGrowingLocationByID(req *routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
 	/**********************************************************************
 	/
@@ -190,6 +198,7 @@ func (db *Persistence) GetGrowingLocationByID(req *routemodels.GetGrowingLocatio
 	}, nil
 }
 
+// GetGrowingLocationByIDWithTransaction will get a Growing Location By ID from the persistence layer within a transaction
 func (db *Persistence) GetGrowingLocationByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
 	/**********************************************************************
 	/
@@ -229,6 +238,7 @@ func (db *Persistence) GetGrowingLocationByIDWithTransaction(tx *sqlx.Tx, req *r
 	}, nil
 }
 
+// GetAllGrowingLocationsByGrowingGroupID will get all Growing Location By Growing Group ID from the persistence layer
 func (db *Persistence) GetAllGrowingLocationsByGrowingGroupID(req *routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
 	/**********************************************************************
 	/
@@ -268,6 +278,8 @@ func (db *Persistence) GetAllGrowingLocationsByGrowingGroupID(req *routemodels.G
 	}, nil
 }
 
+// GetAllGrowingLocationsByGrowingGroupIDWithTransaction will get all Growing Location By Growing Group ID from the persistence layer
+// within a transaction
 func (db *Persistence) GetAllGrowingLocationsByGrowingGroupIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
 	/**********************************************************************
 	/

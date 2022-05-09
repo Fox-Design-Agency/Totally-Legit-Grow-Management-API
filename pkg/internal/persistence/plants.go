@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IPlantsDB = &Persistence{}
 
+// CreatePlant will insert a new Plant into the persistence layer and return the created ID
 func (db *Persistence) CreatePlant(req *routemodels.CreatePlantRequest) (*routemodels.CreatePlantResponse, error) {
 	/**********************************************************************
 	/
@@ -43,6 +44,7 @@ func (db *Persistence) CreatePlant(req *routemodels.CreatePlantRequest) (*routem
 	}, nil
 }
 
+// DeletePlant will set the Plant to be archived
 func (db *Persistence) DeletePlant(req *routemodels.DeletePlantRequest) error {
 	/**********************************************************************
 	/
@@ -79,6 +81,7 @@ func (db *Persistence) DeletePlant(req *routemodels.DeletePlantRequest) error {
 	return nil
 }
 
+// EditPlant is not currently implemented
 func (db *Persistence) EditPlant(req *routemodels.EditPlantRequest) (*routemodels.EditPlantResponse, error) {
 	/**********************************************************************
 	/
@@ -108,6 +111,7 @@ func (db *Persistence) EditPlant(req *routemodels.EditPlantRequest) (*routemodel
 	return nil, nil
 }
 
+// GetPlant will get a Plant By ID from the persistence layer
 func (db *Persistence) GetPlant(req *routemodels.GetPlantRequest) (*routemodels.GetPlantResponse, error) {
 	/**********************************************************************
 	/
@@ -146,6 +150,7 @@ func (db *Persistence) GetPlant(req *routemodels.GetPlantRequest) (*routemodels.
 	}, nil
 }
 
+// GetAllPlants will get all Plants from the persistence layer
 func (db *Persistence) GetAllPlants(req *routemodels.GetAllPlantsRequest) (*routemodels.GetAllPlantsResponse, error) {
 	/**********************************************************************
 	/

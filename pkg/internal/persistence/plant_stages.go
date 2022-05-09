@@ -8,6 +8,7 @@ import (
 
 var _ IPlantStagesDB = &Persistence{}
 
+// CreatePlantStage will insert a new Plant Stage into the persistence layer and return the created ID
 func (db *Persistence) CreatePlantStage(req *routemodels.CreatePlantStageRequest) (*routemodels.CreatePlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -45,6 +46,8 @@ func (db *Persistence) CreatePlantStage(req *routemodels.CreatePlantStageRequest
 	}, nil
 }
 
+// CreatePlantStageWithTransaction will insert a new Plant Stage into the persistence layer within
+// a transaction and return the created ID
 func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantStageRequest) (*routemodels.CreatePlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -81,6 +84,7 @@ func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req *routemo
 	}, nil
 }
 
+// CreatePlantStageCare will insert a new Plant Stage Care into the persistence layer and return the created ID
 func (db *Persistence) CreatePlantStageCare(req *routemodels.CreatePlantStageCareRequest) (*routemodels.CreatePlantStageCareResponse, error) {
 	/**********************************************************************
 	/
@@ -118,6 +122,8 @@ func (db *Persistence) CreatePlantStageCare(req *routemodels.CreatePlantStageCar
 	}, nil
 }
 
+// CreatePlantStageCareWithTransaction will insert a new Plant Stage Care into the persistence layer within
+// a transaction and return the created ID
 func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantStageCareRequest) (*routemodels.CreatePlantStageCareResponse, error) {
 	/**********************************************************************
 	/
@@ -155,6 +161,7 @@ func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req *rou
 	}, nil
 }
 
+// CreatePlantStageNutrients will insert a new Plant Stage Nutrients into the persistence layer and return the created ID
 func (db *Persistence) CreatePlantStageNutrients(req *routemodels.CreatePlantStageNutrientsRequest) (*routemodels.CreatePlantStageNutrientsResponse, error) {
 	/**********************************************************************
 	/
@@ -192,6 +199,8 @@ func (db *Persistence) CreatePlantStageNutrients(req *routemodels.CreatePlantSta
 	}, nil
 }
 
+// CreatePlantStageNutrientsWithTransaction will insert a new Plant Stage Nutrients into the persistence layer within
+// a transaction and return the created ID
 func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req *routemodels.CreatePlantStageNutrientsRequest) (*routemodels.CreatePlantStageNutrientsResponse, error) {
 	/**********************************************************************
 	/
@@ -229,6 +238,7 @@ func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req
 	}, nil
 }
 
+// ConnectPlantStage will insert a new Plant Stage into the persistence layer and return the created ID
 func (db *Persistence) ConnectPlantStage(req *routemodels.ConnectPlantStageRequest) (*routemodels.ConnectPlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -266,6 +276,8 @@ func (db *Persistence) ConnectPlantStage(req *routemodels.ConnectPlantStageReque
 	}, nil
 }
 
+// ConnectPlantStage will insert a new Plant Stage into the persistence layer within a
+// transaction and return the created ID
 func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req *routemodels.ConnectPlantStageRequest) (*routemodels.ConnectPlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -302,6 +314,7 @@ func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req *routem
 	}, nil
 }
 
+// DeletePlantStage will set the Plant Stage to be archived
 func (db *Persistence) DeletePlantStage(req *routemodels.DeletePlantStageRequest) error {
 	/**********************************************************************
 	/
@@ -336,6 +349,7 @@ func (db *Persistence) DeletePlantStage(req *routemodels.DeletePlantStageRequest
 	return nil
 }
 
+// EditPlantStage is not currently implemented
 func (db *Persistence) EditPlantStage(req *routemodels.EditPlantStageRequest) (*routemodels.EditPlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -363,6 +377,7 @@ func (db *Persistence) EditPlantStage(req *routemodels.EditPlantStageRequest) (*
 	return nil, nil
 }
 
+// GetPlantStageByID will get a Plant Stage By ID from the persistence layer
 func (db *Persistence) GetPlantStageByID(req *routemodels.GetPlantStageRequest) (*routemodels.GetPlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -401,6 +416,7 @@ func (db *Persistence) GetPlantStageByID(req *routemodels.GetPlantStageRequest) 
 	}, nil
 }
 
+// GetPlantStageByIDWithTransaction will get a Plant Stage By ID from the persistence layer within a transaction
 func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetPlantStageRequest) (*routemodels.GetPlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -439,6 +455,7 @@ func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req *routem
 	}, nil
 }
 
+// GetPlantStageCareByID will get a Plant Care By ID from the persistence layer
 func (db *Persistence) GetPlantStageCareByID(req *routemodels.GetPlantStageCareByIDRequest) (*routemodels.GetPlantStageCareByIDResponse, error) {
 	/**********************************************************************
 	/
@@ -476,6 +493,7 @@ func (db *Persistence) GetPlantStageCareByID(req *routemodels.GetPlantStageCareB
 	}, nil
 }
 
+// GetPlantStageCareByPlantStageIDWithTransaction will get a Plant Care By ID from the persistence layer within a transaction
 func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetPlantStageCareByPlantStageIDRequest) (*routemodels.GetPlantStageCareByPlantStageIDResponse, error) {
 	/**********************************************************************
 	/
@@ -513,6 +531,7 @@ func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.T
 	}, nil
 }
 
+// GetPlantStageNutrient will get a Plant Nutrient By ID from the persistence layer
 func (db *Persistence) GetPlantStageNutrient(req *routemodels.GetPlantStageNutrientRequest) (*routemodels.GetPlantStageNutrientResponse, error) {
 	/**********************************************************************
 	/
@@ -550,6 +569,7 @@ func (db *Persistence) GetPlantStageNutrient(req *routemodels.GetPlantStageNutri
 	}, nil
 }
 
+// GetAllPlantStages will get all Plant Stages from the persistence layer
 func (db *Persistence) GetAllPlantStages(req *routemodels.GetAllPlantStagesRequest) (*routemodels.GetAllPlantStagesResponse, error) {
 	/**********************************************************************
 	/
@@ -584,6 +604,7 @@ func (db *Persistence) GetAllPlantStages(req *routemodels.GetAllPlantStagesReque
 	}, nil
 }
 
+// GetAllPlantStagesWithTransaction will get all Plant Stages from the persistence layer within a transaction
 func (db *Persistence) GetAllPlantStagesWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllPlantStagesRequest) (*routemodels.GetAllPlantStagesResponse, error) {
 	/**********************************************************************
 	/

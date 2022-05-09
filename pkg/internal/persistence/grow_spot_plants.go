@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IGrowSpotPlantsDB = &Persistence{}
 
+// CreateGrowSpotPlant will insert a new Grow Spot Plant into the persistence layer and return the created ID
 func (db *Persistence) CreateGrowSpotPlant(req *routemodels.CreateGrowSpotPlantRequest) (*routemodels.CreateGrowSpotPlantResponse, error) {
 	/**********************************************************************
 	/
@@ -43,6 +44,7 @@ func (db *Persistence) CreateGrowSpotPlant(req *routemodels.CreateGrowSpotPlantR
 	}, nil
 }
 
+// DeleteGrowSpotPlant will set the Growing Spot Plant to be archived
 func (db *Persistence) DeleteGrowSpotPlant(req *routemodels.DeleteGrowSpotPlantRequest) error {
 	/**********************************************************************
 	/
@@ -79,6 +81,7 @@ func (db *Persistence) DeleteGrowSpotPlant(req *routemodels.DeleteGrowSpotPlantR
 	return nil
 }
 
+// EditGrowSpotPlant is not currently implemented
 func (db *Persistence) EditGrowSpotPlant(req *routemodels.EditGrowSpotPlantRequest) (*routemodels.EditGrowSpotPlantResponse, error) {
 	/**********************************************************************
 	/
@@ -91,6 +94,8 @@ func (db *Persistence) EditGrowSpotPlant(req *routemodels.EditGrowSpotPlantReque
 	/	Define Arguments For SQL Call
 	/
 	/**********************************************************************/
+
+	//args := []interface{}{}
 
 	/**********************************************************************
 	/
@@ -106,6 +111,7 @@ func (db *Persistence) EditGrowSpotPlant(req *routemodels.EditGrowSpotPlantReque
 	return nil, nil
 }
 
+// GetGrowSpotPlant will get a Grow Spot Plant from the persistence layer
 func (db *Persistence) GetGrowSpotPlant(req *routemodels.GetGrowSpotPlantRequest) (*routemodels.GetGrowSpotPlantResponse, error) {
 	/**********************************************************************
 	/
@@ -145,6 +151,7 @@ func (db *Persistence) GetGrowSpotPlant(req *routemodels.GetGrowSpotPlantRequest
 	}, nil
 }
 
+// GetAllGrowSpotPlants will get all Grow Spot Plants from the persistence layer
 func (db *Persistence) GetAllGrowSpotPlants(req *routemodels.GetAllGrowSpotPlantsRequest) (*routemodels.GetAllGrowSpotPlantsResponse, error) {
 	/**********************************************************************
 	/

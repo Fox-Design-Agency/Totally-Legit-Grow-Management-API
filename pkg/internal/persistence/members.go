@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IMembersDB = &Persistence{}
 
+// CreateMember will insert a new Member into the persistence layer and return the created ID
 func (db *Persistence) CreateMember(req *routemodels.CreateMemberRequest) (*routemodels.CreateMemberResponse, error) {
 	/**********************************************************************
 	/
@@ -41,6 +42,7 @@ func (db *Persistence) CreateMember(req *routemodels.CreateMemberRequest) (*rout
 	}, nil
 }
 
+// DeleteMember will set the Member to be archived
 func (db *Persistence) DeleteMember(req *routemodels.DeleteMemberRequest) error {
 	/**********************************************************************
 	/
@@ -75,6 +77,7 @@ func (db *Persistence) DeleteMember(req *routemodels.DeleteMemberRequest) error 
 	return nil
 }
 
+// EditMember is not currently implemented
 func (db *Persistence) EditMember(req *routemodels.EditMemberRequest) (*routemodels.EditMemberResponse, error) {
 	/**********************************************************************
 	/
@@ -102,6 +105,7 @@ func (db *Persistence) EditMember(req *routemodels.EditMemberRequest) (*routemod
 	return nil, nil
 }
 
+// GetMember will get a member By ID from the persistence layer
 func (db *Persistence) GetMember(req *routemodels.GetMemberRequest) (*routemodels.GetMemberResponse, error) {
 	/**********************************************************************
 	/
@@ -140,6 +144,7 @@ func (db *Persistence) GetMember(req *routemodels.GetMemberRequest) (*routemodel
 	}, nil
 }
 
+// GetAllMembers will get all members from the persistence layer
 func (db *Persistence) GetAllMembers(req *routemodels.GetAllMembersRequest) (*routemodels.GetAllMembersResponse, error) {
 	/**********************************************************************
 	/

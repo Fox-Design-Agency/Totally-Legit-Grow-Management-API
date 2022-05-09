@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IProductsDB = &Persistence{}
 
+// CreateProduct will insert a new Product into the persistence layer and return the created ID
 func (db *Persistence) CreateProduct(req *routemodels.CreateProductRequest) (*routemodels.CreateProductResponse, error) {
 	/**********************************************************************
 	/
@@ -43,6 +44,7 @@ func (db *Persistence) CreateProduct(req *routemodels.CreateProductRequest) (*ro
 	}, nil
 }
 
+// DeleteProduct will set the Product to be archived
 func (db *Persistence) DeleteProduct(req *routemodels.DeleteProductRequest) error {
 	/**********************************************************************
 	/
@@ -79,6 +81,7 @@ func (db *Persistence) DeleteProduct(req *routemodels.DeleteProductRequest) erro
 	return nil
 }
 
+// EditProduct is not currently implemented
 func (db *Persistence) EditProduct(req *routemodels.EditProductRequest) (*routemodels.EditProductResponse, error) {
 	/**********************************************************************
 	/
@@ -108,6 +111,7 @@ func (db *Persistence) EditProduct(req *routemodels.EditProductRequest) (*routem
 	return nil, nil
 }
 
+// GetProduct will get a Product By ID from the persistence layer
 func (db *Persistence) GetProduct(req *routemodels.GetProductRequest) (*routemodels.GetProductResponse, error) {
 	/**********************************************************************
 	/
@@ -147,6 +151,7 @@ func (db *Persistence) GetProduct(req *routemodels.GetProductRequest) (*routemod
 	}, nil
 }
 
+// GetAllProducts will get all Products from the persistence layer
 func (db *Persistence) GetAllProducts(req *routemodels.GetAllProductsRequest) (*routemodels.GetAllProductsResponse, error) {
 	/**********************************************************************
 	/

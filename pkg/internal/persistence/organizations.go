@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IOrganizationsDB = &Persistence{}
 
+// CreateOrganization will insert a new Organization into the persistence layer and return the created ID
 func (db *Persistence) CreateOrganization(req *routemodels.CreateOrganizationRequest) (*routemodels.CreateOrganizationResponse, error) {
 	/**********************************************************************
 	/
@@ -41,6 +42,7 @@ func (db *Persistence) CreateOrganization(req *routemodels.CreateOrganizationReq
 	}, nil
 }
 
+// DeleteOrganization will set the Organization to be archived
 func (db *Persistence) DeleteOrganization(req *routemodels.DeleteOrganizationRequest) error {
 	/**********************************************************************
 	/
@@ -77,6 +79,7 @@ func (db *Persistence) DeleteOrganization(req *routemodels.DeleteOrganizationReq
 	return nil
 }
 
+// EditOrganization is not currently implemented
 func (db *Persistence) EditOrganization(req *routemodels.EditOrganizationRequest) (*routemodels.EditOrganizationResponse, error) {
 	/**********************************************************************
 	/
@@ -104,6 +107,7 @@ func (db *Persistence) EditOrganization(req *routemodels.EditOrganizationRequest
 	return nil, nil
 }
 
+// GetOrganization will get an Organization By ID from the persistence layer
 func (db *Persistence) GetOrganization(req *routemodels.GetOrganizationRequest) (*routemodels.GetOrganizationResponse, error) {
 	/**********************************************************************
 	/
@@ -142,6 +146,7 @@ func (db *Persistence) GetOrganization(req *routemodels.GetOrganizationRequest) 
 	}, nil
 }
 
+// GetAllOrganizations will get all Organizations from the persistence layer
 func (db *Persistence) GetAllOrganizations(req *routemodels.GetAllOrganizationsRequest) (*routemodels.GetAllOrganizationsResponse, error) {
 	/**********************************************************************
 	/

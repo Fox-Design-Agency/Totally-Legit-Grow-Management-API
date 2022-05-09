@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ ISeedsDB = &Persistence{}
 
+// CreateSeed will insert a new Seed into the persistence layer and return the created ID
 func (db *Persistence) CreateSeed(req *routemodels.CreateSeedRequest) (*routemodels.CreateSeedResponse, error) {
 	/**********************************************************************
 	/
@@ -43,6 +44,7 @@ func (db *Persistence) CreateSeed(req *routemodels.CreateSeedRequest) (*routemod
 	}, nil
 }
 
+// DeleteSeed will set the Seed to be archived
 func (db *Persistence) DeleteSeed(req *routemodels.DeleteSeedRequest) error {
 	/**********************************************************************
 	/
@@ -80,6 +82,7 @@ func (db *Persistence) DeleteSeed(req *routemodels.DeleteSeedRequest) error {
 	return nil
 }
 
+// EditSeed is not currently implemented
 func (db *Persistence) EditSeed(req *routemodels.EditSeedRequest) (*routemodels.EditSeedResponse, error) {
 	/**********************************************************************
 	/
@@ -109,6 +112,7 @@ func (db *Persistence) EditSeed(req *routemodels.EditSeedRequest) (*routemodels.
 	return nil, nil
 }
 
+// GetSeed will get a Seed By ID from the persistence layer
 func (db *Persistence) GetSeed(req *routemodels.GetSeedRequest) (*routemodels.GetSeedResponse, error) {
 	/**********************************************************************
 	/
@@ -148,6 +152,7 @@ func (db *Persistence) GetSeed(req *routemodels.GetSeedRequest) (*routemodels.Ge
 	}, nil
 }
 
+// GetAllSeeds will get all Seeds from the persistence layer
 func (db *Persistence) GetAllSeeds(req *routemodels.GetAllSeedsRequest) (*routemodels.GetAllSeedsResponse, error) {
 	/**********************************************************************
 	/

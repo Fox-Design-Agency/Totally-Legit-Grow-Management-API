@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IPlantCategoriesDB = &Persistence{}
 
+// CreatePlantCategory will insert a new Plant Category into the persistence layer and return the created ID
 func (db *Persistence) CreatePlantCategory(req *routemodels.CreatePlantCategoryRequest) (*routemodels.CreatePlantCategoryResponse, error) {
 	/**********************************************************************
 	/
@@ -41,6 +42,7 @@ func (db *Persistence) CreatePlantCategory(req *routemodels.CreatePlantCategoryR
 	}, nil
 }
 
+// DeletePlantCategory will set the Plant Category to be archived
 func (db *Persistence) DeletePlantCategory(req *routemodels.DeletePlantCategoryRequest) error {
 	/**********************************************************************
 	/
@@ -76,6 +78,7 @@ func (db *Persistence) DeletePlantCategory(req *routemodels.DeletePlantCategoryR
 	return nil
 }
 
+// EditPlantCategory is not currently implemented
 func (db *Persistence) EditPlantCategory(req *routemodels.EditPlantCategoryRequest) (*routemodels.EditPlantCategoryResponse, error) {
 	/**********************************************************************
 	/
@@ -103,6 +106,7 @@ func (db *Persistence) EditPlantCategory(req *routemodels.EditPlantCategoryReque
 	return nil, nil
 }
 
+// GetPlantCategory will get a Plant Category By ID from the persistence layer
 func (db *Persistence) GetPlantCategory(req *routemodels.GetPlantCategoryRequest) (*routemodels.GetPlantCategoryResponse, error) {
 	/**********************************************************************
 	/
@@ -140,6 +144,7 @@ func (db *Persistence) GetPlantCategory(req *routemodels.GetPlantCategoryRequest
 	}, nil
 }
 
+// GetAllPlantCategories will get all Plant Categories from the persistence layer
 func (db *Persistence) GetAllPlantCategories(req *routemodels.GetAllPlantCategoriesRequest) (*routemodels.GetAllPlantCategoriesResponse, error) {
 	/**********************************************************************
 	/

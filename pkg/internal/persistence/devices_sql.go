@@ -14,7 +14,7 @@ const (
 		VALUES ($1, $2, $3, $4)
 		`
 
-	CREATE_GROWING_GROUPO_DEVICES_SQL = `
+	CREATE_GROWING_GROUP_DEVICES_SQL = `
 		INSERT INTO growing_group_devices
 		(device, growing_group)
 		VALUES ($1, $2)

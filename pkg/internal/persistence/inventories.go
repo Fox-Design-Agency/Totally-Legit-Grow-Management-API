@@ -4,6 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IInventoriesDB = &Persistence{}
 
+// CreateInventory will insert a new Inventory into the persistence layer and return the created ID
 func (db *Persistence) CreateInventory(req *routemodels.CreateInventoryRequest) (*routemodels.CreateInventoryResponse, error) {
 	/**********************************************************************
 	/
@@ -43,6 +44,7 @@ func (db *Persistence) CreateInventory(req *routemodels.CreateInventoryRequest) 
 	}, nil
 }
 
+// DeleteInventory will set the Inventory to be archived
 func (db *Persistence) DeleteInventory(req *routemodels.DeleteInventoryRequest) error {
 	/**********************************************************************
 	/
@@ -79,6 +81,7 @@ func (db *Persistence) DeleteInventory(req *routemodels.DeleteInventoryRequest) 
 	return nil
 }
 
+// EditInventory is not currently implemented
 func (db *Persistence) EditInventory(req *routemodels.EditInventoryRequest) (*routemodels.EditInventoryResponse, error) {
 	/**********************************************************************
 	/
@@ -108,6 +111,7 @@ func (db *Persistence) EditInventory(req *routemodels.EditInventoryRequest) (*ro
 	return nil, nil
 }
 
+// GetInventory will get an Inventory By ID from the persistence layer
 func (db *Persistence) GetInventory(req *routemodels.GetInventoryRequest) (*routemodels.GetInventoryResponse, error) {
 	/**********************************************************************
 	/
@@ -146,6 +150,7 @@ func (db *Persistence) GetInventory(req *routemodels.GetInventoryRequest) (*rout
 	}, nil
 }
 
+// GetAllInventories will get all Inventories from the persistence layer
 func (db *Persistence) GetAllInventories(req *routemodels.GetAllInventoriesRequest) (*routemodels.GetAllInventoriesResponse, error) {
 	/**********************************************************************
 	/

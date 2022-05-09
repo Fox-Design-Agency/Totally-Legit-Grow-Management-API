@@ -8,7 +8,7 @@ import (
 
 var _ IDevicesDB = &Persistence{}
 
-//
+// CreateDevice will insert a new Device into the persistence layer and return the created ID
 func (db *Persistence) CreateDevice(req *routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -49,7 +49,7 @@ func (db *Persistence) CreateDevice(req *routemodels.CreateDeviceRequest) (*rout
 	}, nil
 }
 
-//
+// CreateDeviceWithTransaction will insert a new Device into the persistence layer within a transaction and return the created ID
 func (db *Persistence) CreateDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -89,7 +89,7 @@ func (db *Persistence) CreateDeviceWithTransaction(tx *sqlx.Tx, req *routemodels
 	}, nil
 }
 
-//
+// CreateDeviceAction will insert a new Device Action into the persistence layer
 func (db *Persistence) CreateDeviceAction(req *routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error) {
 	/**********************************************************************
 	/
@@ -132,7 +132,7 @@ func (db *Persistence) CreateDeviceAction(req *routemodels.CreateDeviceActionReq
 	}, nil
 }
 
-//
+// CreateDeviceActionWithTransaction will insert a new Device Action into the persistence layer within a transaction
 func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req *routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error) {
 	/**********************************************************************
 	/
@@ -175,7 +175,7 @@ func (db *Persistence) CreateDeviceActionWithTransaction(tx *sqlx.Tx, req *route
 	}, nil
 }
 
-//
+// CreateGrowingGroupDevice will insert a new Growing Group Device into the persistence layer
 func (db *Persistence) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -200,7 +200,7 @@ func (db *Persistence) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGr
 	/
 	/**********************************************************************/
 
-	if _, err := db.Postgres.Exec(CREATE_GROWING_GROUPO_DEVICES_SQL, args...); err != nil {
+	if _, err := db.Postgres.Exec(CREATE_GROWING_GROUP_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -215,7 +215,7 @@ func (db *Persistence) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGr
 	}, nil
 }
 
-//
+// CreateGrowingGroupDeviceWithTransaction will insert a new Growing Group Device into the persistence layer within a transaction
 func (db *Persistence) CreateGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -240,7 +240,7 @@ func (db *Persistence) CreateGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	/
 	/**********************************************************************/
 
-	if _, err := tx.Exec(CREATE_GROWING_GROUPO_DEVICES_SQL, args...); err != nil {
+	if _, err := tx.Exec(CREATE_GROWING_GROUP_DEVICES_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -255,7 +255,7 @@ func (db *Persistence) CreateGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	}, nil
 }
 
-//
+// CreateGrowingLocationDevice will insert a new Growing Location Device into the persistence layer
 func (db *Persistence) CreateGrowingLocationDevice(req *routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -295,7 +295,7 @@ func (db *Persistence) CreateGrowingLocationDevice(req *routemodels.CreateGrowin
 	}, nil
 }
 
-//
+// CreateGrowingLocationDeviceWithTransaction will insert a new Growing Location Device into the persistence layer within a transaction
 func (db *Persistence) CreateGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -335,7 +335,7 @@ func (db *Persistence) CreateGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	}, nil
 }
 
-//
+// CreateGrowingLevelDevice will insert a new Growing Level Device into the persistence layer
 func (db *Persistence) CreateGrowingLevelDevice(req *routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -375,7 +375,7 @@ func (db *Persistence) CreateGrowingLevelDevice(req *routemodels.CreateGrowingLe
 	}, nil
 }
 
-//
+// CreateGrowingLevelDevice will insert a new Growing Level Device into the persistence layer within a transaction
 func (db *Persistence) CreateGrowingLevelDeviceWithTransaction(sql *sqlx.Tx, req *routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -415,7 +415,7 @@ func (db *Persistence) CreateGrowingLevelDeviceWithTransaction(sql *sqlx.Tx, req
 	}, nil
 }
 
-//
+// CreateGrowingSpotDevice will insert a new Growing Spot Device into the persistence layer
 func (db *Persistence) CreateGrowingSpotDevice(req *routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -455,7 +455,7 @@ func (db *Persistence) CreateGrowingSpotDevice(req *routemodels.CreateGrowingSpo
 	}, nil
 }
 
-//
+// CreateGrowingSpotDeviceWithTransaction will insert a new Growing Spot Device into the persistence layer within a transaction
 func (db *Persistence) CreateGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -495,7 +495,7 @@ func (db *Persistence) CreateGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *
 	}, nil
 }
 
-//
+// DeleteDevice will set the Device to be archived
 func (db *Persistence) DeleteDevice(req *routemodels.DeleteDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -531,7 +531,7 @@ func (db *Persistence) DeleteDevice(req *routemodels.DeleteDeviceRequest) error 
 	return nil
 }
 
-//
+// DeleteGrowingGroupDevice will set the Growing Group Device to be archived
 func (db *Persistence) DeleteGrowingGroupDevice(req *routemodels.DeleteGrowingGroupDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -568,7 +568,7 @@ func (db *Persistence) DeleteGrowingGroupDevice(req *routemodels.DeleteGrowingGr
 	return nil
 }
 
-//
+// DeleteGrowingLocationDevice will set the Growing Location Device to be archived
 func (db *Persistence) DeleteGrowingLocationDevice(req *routemodels.DeleteGrowingLocationDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -605,7 +605,7 @@ func (db *Persistence) DeleteGrowingLocationDevice(req *routemodels.DeleteGrowin
 	return nil
 }
 
-//
+// DeleteGrowingLevelDevice will set the Growing Level Device to be archived
 func (db *Persistence) DeleteGrowingLevelDevice(req *routemodels.DeleteGrowingLevelDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -642,7 +642,7 @@ func (db *Persistence) DeleteGrowingLevelDevice(req *routemodels.DeleteGrowingLe
 	return nil
 }
 
-//
+// DeleteGrowingSpotDevice will set the Growing Spot Device to be archived
 func (db *Persistence) DeleteGrowingSpotDevice(req *routemodels.DeleteGrowingSpotDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -679,7 +679,7 @@ func (db *Persistence) DeleteGrowingSpotDevice(req *routemodels.DeleteGrowingSpo
 	return nil
 }
 
-//
+// EditDevice is not currently implemented
 func (db *Persistence) EditDevice(req *routemodels.EditDeviceRequest) (*routemodels.EditDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -692,6 +692,8 @@ func (db *Persistence) EditDevice(req *routemodels.EditDeviceRequest) (*routemod
 	/	Define Arguments For SQL Call
 	/
 	/**********************************************************************/
+
+	//args := []interface{}{}
 
 	/**********************************************************************
 	/
@@ -707,7 +709,7 @@ func (db *Persistence) EditDevice(req *routemodels.EditDeviceRequest) (*routemod
 	return nil, nil
 }
 
-//
+// GetDevice will get a Device's information from the persistence layer
 func (db *Persistence) GetDevice(req *routemodels.GetDeviceRequest) (*routemodels.GetDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -746,7 +748,7 @@ func (db *Persistence) GetDevice(req *routemodels.GetDeviceRequest) (*routemodel
 	}, nil
 }
 
-//
+// GetDeviceActions will get a Device's Actions from the persistence layer
 func (db *Persistence) GetDeviceActions(req *routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error) {
 	/**********************************************************************
 	/
@@ -785,7 +787,7 @@ func (db *Persistence) GetDeviceActions(req *routemodels.GetDeviceActionsRequest
 	}, nil
 }
 
-//
+// GetDeviceActionsWithTransaction will get a Device's Actions from the persistence layer within a transaction
 func (db *Persistence) GetDeviceActionsWithTransaction(tx *sqlx.Tx, req *routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error) {
 	/**********************************************************************
 	/
@@ -824,7 +826,7 @@ func (db *Persistence) GetDeviceActionsWithTransaction(tx *sqlx.Tx, req *routemo
 	}, nil
 }
 
-//
+// GetAllDevices will get all Devices from the persistence layer
 func (db *Persistence) GetAllDevices(req *routemodels.GetAllDevicesRequest) (*routemodels.GetAllDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -860,7 +862,7 @@ func (db *Persistence) GetAllDevices(req *routemodels.GetAllDevicesRequest) (*ro
 	}, nil
 }
 
-//
+// GetAllGrowingGroupDevices will get all Growing Group Devices from the persistence layer
 func (db *Persistence) GetAllGrowingGroupDevices(req *routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -899,7 +901,7 @@ func (db *Persistence) GetAllGrowingGroupDevices(req *routemodels.GetAllGrowingG
 	}, nil
 }
 
-//
+// GetAllGrowingGroupDeviceWithTransaction will get all Growing Group Devices from the persistence layer within a transaction
 func (db *Persistence) GetAllGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -938,7 +940,7 @@ func (db *Persistence) GetAllGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req 
 	}, nil
 }
 
-//
+// GetAllGrowingLocationDevices will get all Growing Location Devices from the persistence layer
 func (db *Persistence) GetAllGrowingLocationDevices(req *routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -977,7 +979,7 @@ func (db *Persistence) GetAllGrowingLocationDevices(req *routemodels.GetAllGrowi
 	}, nil
 }
 
-//
+// GetAllGrowingLocationDeviceWithTransaction will get all Growing Location Devices from the persistence layer within a transaction
 func (db *Persistence) GetAllGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -1016,7 +1018,7 @@ func (db *Persistence) GetAllGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, r
 	}, nil
 }
 
-//
+// GetAllGrowingLevelDevices will get all Growing Level Devices from the persistence layer
 func (db *Persistence) GetAllGrowingLevelDevices(req *routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -1055,7 +1057,7 @@ func (db *Persistence) GetAllGrowingLevelDevices(req *routemodels.GetAllGrowingL
 	}, nil
 }
 
-//
+// GetAllGrowingLevelDeviceWithTransaction will get all Growing Level Devices from the persistence layer within a transaction
 func (db *Persistence) GetAllGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -1094,7 +1096,7 @@ func (db *Persistence) GetAllGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req 
 	}, nil
 }
 
-//
+// GetAllGrowingSpotDevices will get all Growing Spot Devices from the persistence layer
 func (db *Persistence) GetAllGrowingSpotDevices(req *routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -1133,7 +1135,7 @@ func (db *Persistence) GetAllGrowingSpotDevices(req *routemodels.GetAllGrowingSp
 	}, nil
 }
 
-//
+// GetAllGrowingSpotDeviceWithTransaction will get all Growing Spot Devices from the persistence layer within a transaction
 func (db *Persistence) GetAllGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -1172,7 +1174,7 @@ func (db *Persistence) GetAllGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *
 	}, nil
 }
 
-//
+// GetGrowingGroupDevice will get a Growing Group Device from the persistence layer
 func (db *Persistence) GetGrowingGroupDevice(req *routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -1212,7 +1214,7 @@ func (db *Persistence) GetGrowingGroupDevice(req *routemodels.GetGrowingGroupDev
 	}, nil
 }
 
-//
+// GetGrowingGroupDeviceWithTransaction will get a Growing Group Device from the persistence layer within a transaction
 func (db *Persistence) GetGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -1252,7 +1254,7 @@ func (db *Persistence) GetGrowingGroupDeviceWithTransaction(tx *sqlx.Tx, req *ro
 	}, nil
 }
 
-//
+// GetGrowingLocationDevice will get a Growing Location Device from the persistence layer
 func (db *Persistence) GetGrowingLocationDevice(req *routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -1292,7 +1294,7 @@ func (db *Persistence) GetGrowingLocationDevice(req *routemodels.GetGrowingLocat
 	}, nil
 }
 
-//
+// GetGrowingLocationDeviceWithTransaction will get a Growing Location Device from the persistence layer within a transaction
 func (db *Persistence) GetGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -1332,7 +1334,7 @@ func (db *Persistence) GetGrowingLocationDeviceWithTransaction(tx *sqlx.Tx, req 
 	}, nil
 }
 
-//
+// GetGrowingLevelDevice will get a Growing Level Device from the persistence layer
 func (db *Persistence) GetGrowingLevelDevice(req *routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -1372,7 +1374,7 @@ func (db *Persistence) GetGrowingLevelDevice(req *routemodels.GetGrowingLevelDev
 	}, nil
 }
 
-//
+// GetGrowingLevelDeviceWithTransaction will get a Growing Level Device from the persistence layer within a transaction
 func (db *Persistence) GetGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -1412,7 +1414,7 @@ func (db *Persistence) GetGrowingLevelDeviceWithTransaction(tx *sqlx.Tx, req *ro
 	}, nil
 }
 
-//
+// GetGrowingSpotDevice will get a Growing Spot Device from the persistence layer
 func (db *Persistence) GetGrowingSpotDevice(req *routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -1452,7 +1454,7 @@ func (db *Persistence) GetGrowingSpotDevice(req *routemodels.GetGrowingSpotDevic
 	}, nil
 }
 
-//
+// GetGrowingSpotDeviceWithTransaction will get a Growing Spot Device from the persistence layer within a transaction
 func (db *Persistence) GetGrowingSpotDeviceWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error) {
 	/**********************************************************************
 	/

@@ -8,6 +8,7 @@ import (
 
 var _ IGrowingLevelsDB = &Persistence{}
 
+// CreateGrowingLevel will insert a new Growing Level into the persistence layer and return the created ID
 func (db *Persistence) CreateGrowingLevel(req *routemodels.CreateGrowingLevelRequest) (*routemodels.CreateGrowingLevelResponse, error) {
 	/**********************************************************************
 	/
@@ -48,6 +49,8 @@ func (db *Persistence) CreateGrowingLevel(req *routemodels.CreateGrowingLevelReq
 	}, nil
 }
 
+// CreateGrowingLevelWithTransaction will insert a new Growing Level into the persistence layer
+// within a transaction and return the created ID
 func (db *Persistence) CreateGrowingLevelWithTransaction(tx *sqlx.Tx, req *routemodels.CreateGrowingLevelRequest) (*routemodels.CreateGrowingLevelResponse, error) {
 	/**********************************************************************
 	/
@@ -88,6 +91,7 @@ func (db *Persistence) CreateGrowingLevelWithTransaction(tx *sqlx.Tx, req *route
 	}, nil
 }
 
+// DeleteGrowingLevel will set the Growing Level to be archived
 func (db *Persistence) DeleteGrowingLevel(req *routemodels.DeleteGrowingLevelRequest) error {
 	/**********************************************************************
 	/
@@ -124,6 +128,7 @@ func (db *Persistence) DeleteGrowingLevel(req *routemodels.DeleteGrowingLevelReq
 	return nil
 }
 
+// EditGrowingLevel is not currently implemented
 func (db *Persistence) EditGrowingLevel(req *routemodels.EditGrowingLevelRequest) (*routemodels.EditGrowingLevelResponse, error) {
 	/**********************************************************************
 	/
@@ -136,6 +141,8 @@ func (db *Persistence) EditGrowingLevel(req *routemodels.EditGrowingLevelRequest
 	/	Define Arguments For SQL Call
 	/
 	/**********************************************************************/
+
+	//args := []interface{}{}
 
 	/**********************************************************************
 	/
@@ -151,6 +158,7 @@ func (db *Persistence) EditGrowingLevel(req *routemodels.EditGrowingLevelRequest
 	return nil, nil
 }
 
+// GetGrowingLevelByID will get a Grow Level By ID from the persistence layer
 func (db *Persistence) GetGrowingLevelByID(req *routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error) {
 	/**********************************************************************
 	/
@@ -190,6 +198,7 @@ func (db *Persistence) GetGrowingLevelByID(req *routemodels.GetGrowingLevelReque
 	}, nil
 }
 
+// GetGrowingLevelByIDWithTransaction will get a Grow Level By ID from the persistence layer within a transaction
 func (db *Persistence) GetGrowingLevelByIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error) {
 	/**********************************************************************
 	/
@@ -229,6 +238,7 @@ func (db *Persistence) GetGrowingLevelByIDWithTransaction(tx *sqlx.Tx, req *rout
 	}, nil
 }
 
+// GetAllGrowingLevelsByGrowingLocationID will get a Grow Level By Growing Location ID from the persistence layer within a transaction
 func (db *Persistence) GetAllGrowingLevelsByGrowingLocationID(req *routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error) {
 	/**********************************************************************
 	/
@@ -266,6 +276,8 @@ func (db *Persistence) GetAllGrowingLevelsByGrowingLocationID(req *routemodels.G
 	}, nil
 }
 
+// GetAllGrowingLevelsByGrowingLocationIDWithTransaction will get a Grow Level By Growing Location ID from the persistence layer
+// within a transaction
 func (db *Persistence) GetAllGrowingLevelsByGrowingLocationIDWithTransaction(tx *sqlx.Tx, req *routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error) {
 	/**********************************************************************
 	/
