@@ -12,13 +12,6 @@ func (db *Persistence) CreateNutrient(req *routemodels.CreateNutrientRequest) (*
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO nutrients
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -33,7 +26,7 @@ func (db *Persistence) CreateNutrient(req *routemodels.CreateNutrientRequest) (*
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CREATE_NUTRIENT_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -54,12 +47,6 @@ func (db *Persistence) DeleteNutrient(req *routemodels.DeleteNutrientRequest) er
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
-
-	SQL := `
-	UPDATE nutrients SET archived = NOW()
-	WHERE nutrients.id = $1
-	`
 
 	/**********************************************************************
 	/
@@ -75,7 +62,7 @@ func (db *Persistence) DeleteNutrient(req *routemodels.DeleteNutrientRequest) er
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_NUTRIENT_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -123,22 +110,6 @@ func (db *Persistence) GetNutrient(req *routemodels.GetNutrientRequest) (*routem
 	/**********************************************************************/
 	var result routemodels.Nutrient
 
-	SQL := `
-	SELECT
-		nutrients.id AS id,
-		nutrients.display_name AS display_name,
-		nutrients.created AS created_at,
-		nutrients.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
-	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
-	WHERE nutrients.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -153,7 +124,7 @@ func (db *Persistence) GetNutrient(req *routemodels.GetNutrientRequest) (*routem
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_NUTRIENT_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -176,21 +147,6 @@ func (db *Persistence) GetAllNutrients(req *routemodels.GetAllNutrientsRequest) 
 	/**********************************************************************/
 	var result []routemodels.Nutrient
 
-	SQL := `
-	SELECT
-		nutrients.id AS id,
-		nutrients.display_name AS display_name,
-		nutrients.created AS created_at,
-		nutrients.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
-	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -204,7 +160,7 @@ func (db *Persistence) GetAllNutrients(req *routemodels.GetAllNutrientsRequest) 
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_NUTRIENTS_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
