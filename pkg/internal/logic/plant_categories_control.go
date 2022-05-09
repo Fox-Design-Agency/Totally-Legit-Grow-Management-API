@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IPlantCategoriesLogic = &Logic{}
 
-//
+// CreatePlantCategory will validate the incoming request and then call out to the peristence layer to create a Plant Category
 func (lg *Logic) CreatePlantCategory(req *routemodels.CreatePlantCategoryRequest) (*routemodels.CreatePlantCategoryResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreatePlantCategory(req *routemodels.CreatePlantCategoryRequest
 	return resp, nil
 }
 
-//
+// DeletePlantCategory will validate the incoming request and then call out to the peristence layer to
+// soft delete a Plant Category
 func (lg *Logic) DeletePlantCategory(req *routemodels.DeletePlantCategoryRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeletePlantCategory(req *routemodels.DeletePlantCategoryRequest
 	return nil
 }
 
-//
+// EditPlantCategory will validate the request and call out to the persistence layer to edit the specified
+// Plant Category (unimplemented)
 func (lg *Logic) EditPlantCategory(req *routemodels.EditPlantCategoryRequest) (*routemodels.EditPlantCategoryResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditPlantCategory(req *routemodels.EditPlantCategoryRequest) (*
 	return resp, nil
 }
 
-//
+// GetPlantCategory will validate the request and call out to the persistence layer to retrieve the specified
+// Plant Category
 func (lg *Logic) GetPlantCategory(req *routemodels.GetPlantCategoryRequest) (*routemodels.GetPlantCategoryResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetPlantCategory(req *routemodels.GetPlantCategoryRequest) (*ro
 	return resp, nil
 }
 
-//
+// GetAllPlantCategories will validate the request and call out to the persistence layer to retrieve all fo the
+// Plant Categories
 func (lg *Logic) GetAllPlantCategories(req *routemodels.GetAllPlantCategoriesRequest) (*routemodels.GetAllPlantCategoriesResponse, error) {
 	/**********************************************************************
 	/

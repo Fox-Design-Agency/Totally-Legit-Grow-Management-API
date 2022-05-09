@@ -4,8 +4,8 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IGrowSpotPlantsLogic = &Logic{}
 
-//
-func (lg *Logic) CreateGrowSpot(req *routemodels.CreateGrowSpotRequest) (*routemodels.CreateGrowSpotResponse, error) {
+// CreateGrowSpotPlant will validate the incoming request and then call out to the peristence layer to create a Grow Spot Plant
+func (lg *Logic) CreateGrowSpotPlant(req *routemodels.CreateGrowSpotPlantRequest) (*routemodels.CreateGrowSpotPlantResponse, error) {
 	/**********************************************************************
 	/
 	/	Run Validation Checks
@@ -24,7 +24,7 @@ func (lg *Logic) CreateGrowSpot(req *routemodels.CreateGrowSpotRequest) (*routem
 	/
 	/**********************************************************************/
 
-	resp, err := lg.Persistence.CreateGrowSpot(req)
+	resp, err := lg.Persistence.CreateGrowSpotPlant(req)
 	if err != nil {
 		return nil, err
 	}
@@ -43,8 +43,9 @@ func (lg *Logic) CreateGrowSpot(req *routemodels.CreateGrowSpotRequest) (*routem
 	return resp, nil
 }
 
-//
-func (lg *Logic) DeleteGrowSpot(req *routemodels.DeleteGrowSpotRequest) error {
+// DeleteGrowSpotPlant will validate the incoming request and then call out to the peristence layer to
+// soft delete a Grow Spot Plant
+func (lg *Logic) DeleteGrowSpotPlant(req *routemodels.DeleteGrowSpotPlantRequest) error {
 	/**********************************************************************
 	/
 	/	Run Validation Checks
@@ -63,7 +64,7 @@ func (lg *Logic) DeleteGrowSpot(req *routemodels.DeleteGrowSpotRequest) error {
 	/
 	/**********************************************************************/
 
-	err := lg.Persistence.DeleteGrowSpot(req)
+	err := lg.Persistence.DeleteGrowSpotPlant(req)
 	if err != nil {
 		return err
 	}
@@ -82,8 +83,9 @@ func (lg *Logic) DeleteGrowSpot(req *routemodels.DeleteGrowSpotRequest) error {
 	return nil
 }
 
-//
-func (lg *Logic) EditGrowSpot(req *routemodels.EditGrowSpotRequest) (*routemodels.EditGrowSpotResponse, error) {
+// EditGrowSpotPlant will validate the request and call out to the persistence layer to edit the specified
+// Grow Spot Plant (unimplemented)
+func (lg *Logic) EditGrowSpotPlant(req *routemodels.EditGrowSpotPlantRequest) (*routemodels.EditGrowSpotPlantResponse, error) {
 	/**********************************************************************
 	/
 	/	Run Validation Checks
@@ -102,7 +104,7 @@ func (lg *Logic) EditGrowSpot(req *routemodels.EditGrowSpotRequest) (*routemodel
 	/
 	/**********************************************************************/
 
-	resp, err := lg.Persistence.EditGrowSpot(req)
+	resp, err := lg.Persistence.EditGrowSpotPlant(req)
 	if err != nil {
 		return nil, err
 	}
@@ -121,8 +123,9 @@ func (lg *Logic) EditGrowSpot(req *routemodels.EditGrowSpotRequest) (*routemodel
 	return resp, nil
 }
 
-//
-func (lg *Logic) GetGrowSpot(req *routemodels.GetGrowSpotRequest) (*routemodels.GetGrowSpotResponse, error) {
+// GetGrowSpotPlant will validate the request and call out to the persistence layer to retrieve the specified
+// Grow Spot Plant
+func (lg *Logic) GetGrowSpotPlant(req *routemodels.GetGrowSpotPlantRequest) (*routemodels.GetGrowSpotPlantResponse, error) {
 	/**********************************************************************
 	/
 	/	Run Validation Checks
@@ -141,7 +144,7 @@ func (lg *Logic) GetGrowSpot(req *routemodels.GetGrowSpotRequest) (*routemodels.
 	/
 	/**********************************************************************/
 
-	resp, err := lg.Persistence.GetGrowSpotByID(req)
+	resp, err := lg.Persistence.GetGrowSpotPlant(req)
 	if err != nil {
 		return nil, err
 	}
@@ -160,8 +163,9 @@ func (lg *Logic) GetGrowSpot(req *routemodels.GetGrowSpotRequest) (*routemodels.
 	return resp, nil
 }
 
-//
-func (lg *Logic) GetAllGrowSpots(req *routemodels.GetAllGrowSpotsRequest) (*routemodels.GetAllGrowSpotsResponse, error) {
+// GetAllGrowSpotPlants will validate the request and call out to the persistence layer to retrieve all of the
+// Grow Spot Plants
+func (lg *Logic) GetAllGrowSpotPlants(req *routemodels.GetAllGrowSpotPlantsRequest) (*routemodels.GetAllGrowSpotPlantsResponse, error) {
 	/**********************************************************************
 	/
 	/	Run Validation Checks
@@ -180,7 +184,7 @@ func (lg *Logic) GetAllGrowSpots(req *routemodels.GetAllGrowSpotsRequest) (*rout
 	/
 	/**********************************************************************/
 
-	resp, err := lg.Persistence.GetAllGrowSpotsByGrowLevelID(req)
+	resp, err := lg.Persistence.GetAllGrowSpotPlants(req)
 	if err != nil {
 		return nil, err
 	}

@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IDeviceLogic = &Logic{}
 
-//
+// CreateDevice will validate the incoming request and then call out to the peristence layer to create a device
 func (lg *Logic) CreateDevice(req *routemodels.CreateDeviceRequest) (*routemodels.CreateDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,7 @@ func (lg *Logic) CreateDevice(req *routemodels.CreateDeviceRequest) (*routemodel
 	return resp, nil
 }
 
-//
+// CreateDeviceAction will validate the incoming request and then call out to the peristence layer to create a device action
 func (lg *Logic) CreateDeviceAction(req *routemodels.CreateDeviceActionRequest) (*routemodels.CreateDeviceActionResponse, error) {
 	/**********************************************************************
 	/
@@ -82,7 +82,8 @@ func (lg *Logic) CreateDeviceAction(req *routemodels.CreateDeviceActionRequest) 
 	return resp, nil
 }
 
-//
+// CreateGrowingGroupDevice will validate the incoming request and then call out to the peristence layer to create a
+// Growing Group Device
 func (lg *Logic) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGroupDeviceRequest) (*routemodels.CreateGrowingGroupDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +122,8 @@ func (lg *Logic) CreateGrowingGroupDevice(req *routemodels.CreateGrowingGroupDev
 	return resp, nil
 }
 
-//
+// CreateGrowingLocationDevice will validate the incoming request and then call out to the peristence layer to create a
+// Growing Location Device
 func (lg *Logic) CreateGrowingLocationDevice(req *routemodels.CreateGrowingLocationDeviceRequest) (*routemodels.CreateGrowingLocationDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +162,8 @@ func (lg *Logic) CreateGrowingLocationDevice(req *routemodels.CreateGrowingLocat
 	return resp, nil
 }
 
-//
+// CreateGrowingLevelDevice will validate the incoming request and then call out to the peristence layer to create a
+// Growing Level Device
 func (lg *Logic) CreateGrowingLevelDevice(req *routemodels.CreateGrowingLevelDeviceRequest) (*routemodels.CreateGrowingLevelDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -199,7 +202,8 @@ func (lg *Logic) CreateGrowingLevelDevice(req *routemodels.CreateGrowingLevelDev
 	return resp, nil
 }
 
-//
+// CreateGrowingSpotDevice will validate the incoming request and then call out to the peristence layer to create a
+// Growing Spot Device
 func (lg *Logic) CreateGrowingSpotDevice(req *routemodels.CreateGrowingSpotDeviceRequest) (*routemodels.CreateGrowingSpotDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -238,7 +242,8 @@ func (lg *Logic) CreateGrowingSpotDevice(req *routemodels.CreateGrowingSpotDevic
 	return resp, nil
 }
 
-//
+// DeleteDevice will validate the incoming request and then call out to the peristence layer to
+// soft delete a Device
 func (lg *Logic) DeleteDevice(req *routemodels.DeleteDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -277,7 +282,8 @@ func (lg *Logic) DeleteDevice(req *routemodels.DeleteDeviceRequest) error {
 	return nil
 }
 
-//
+// DeleteGrowingGroupDevice will validate the incoming request and then call out to the peristence layer to
+// soft delete a Growing Group Device
 func (lg *Logic) DeleteGrowingGroupDevice(req *routemodels.DeleteGrowingGroupDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -316,7 +322,8 @@ func (lg *Logic) DeleteGrowingGroupDevice(req *routemodels.DeleteGrowingGroupDev
 	return nil
 }
 
-//
+// DeleteGrowingLocationDevice will validate the incoming request and then call out to the peristence layer to
+// soft delete a Growing Location Device
 func (lg *Logic) DeleteGrowingLocationDevice(req *routemodels.DeleteGrowingLocationDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -355,7 +362,8 @@ func (lg *Logic) DeleteGrowingLocationDevice(req *routemodels.DeleteGrowingLocat
 	return nil
 }
 
-//
+// DeleteGrowingLevelDevice will validate the incoming request and then call out to the peristence layer to
+// soft delete a Growing Level Device
 func (lg *Logic) DeleteGrowingLevelDevice(req *routemodels.DeleteGrowingLevelDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -394,7 +402,8 @@ func (lg *Logic) DeleteGrowingLevelDevice(req *routemodels.DeleteGrowingLevelDev
 	return nil
 }
 
-//
+// DeleteGrowingSpotDevice will validate the incoming request and then call out to the peristence layer to
+// soft delete a Growing Spot Device
 func (lg *Logic) DeleteGrowingSpotDevice(req *routemodels.DeleteGrowingSpotDeviceRequest) error {
 	/**********************************************************************
 	/
@@ -433,7 +442,8 @@ func (lg *Logic) DeleteGrowingSpotDevice(req *routemodels.DeleteGrowingSpotDevic
 	return nil
 }
 
-//
+// EditDevice will validate the request and call out to the persistence layer to edit the specified
+// Device (unimplemented)
 func (lg *Logic) EditDevice(req *routemodels.EditDeviceRequest) (*routemodels.EditDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -472,7 +482,8 @@ func (lg *Logic) EditDevice(req *routemodels.EditDeviceRequest) (*routemodels.Ed
 	return resp, nil
 }
 
-//
+// GetDevice will validate the request and call out to the persistence layer to retrieve the specified
+// Device
 func (lg *Logic) GetDevice(req *routemodels.GetDeviceRequest) (*routemodels.GetDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -511,7 +522,8 @@ func (lg *Logic) GetDevice(req *routemodels.GetDeviceRequest) (*routemodels.GetD
 	return resp, nil
 }
 
-//
+// GetDeviceActions will validate the request and call out to the persistence layer to retrieve the specified
+// Device's Actions
 func (lg *Logic) GetDeviceActions(req *routemodels.GetDeviceActionsRequest) (*routemodels.GetDeviceActionsResponse, error) {
 	/**********************************************************************
 	/
@@ -550,7 +562,8 @@ func (lg *Logic) GetDeviceActions(req *routemodels.GetDeviceActionsRequest) (*ro
 	return resp, nil
 }
 
-//
+// GetAllDevices will validate the request and call out to the persistence layer to retrieve all of the
+// Devices
 func (lg *Logic) GetAllDevices(req *routemodels.GetAllDevicesRequest) (*routemodels.GetAllDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -589,7 +602,8 @@ func (lg *Logic) GetAllDevices(req *routemodels.GetAllDevicesRequest) (*routemod
 	return resp, nil
 }
 
-//
+// GetGrowingGroupDevice will validate the request and call out to the persistence layer to retrieve the specified
+// Growing Group Device
 func (lg *Logic) GetGrowingGroupDevice(req *routemodels.GetGrowingGroupDeviceRequest) (*routemodels.GetGrowingGroupDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -628,7 +642,8 @@ func (lg *Logic) GetGrowingGroupDevice(req *routemodels.GetGrowingGroupDeviceReq
 	return resp, nil
 }
 
-//
+// GetGrowingLocationDevice will validate the request and call out to the persistence layer to retrieve the specified
+// Growing Location Device
 func (lg *Logic) GetGrowingLocationDevice(req *routemodels.GetGrowingLocationDeviceRequest) (*routemodels.GetGrowingLocationDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -667,7 +682,8 @@ func (lg *Logic) GetGrowingLocationDevice(req *routemodels.GetGrowingLocationDev
 	return resp, nil
 }
 
-//
+// GetGrowingLevelDevice will validate the request and call out to the persistence layer to retrieve the specified
+// Growing Level Device
 func (lg *Logic) GetGrowingLevelDevice(req *routemodels.GetGrowingLevelDeviceRequest) (*routemodels.GetGrowingLevelDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -706,7 +722,8 @@ func (lg *Logic) GetGrowingLevelDevice(req *routemodels.GetGrowingLevelDeviceReq
 	return resp, nil
 }
 
-//
+// GetGrowingSpotDevice will validate the request and call out to the persistence layer to retrieve the specified
+// Growing Spot Device
 func (lg *Logic) GetGrowingSpotDevice(req *routemodels.GetGrowingSpotDeviceRequest) (*routemodels.GetGrowingSpotDeviceResponse, error) {
 	/**********************************************************************
 	/
@@ -745,7 +762,8 @@ func (lg *Logic) GetGrowingSpotDevice(req *routemodels.GetGrowingSpotDeviceReque
 	return resp, nil
 }
 
-//
+// GetAllGrowingGroupDevices will validate the request and call out to the persistence layer to retrieve all of the
+// Growing Group Devices
 func (lg *Logic) GetAllGrowingGroupDevices(req *routemodels.GetAllGrowingGroupDevicesRequest) (*routemodels.GetAllGrowingGroupDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -784,7 +802,8 @@ func (lg *Logic) GetAllGrowingGroupDevices(req *routemodels.GetAllGrowingGroupDe
 	return resp, nil
 }
 
-//
+// GetAllGrowingLocationDevices will validate the request and call out to the persistence layer to retrieve all of the
+// Growing Location Devices
 func (lg *Logic) GetAllGrowingLocationDevices(req *routemodels.GetAllGrowingLocationDevicesRequest) (*routemodels.GetAllGrowingLocationDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -823,7 +842,8 @@ func (lg *Logic) GetAllGrowingLocationDevices(req *routemodels.GetAllGrowingLoca
 	return resp, nil
 }
 
-//
+// GetAllGrowingLevelDevices will validate the request and call out to the persistence layer to retrieve all of the
+// Growing Level Devices
 func (lg *Logic) GetAllGrowingLevelDevices(req *routemodels.GetAllGrowingLevelDevicesRequest) (*routemodels.GetAllGrowingLevelDevicesResponse, error) {
 	/**********************************************************************
 	/
@@ -862,7 +882,8 @@ func (lg *Logic) GetAllGrowingLevelDevices(req *routemodels.GetAllGrowingLevelDe
 	return resp, nil
 }
 
-//
+// GetAllGrowingSpotDevices will validate the request and call out to the persistence layer to retrieve all of the
+// Growing Spot Devices
 func (lg *Logic) GetAllGrowingSpotDevices(req *routemodels.GetAllGrowingSpotDevicesRequest) (*routemodels.GetAllGrowingSpotDevicesResponse, error) {
 	/**********************************************************************
 	/

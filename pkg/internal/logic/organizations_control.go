@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IOrganizationsLogic = &Logic{}
 
-//
+// CreateOrganization will validate the incoming request and then call out to the peristence layer to create an Organization
 func (lg *Logic) CreateOrganization(req *routemodels.CreateOrganizationRequest) (*routemodels.CreateOrganizationResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreateOrganization(req *routemodels.CreateOrganizationRequest) 
 	return resp, nil
 }
 
-//
+// DeleteOrganization will validate the incoming request and then call out to the peristence layer to
+// soft delete a Organization
 func (lg *Logic) DeleteOrganization(req *routemodels.DeleteOrganizationRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeleteOrganization(req *routemodels.DeleteOrganizationRequest) 
 	return nil
 }
 
-//
+// EditOrganization will validate the request and call out to the persistence layer to edit the specified
+// Organization (unimplemented)
 func (lg *Logic) EditOrganization(req *routemodels.EditOrganizationRequest) (*routemodels.EditOrganizationResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditOrganization(req *routemodels.EditOrganizationRequest) (*ro
 	return resp, nil
 }
 
-//
+// GetOrganization will validate the request and call out to the persistence layer to retrieve the specified
+// Organization
 func (lg *Logic) GetOrganization(req *routemodels.GetOrganizationRequest) (*routemodels.GetOrganizationResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetOrganization(req *routemodels.GetOrganizationRequest) (*rout
 	return resp, nil
 }
 
-//
+// GetAllOrganizations will validate the request and call out to the persistence layer to retrieve all fo the
+// Organizations
 func (lg *Logic) GetAllOrganizations(req *routemodels.GetAllOrganizationsRequest) (*routemodels.GetAllOrganizationsResponse, error) {
 	/**********************************************************************
 	/

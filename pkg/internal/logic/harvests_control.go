@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IHarvestsLogic = &Logic{}
 
-//
+// CreateHarvest will validate the incoming request and then call out to the peristence layer to create a Harvest
 func (lg *Logic) CreateHarvest(req *routemodels.CreateHarvestRequest) (*routemodels.CreateHarvestResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreateHarvest(req *routemodels.CreateHarvestRequest) (*routemod
 	return resp, nil
 }
 
-//
+// DeleteHarvest will validate the incoming request and then call out to the peristence layer to
+// soft delete a Harvest
 func (lg *Logic) DeleteHarvest(req *routemodels.DeleteHarvestRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeleteHarvest(req *routemodels.DeleteHarvestRequest) error {
 	return nil
 }
 
-//
+// EditHarvest will validate the request and call out to the persistence layer to edit the specified
+// Harvest (unimplemented)
 func (lg *Logic) EditHarvest(req *routemodels.EditHarvestRequest) (*routemodels.EditHarvestResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditHarvest(req *routemodels.EditHarvestRequest) (*routemodels.
 	return resp, nil
 }
 
-//
+// GetHarvest will validate the request and call out to the persistence layer to retrieve the specified
+// Harvest
 func (lg *Logic) GetHarvest(req *routemodels.GetHarvestRequest) (*routemodels.GetHarvestResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetHarvest(req *routemodels.GetHarvestRequest) (*routemodels.Ge
 	return resp, nil
 }
 
-//
+// GetAllHarvests will validate the request and call out to the persistence layer to retrieve all of the
+// Harvests
 func (lg *Logic) GetAllHarvests(req *routemodels.GetAllHarvestsRequest) (*routemodels.GetAllHarvestsResponse, error) {
 	/**********************************************************************
 	/

@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IMembersLogic = &Logic{}
 
-//
+// CreateMember will validate the incoming request and then call out to the peristence layer to create a Member
 func (lg *Logic) CreateMember(req *routemodels.CreateMemberRequest) (*routemodels.CreateMemberResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreateMember(req *routemodels.CreateMemberRequest) (*routemodel
 	return resp, nil
 }
 
-//
+// DeleteMember will validate the incoming request and then call out to the peristence layer to
+// soft delete a Member
 func (lg *Logic) DeleteMember(req *routemodels.DeleteMemberRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeleteMember(req *routemodels.DeleteMemberRequest) error {
 	return nil
 }
 
-//
+// EditMember will validate the request and call out to the persistence layer to edit the specified
+// Member (unimplemented)
 func (lg *Logic) EditMember(req *routemodels.EditMemberRequest) (*routemodels.EditMemberResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditMember(req *routemodels.EditMemberRequest) (*routemodels.Ed
 	return resp, nil
 }
 
-//
+// GetMember will validate the request and call out to the persistence layer to retrieve the specified
+// Member
 func (lg *Logic) GetMember(req *routemodels.GetMemberRequest) (*routemodels.GetMemberResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetMember(req *routemodels.GetMemberRequest) (*routemodels.GetM
 	return resp, nil
 }
 
-//
+// GetAllMembers will validate the request and call out to the persistence layer to retrieve all of the
+// Members
 func (lg *Logic) GetAllMembers(req *routemodels.GetAllMembersRequest) (*routemodels.GetAllMembersResponse, error) {
 	/**********************************************************************
 	/

@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IGrowingMediumsLogic = &Logic{}
 
-//
+// CreateGrowingMedium will validate the incoming request and then call out to the peristence layer to create a Growing Medium
 func (lg *Logic) CreateGrowingMedium(req *routemodels.CreateGrowingMediumRequest) (*routemodels.CreateGrowingMediumResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreateGrowingMedium(req *routemodels.CreateGrowingMediumRequest
 	return resp, nil
 }
 
-//
+// DeleteGrowingMedium will validate the incoming request and then call out to the peristence layer to
+// soft delete a Growing Medium
 func (lg *Logic) DeleteGrowingMedium(req *routemodels.DeleteGrowingMediumRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeleteGrowingMedium(req *routemodels.DeleteGrowingMediumRequest
 	return nil
 }
 
-//
+// EditGrowingMedium will validate the request and call out to the persistence layer to edit the specified
+// Growing Medium (unimplemented)
 func (lg *Logic) EditGrowingMedium(req *routemodels.EditGrowingMediumRequest) (*routemodels.EditGrowingMediumResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditGrowingMedium(req *routemodels.EditGrowingMediumRequest) (*
 	return resp, nil
 }
 
-//
+// GetGrowingMedium will validate the request and call out to the persistence layer to retrieve the specified
+// Growing Medium
 func (lg *Logic) GetGrowingMedium(req *routemodels.GetGrowingMediumRequest) (*routemodels.GetGrowingMediumResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetGrowingMedium(req *routemodels.GetGrowingMediumRequest) (*ro
 	return resp, nil
 }
 
-//
+// GetAllGrowingMediums will validate the request and call out to the persistence layer to retrieve all fo the
+// Growing Mediums
 func (lg *Logic) GetAllGrowingMediums(req *routemodels.GetAllGrowingMediumsRequest) (*routemodels.GetAllGrowingMediumsResponse, error) {
 	/**********************************************************************
 	/

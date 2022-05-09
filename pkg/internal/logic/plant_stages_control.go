@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IPLantStagesLogic = &Logic{}
 
-//
+// CreatePlantStage will validate the incoming request and then call out to the peristence layer to create a Plant Stage
 func (lg *Logic) CreatePlantStage(req *routemodels.CreatePlantStageRequest) (*routemodels.CreatePlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,7 @@ func (lg *Logic) CreatePlantStage(req *routemodels.CreatePlantStageRequest) (*ro
 	return resp, nil
 }
 
-//
+// CreatePlantStageCare will validate the incoming request and then call out to the peristence layer to create a Plant Stage Care
 func (lg *Logic) CreatePlantStageCare(req *routemodels.CreatePlantStageCareRequest) (*routemodels.CreatePlantStageCareResponse, error) {
 	/**********************************************************************
 	/
@@ -82,7 +82,8 @@ func (lg *Logic) CreatePlantStageCare(req *routemodels.CreatePlantStageCareReque
 	return resp, nil
 }
 
-//
+// CreatePlantStageNutrients will validate the incoming request and then call out to the peristence layer to create a
+// Plant Stage Nutrient
 func (lg *Logic) CreatePlantStageNutrients(req *routemodels.CreatePlantStageNutrientsRequest) (*routemodels.CreatePlantStageNutrientsResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +122,8 @@ func (lg *Logic) CreatePlantStageNutrients(req *routemodels.CreatePlantStageNutr
 	return resp, nil
 }
 
-//
+// ConnectPlantStage will validate the incoming request and then call out to the peristence layer to connect a plant stage to
+// a plant stage lifecycle
 func (lg *Logic) ConnectPlantStage(req *routemodels.ConnectPlantStageRequest) (*routemodels.ConnectPlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +162,8 @@ func (lg *Logic) ConnectPlantStage(req *routemodels.ConnectPlantStageRequest) (*
 	return resp, nil
 }
 
-//
+// DeletePlantStage will validate the incoming request and then call out to the peristence layer to
+// soft delete a Plant Stage
 func (lg *Logic) DeletePlantStage(req *routemodels.DeletePlantStageRequest) error {
 	/**********************************************************************
 	/
@@ -199,7 +202,8 @@ func (lg *Logic) DeletePlantStage(req *routemodels.DeletePlantStageRequest) erro
 	return nil
 }
 
-//
+// EditPlantStage will validate the request and call out to the persistence layer to edit the specified
+// Plant Stage (unimplemented)
 func (lg *Logic) EditPlantStage(req *routemodels.EditPlantStageRequest) (*routemodels.EditPlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -238,7 +242,8 @@ func (lg *Logic) EditPlantStage(req *routemodels.EditPlantStageRequest) (*routem
 	return resp, nil
 }
 
-//
+// GetPlantStageByID will validate the request and call out to the persistence layer to retrieve the specified
+// Plant Stage
 func (lg *Logic) GetPlantStageByID(req *routemodels.GetPlantStageRequest) (*routemodels.GetPlantStageResponse, error) {
 	/**********************************************************************
 	/
@@ -277,7 +282,8 @@ func (lg *Logic) GetPlantStageByID(req *routemodels.GetPlantStageRequest) (*rout
 	return resp, nil
 }
 
-//
+// GetPlantStageCareByID will validate the request and call out to the persistence layer to retrieve the specified
+// Plant Stage Care
 func (lg *Logic) GetPlantStageCareByID(req *routemodels.GetPlantStageCareByIDRequest) (*routemodels.GetPlantStageCareByIDResponse, error) {
 	/**********************************************************************
 	/
@@ -316,7 +322,8 @@ func (lg *Logic) GetPlantStageCareByID(req *routemodels.GetPlantStageCareByIDReq
 	return resp, nil
 }
 
-//
+// GetPlantStageNutrient will validate the request and call out to the persistence layer to retrieve the specified
+// Plant Stage Nutrient
 func (lg *Logic) GetPlantStageNutrient(req *routemodels.GetPlantStageNutrientRequest) (*routemodels.GetPlantStageNutrientResponse, error) {
 	/**********************************************************************
 	/
@@ -355,7 +362,8 @@ func (lg *Logic) GetPlantStageNutrient(req *routemodels.GetPlantStageNutrientReq
 	return resp, nil
 }
 
-//
+// GetAllPlantStages will validate the request and call out to the persistence layer to retrieve all of the
+// Plant Stages
 func (lg *Logic) GetAllPlantStages(req *routemodels.GetAllPlantStagesRequest) (*routemodels.GetAllPlantStagesResponse, error) {
 	/**********************************************************************
 	/

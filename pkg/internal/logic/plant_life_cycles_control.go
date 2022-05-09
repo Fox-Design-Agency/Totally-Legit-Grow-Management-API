@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IPlantLifeCyclesLogic = &Logic{}
 
-//
+// CreatePlantLifeCycle will validate the incoming request and then call out to the peristence layer to create a Plant Life Cycle
 func (lg *Logic) CreatePlantLifeCycle(req *routemodels.CreatePlantLifeCycleRequest) (*routemodels.CreatePlantLifeCycleResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreatePlantLifeCycle(req *routemodels.CreatePlantLifeCycleReque
 	return resp, nil
 }
 
-//
+// DeletePlantLifeCycle will validate the incoming request and then call out to the peristence layer to
+// soft delete a Plant Lifecycle
 func (lg *Logic) DeletePlantLifeCycle(req *routemodels.DeletePlantLifeCycleRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeletePlantLifeCycle(req *routemodels.DeletePlantLifeCycleReque
 	return nil
 }
 
-//
+// EditPlantLifeCycle will validate the request and call out to the persistence layer to edit the specified
+// Plant Life Cycle (unimplemented)
 func (lg *Logic) EditPlantLifeCycle(req *routemodels.EditPlantLifeCycleRequest) (*routemodels.EditPlantLifeCycleResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditPlantLifeCycle(req *routemodels.EditPlantLifeCycleRequest) 
 	return resp, nil
 }
 
-//
+// GetPlantLifeCycleByID will validate the request and call out to the persistence layer to retrieve the specified
+// Plant Life Cycle
 func (lg *Logic) GetPlantLifeCycleByID(req *routemodels.GetPlantLifeCycleRequest) (*routemodels.GetPlantLifeCycleResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetPlantLifeCycleByID(req *routemodels.GetPlantLifeCycleRequest
 	return resp, nil
 }
 
-//
+// GetAllPlantLifeCycles will validate the request and call out to the persistence layer to retrieve all of the
+// Plant Life Cycles
 func (lg *Logic) GetAllPlantLifeCycles(req *routemodels.GetAllPlantLifeCyclesRequest) (*routemodels.GetAllPlantLifeCyclesResponse, error) {
 	/**********************************************************************
 	/

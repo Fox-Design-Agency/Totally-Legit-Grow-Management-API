@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ ISeedsLogic = &Logic{}
 
-//
+// CreateSeed will validate the incoming request and then call out to the peristence layer to create a Seed
 func (lg *Logic) CreateSeed(req *routemodels.CreateSeedRequest) (*routemodels.CreateSeedResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreateSeed(req *routemodels.CreateSeedRequest) (*routemodels.Cr
 	return resp, nil
 }
 
-//
+// DeleteSeed will validate the incoming request and then call out to the peristence layer to
+// soft delete a Seed
 func (lg *Logic) DeleteSeed(req *routemodels.DeleteSeedRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeleteSeed(req *routemodels.DeleteSeedRequest) error {
 	return nil
 }
 
-//
+// EditSeed will validate the request and call out to the persistence layer to edit the specified
+// Seed (unimplemented)
 func (lg *Logic) EditSeed(req *routemodels.EditSeedRequest) (*routemodels.EditSeedResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditSeed(req *routemodels.EditSeedRequest) (*routemodels.EditSe
 	return resp, nil
 }
 
-//
+// GetSeed will validate the request and call out to the persistence layer to retrieve the specified
+// Seed
 func (lg *Logic) GetSeed(req *routemodels.GetSeedRequest) (*routemodels.GetSeedResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetSeed(req *routemodels.GetSeedRequest) (*routemodels.GetSeedR
 	return resp, nil
 }
 
-//
+// GetAllSeeds will validate the request and call out to the persistence layer to retrieve all of the
+// Seeds
 func (lg *Logic) GetAllSeeds(req *routemodels.GetAllSeedsRequest) (*routemodels.GetAllSeedsResponse, error) {
 	/**********************************************************************
 	/

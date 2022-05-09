@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IProductsLogic = &Logic{}
 
-//
+// CreateProduct will validate the incoming request and then call out to the peristence layer to create a Product
 func (lg *Logic) CreateProduct(req *routemodels.CreateProductRequest) (*routemodels.CreateProductResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreateProduct(req *routemodels.CreateProductRequest) (*routemod
 	return resp, nil
 }
 
-//
+// DeleteProduct will validate the incoming request and then call out to the peristence layer to
+// soft delete a Product
 func (lg *Logic) DeleteProduct(req *routemodels.DeleteProductRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeleteProduct(req *routemodels.DeleteProductRequest) error {
 	return nil
 }
 
-//
+// EditProduct will validate the request and call out to the persistence layer to edit the specified
+// Product (unimplemented)
 func (lg *Logic) EditProduct(req *routemodels.EditProductRequest) (*routemodels.EditProductResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditProduct(req *routemodels.EditProductRequest) (*routemodels.
 	return resp, nil
 }
 
-//
+// GetProduct will validate the request and call out to the persistence layer to retrieve the specified
+// Product
 func (lg *Logic) GetProduct(req *routemodels.GetProductRequest) (*routemodels.GetProductResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetProduct(req *routemodels.GetProductRequest) (*routemodels.Ge
 	return resp, nil
 }
 
-//
+// GetAllProducts will validate the request and call out to the persistence layer to retrieve all of the
+// Products
 func (lg *Logic) GetAllProducts(req *routemodels.GetAllProductsRequest) (*routemodels.GetAllProductsResponse, error) {
 	/**********************************************************************
 	/

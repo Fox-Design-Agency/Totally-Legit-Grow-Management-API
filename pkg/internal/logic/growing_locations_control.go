@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IGrowingLocationsLogic = &Logic{}
 
-//
+// CreateGrowingLocation will validate the incoming request and then call out to the peristence layer to create a Growing Location
 func (lg *Logic) CreateGrowingLocation(req *routemodels.CreateGrowingLocationRequest) (*routemodels.CreateGrowingLocationResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreateGrowingLocation(req *routemodels.CreateGrowingLocationReq
 	return resp, nil
 }
 
-//
+// DeleteGrowingLocation will validate the incoming request and then call out to the peristence layer to
+// soft delete a Growing Location
 func (lg *Logic) DeleteGrowingLocation(req *routemodels.DeleteGrowingLocationRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeleteGrowingLocation(req *routemodels.DeleteGrowingLocationReq
 	return nil
 }
 
-//
+// EditGrowingLocation will validate the request and call out to the persistence layer to edit the specified
+// Growing Location (unimplemented)
 func (lg *Logic) EditGrowingLocation(req *routemodels.EditGrowingLocationRequest) (*routemodels.EditGrowingLocationResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditGrowingLocation(req *routemodels.EditGrowingLocationRequest
 	return resp, nil
 }
 
-//
+// GetGrowingLocation will validate the request and call out to the persistence layer to retrieve the specified
+// Growing Location
 func (lg *Logic) GetGrowingLocation(req *routemodels.GetGrowingLocationRequest) (*routemodels.GetGrowingLocationResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetGrowingLocation(req *routemodels.GetGrowingLocationRequest) 
 	return resp, nil
 }
 
-//
+// GetAllGrowingLocations will validate the request and call out to the persistence layer to retrieve all of the
+// Growing Locations
 func (lg *Logic) GetAllGrowingLocations(req *routemodels.GetAllGrowingLocationsRequest) (*routemodels.GetAllGrowingLocationsResponse, error) {
 	/**********************************************************************
 	/

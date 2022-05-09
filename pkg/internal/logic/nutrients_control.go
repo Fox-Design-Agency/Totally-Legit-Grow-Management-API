@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ INutrientsLogic = &Logic{}
 
-//
+// CreateNutrient will validate the incoming request and then call out to the peristence layer to create a Nutrient
 func (lg *Logic) CreateNutrient(req *routemodels.CreateNutrientRequest) (*routemodels.CreateNutrientResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreateNutrient(req *routemodels.CreateNutrientRequest) (*routem
 	return resp, nil
 }
 
-//
+// DeleteNutrient will validate the incoming request and then call out to the peristence layer to
+// soft delete a Nutrient
 func (lg *Logic) DeleteNutrient(req *routemodels.DeleteNutrientRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeleteNutrient(req *routemodels.DeleteNutrientRequest) error {
 	return nil
 }
 
-//
+// EditNutrient will validate the request and call out to the persistence layer to edit the specified
+// Nutrient (unimplemented)
 func (lg *Logic) EditNutrient(req *routemodels.EditNutrientRequest) (*routemodels.EditNutrientResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditNutrient(req *routemodels.EditNutrientRequest) (*routemodel
 	return resp, nil
 }
 
-//
+// GetNutrient will validate the request and call out to the persistence layer to retrieve the specified
+// Nutrient
 func (lg *Logic) GetNutrient(req *routemodels.GetNutrientRequest) (*routemodels.GetNutrientResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetNutrient(req *routemodels.GetNutrientRequest) (*routemodels.
 	return resp, nil
 }
 
-//
+// GetAllNutrients will validate the request and call out to the persistence layer to retrieve all of the
+// Nutrients
 func (lg *Logic) GetAllNutrients(req *routemodels.GetAllNutrientsRequest) (*routemodels.GetAllNutrientsResponse, error) {
 	/**********************************************************************
 	/

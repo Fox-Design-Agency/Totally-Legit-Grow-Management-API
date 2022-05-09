@@ -4,7 +4,7 @@ import routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 
 var _ IGrowingLevelsLogic = &Logic{}
 
-//
+// CreateGrowingLevel will validate the incoming request and then call out to the peristence layer to create a Growing Level
 func (lg *Logic) CreateGrowingLevel(req *routemodels.CreateGrowingLevelRequest) (*routemodels.CreateGrowingLevelResponse, error) {
 	/**********************************************************************
 	/
@@ -43,7 +43,8 @@ func (lg *Logic) CreateGrowingLevel(req *routemodels.CreateGrowingLevelRequest) 
 	return resp, nil
 }
 
-//
+// DeleteGrowingLevel will validate the incoming request and then call out to the peristence layer to
+// soft delete a Growing Level
 func (lg *Logic) DeleteGrowingLevel(req *routemodels.DeleteGrowingLevelRequest) error {
 	/**********************************************************************
 	/
@@ -82,7 +83,8 @@ func (lg *Logic) DeleteGrowingLevel(req *routemodels.DeleteGrowingLevelRequest) 
 	return nil
 }
 
-//
+// EditGrowingLevel will validate the request and call out to the persistence layer to edit the specified
+// Growing Level (unimplemented)
 func (lg *Logic) EditGrowingLevel(req *routemodels.EditGrowingLevelRequest) (*routemodels.EditGrowingLevelResponse, error) {
 	/**********************************************************************
 	/
@@ -121,7 +123,8 @@ func (lg *Logic) EditGrowingLevel(req *routemodels.EditGrowingLevelRequest) (*ro
 	return resp, nil
 }
 
-//
+// GetGrowingLevel will validate the request and call out to the persistence layer to retrieve the specified
+// Growing Level
 func (lg *Logic) GetGrowingLevel(req *routemodels.GetGrowingLevelRequest) (*routemodels.GetGrowingLevelResponse, error) {
 	/**********************************************************************
 	/
@@ -160,7 +163,8 @@ func (lg *Logic) GetGrowingLevel(req *routemodels.GetGrowingLevelRequest) (*rout
 	return resp, nil
 }
 
-//
+// GetAllGrowingLevels will validate the request and call out to the persistence layer to retrieve all of the
+// Growing Levels
 func (lg *Logic) GetAllGrowingLevels(req *routemodels.GetAllGrowingLevelsRequest) (*routemodels.GetAllGrowingLevelsResponse, error) {
 	/**********************************************************************
 	/
