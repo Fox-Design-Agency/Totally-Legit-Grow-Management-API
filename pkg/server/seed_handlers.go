@@ -8,10 +8,12 @@ import (
 	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
+// CreateSeed will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateSeed(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -44,10 +46,12 @@ func (s *Server) CreateSeed(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// DeleteSeed will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeleteSeed(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -80,10 +84,12 @@ func (s *Server) DeleteSeed(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// EditSeed will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) EditSeed(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -116,10 +122,12 @@ func (s *Server) EditSeed(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetSeed will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetSeed(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -152,10 +160,12 @@ func (s *Server) GetSeed(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetAllSeeds will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllSeeds(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 

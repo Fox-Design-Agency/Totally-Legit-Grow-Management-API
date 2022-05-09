@@ -8,10 +8,12 @@ import (
 	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
+// CreateOrganization will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateOrganization(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -44,10 +46,12 @@ func (s *Server) CreateOrganization(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// DeleteOrganization will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeleteOrganization(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -80,10 +84,12 @@ func (s *Server) DeleteOrganization(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// EditOrganization will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) EditOrganization(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -116,10 +122,12 @@ func (s *Server) EditOrganization(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetOrganization will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetOrganization(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -152,10 +160,12 @@ func (s *Server) GetOrganization(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetAllOrganizations will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllOrganizations(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 

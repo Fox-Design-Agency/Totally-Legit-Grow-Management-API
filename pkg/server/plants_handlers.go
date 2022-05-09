@@ -8,10 +8,12 @@ import (
 	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
+// CreatePlant will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreatePlant(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -44,10 +46,12 @@ func (s *Server) CreatePlant(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// DeletePlant will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeletePlant(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -80,10 +84,12 @@ func (s *Server) DeletePlant(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// EditPlant will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) EditPlant(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -116,10 +122,12 @@ func (s *Server) EditPlant(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetPlant will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetPlant(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -152,10 +160,12 @@ func (s *Server) GetPlant(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetAllPlants will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllPlants(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 

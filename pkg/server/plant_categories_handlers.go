@@ -8,10 +8,12 @@ import (
 	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
+// CreatePlantCategory will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreatePlantCategory(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -44,10 +46,12 @@ func (s *Server) CreatePlantCategory(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// DeletePlantCategory will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeletePlantCategory(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -80,10 +84,12 @@ func (s *Server) DeletePlantCategory(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// EditPlantCategory will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) EditPlantCategory(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -116,10 +122,12 @@ func (s *Server) EditPlantCategory(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetPlantCategory will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetPlantCategory(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -152,10 +160,12 @@ func (s *Server) GetPlantCategory(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetAllPlantCategories will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllPlantCategories(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 

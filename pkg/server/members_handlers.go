@@ -8,10 +8,12 @@ import (
 	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
+// CreateMember will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateMember(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -44,10 +46,12 @@ func (s *Server) CreateMember(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// DeleteMember will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeleteMember(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -80,10 +84,12 @@ func (s *Server) DeleteMember(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// EditMember will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) EditMember(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -116,10 +122,12 @@ func (s *Server) EditMember(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetMember will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetMember(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -152,10 +160,12 @@ func (s *Server) GetMember(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetAllMembers will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllMembers(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 

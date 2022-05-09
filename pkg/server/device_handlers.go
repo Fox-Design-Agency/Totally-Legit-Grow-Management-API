@@ -8,10 +8,12 @@ import (
 	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
+// CreateDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -46,10 +48,12 @@ func (s *Server) CreateDevice(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// CreateDeviceAction will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateDeviceAction(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -82,10 +86,12 @@ func (s *Server) CreateDeviceAction(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// CreateGrowingGroupDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateGrowingGroupDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -118,10 +124,12 @@ func (s *Server) CreateGrowingGroupDevice(w http.ResponseWriter, r *http.Request
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// CreateGrowingLocationDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateGrowingLocationDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -154,10 +162,12 @@ func (s *Server) CreateGrowingLocationDevice(w http.ResponseWriter, r *http.Requ
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// CreateGrowingLevelDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateGrowingLevelDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -190,10 +200,12 @@ func (s *Server) CreateGrowingLevelDevice(w http.ResponseWriter, r *http.Request
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// CreateGrowingSpotDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateGrowingSpotDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -226,10 +238,12 @@ func (s *Server) CreateGrowingSpotDevice(w http.ResponseWriter, r *http.Request)
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// DeleteDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeleteDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -262,10 +276,12 @@ func (s *Server) DeleteDevice(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// DeleteGrowingGroupDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeleteGrowingGroupDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -298,10 +314,12 @@ func (s *Server) DeleteGrowingGroupDevice(w http.ResponseWriter, r *http.Request
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// DeleteGrowingLocationDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeleteGrowingLocationDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -334,10 +352,12 @@ func (s *Server) DeleteGrowingLocationDevice(w http.ResponseWriter, r *http.Requ
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// DeleteGrowingLevelDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeleteGrowingLevelDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -370,10 +390,12 @@ func (s *Server) DeleteGrowingLevelDevice(w http.ResponseWriter, r *http.Request
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// DeleteGrowingSpotDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeleteGrowingSpotDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -406,10 +428,12 @@ func (s *Server) DeleteGrowingSpotDevice(w http.ResponseWriter, r *http.Request)
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// EditDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) EditDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -442,10 +466,12 @@ func (s *Server) EditDevice(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -478,10 +504,12 @@ func (s *Server) GetDevice(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetDeviceActions will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetDeviceActions(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -514,10 +542,12 @@ func (s *Server) GetDeviceActions(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetAllDevices will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllDevices(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -550,10 +580,12 @@ func (s *Server) GetAllDevices(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetGrowingGroupDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetGrowingGroupDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -586,10 +618,12 @@ func (s *Server) GetGrowingGroupDevice(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetGrowingLocationDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetGrowingLocationDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -622,10 +656,12 @@ func (s *Server) GetGrowingLocationDevice(w http.ResponseWriter, r *http.Request
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetGrowingLevelDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetGrowingLevelDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -658,10 +694,12 @@ func (s *Server) GetGrowingLevelDevice(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetGrowingSpotDevice will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetGrowingSpotDevice(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -694,10 +732,12 @@ func (s *Server) GetGrowingSpotDevice(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetAllGrowingGroupDevices will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllGrowingGroupDevices(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -730,10 +770,12 @@ func (s *Server) GetAllGrowingGroupDevices(w http.ResponseWriter, r *http.Reques
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetAllGrowingLocationDevices will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllGrowingLocationDevices(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -766,10 +808,12 @@ func (s *Server) GetAllGrowingLocationDevices(w http.ResponseWriter, r *http.Req
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetAllGrowingLevelDevices will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllGrowingLevelDevices(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -802,10 +846,12 @@ func (s *Server) GetAllGrowingLevelDevices(w http.ResponseWriter, r *http.Reques
 	helpers.SendSuccessHeader(w, res)
 }
 
+// GetAllGrowingSpotDevices will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllGrowingSpotDevices(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 

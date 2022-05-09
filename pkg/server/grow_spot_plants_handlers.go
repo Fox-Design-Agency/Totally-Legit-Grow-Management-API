@@ -8,10 +8,12 @@ import (
 	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
+// CreateGrowSpotPlant will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreateGrowSpotPlant(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -44,10 +46,12 @@ func (s *Server) CreateGrowSpotPlant(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// CreateGrowSpotPlant will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeleteGrowSpotPlant(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -80,10 +84,12 @@ func (s *Server) DeleteGrowSpotPlant(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// EditGrowSpotPlant will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) EditGrowSpotPlant(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -116,10 +122,12 @@ func (s *Server) EditGrowSpotPlant(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetGrowSpotPlant will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetGrowSpotPlant(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -152,10 +160,12 @@ func (s *Server) GetGrowSpotPlant(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetAllGrowSpotPlants will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllGrowSpotPlants(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 

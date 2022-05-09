@@ -8,10 +8,12 @@ import (
 	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
+// CreatePlantStage will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreatePlantStage(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -44,10 +46,12 @@ func (s *Server) CreatePlantStage(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// CreatePlantStageCare will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreatePlantStageCare(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -80,10 +84,12 @@ func (s *Server) CreatePlantStageCare(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// CreatePlantStageNutrients will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreatePlantStageNutrients(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -116,10 +122,12 @@ func (s *Server) CreatePlantStageNutrients(w http.ResponseWriter, r *http.Reques
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// ConnectPlantStage will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) ConnectPlantStage(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -152,10 +160,12 @@ func (s *Server) ConnectPlantStage(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// DeletePlantStage will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeletePlantStage(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -188,10 +198,12 @@ func (s *Server) DeletePlantStage(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// EditPlantStage will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) EditPlantStage(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -224,10 +236,12 @@ func (s *Server) EditPlantStage(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetPlantStageByID will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetPlantStageByID(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -260,10 +274,12 @@ func (s *Server) GetPlantStageByID(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetPlantStageCareByID will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetPlantStageCareByID(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -296,10 +312,12 @@ func (s *Server) GetPlantStageCareByID(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetPlantStageNutrient will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetPlantStageNutrient(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -332,10 +350,12 @@ func (s *Server) GetPlantStageNutrient(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetAllPlantStages will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllPlantStages(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 

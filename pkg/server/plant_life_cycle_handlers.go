@@ -8,10 +8,12 @@ import (
 	routemodels "totally-legit-grow-management/v1/pkg/internal/route-models"
 )
 
+// CreatePlantLifeCycle will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) CreatePlantLifeCycle(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -44,10 +46,12 @@ func (s *Server) CreatePlantLifeCycle(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// DeletePlantLifeCycle will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) DeletePlantLifeCycle(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -80,10 +84,12 @@ func (s *Server) DeletePlantLifeCycle(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, nil)
 }
 
+// EditPlantLifeCycle will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) EditPlantLifeCycle(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -116,10 +122,12 @@ func (s *Server) EditPlantLifeCycle(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetPlantLifeCycleByID will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetPlantLifeCycleByID(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
@@ -152,10 +160,12 @@ func (s *Server) GetPlantLifeCycleByID(w http.ResponseWriter, r *http.Request) {
 	helpers.SendSuccessHeader(w, resp)
 }
 
+// GetAllPlantLifeCycles will handle the initial request and then send the formed request
+// to the logic layer before returning the request
 func (s *Server) GetAllPlantLifeCycles(w http.ResponseWriter, r *http.Request) {
 	/**********************************************************************
 	/
-	/	Start Telemetry Span
+	/	Start Telemetry
 	/
 	/**********************************************************************/
 
