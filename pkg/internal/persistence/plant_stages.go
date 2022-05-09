@@ -16,13 +16,6 @@ func (db *Persistence) CreatePlantStage(req *routemodels.CreatePlantStageRequest
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO nutrients
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -37,7 +30,7 @@ func (db *Persistence) CreatePlantStage(req *routemodels.CreatePlantStageRequest
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CREATE_PLANT_STAGE_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -59,14 +52,6 @@ func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req *routemo
 	/
 	/**********************************************************************/
 	var result string
-
-	SQL := `
-	INSERT INTO nutrients
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -81,7 +66,7 @@ func (db *Persistence) CreatePlantStageWithTransaction(tx *sqlx.Tx, req *routemo
 	/
 	/**********************************************************************/
 
-	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := tx.QueryRow(CREATE_PLANT_STAGE_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -104,13 +89,6 @@ func (db *Persistence) CreatePlantStageCare(req *routemodels.CreatePlantStageCar
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO nutrients
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -125,7 +103,7 @@ func (db *Persistence) CreatePlantStageCare(req *routemodels.CreatePlantStageCar
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CREATE_PLANT_STAGE_CARE_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -148,13 +126,6 @@ func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req *rou
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO nutrients
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -169,7 +140,7 @@ func (db *Persistence) CreatePlantStageCareWithTransaction(tx *sqlx.Tx, req *rou
 	/
 	/**********************************************************************/
 
-	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := tx.QueryRow(CREATE_PLANT_STAGE_CARE_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -192,13 +163,6 @@ func (db *Persistence) CreatePlantStageNutrients(req *routemodels.CreatePlantSta
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO nutrients
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -213,7 +177,7 @@ func (db *Persistence) CreatePlantStageNutrients(req *routemodels.CreatePlantSta
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CREATE_PLANT_STAGE_NUTRIENTS_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -236,13 +200,6 @@ func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO nutrients
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -257,7 +214,7 @@ func (db *Persistence) CreatePlantStageNutrientsWithTransaction(tx *sqlx.Tx, req
 	/
 	/**********************************************************************/
 
-	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := tx.QueryRow(CREATE_PLANT_STAGE_NUTRIENTS_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -280,13 +237,6 @@ func (db *Persistence) ConnectPlantStage(req *routemodels.ConnectPlantStageReque
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO nutrients
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -301,7 +251,7 @@ func (db *Persistence) ConnectPlantStage(req *routemodels.ConnectPlantStageReque
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CONNECT_PLANT_STAGE_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -323,14 +273,6 @@ func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req *routem
 	/
 	/**********************************************************************/
 	var result string
-
-	SQL := `
-	INSERT INTO nutrients
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -345,7 +287,7 @@ func (db *Persistence) ConnectPlantStageWithTransaction(tx *sqlx.Tx, req *routem
 	/
 	/**********************************************************************/
 
-	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := tx.QueryRow(CONNECT_PLANT_STAGE_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -366,12 +308,6 @@ func (db *Persistence) DeletePlantStage(req *routemodels.DeletePlantStageRequest
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
-
-	SQL := `
-	UPDATE nutrients SET archived = NOW()
-	WHERE nutrients.id = $1
-	`
 
 	/**********************************************************************
 	/
@@ -387,7 +323,7 @@ func (db *Persistence) DeletePlantStage(req *routemodels.DeletePlantStageRequest
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_PLANT_STAGE_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -435,22 +371,6 @@ func (db *Persistence) GetPlantStageByID(req *routemodels.GetPlantStageRequest) 
 	/**********************************************************************/
 	var result routemodels.PlantStage
 
-	SQL := `
-	SELECT
-		nutrients.id AS id,
-		nutrients.display_name AS display_name,
-		nutrients.created AS created_at,
-		nutrients.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
-	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
-	WHERE nutrients.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -466,7 +386,7 @@ func (db *Persistence) GetPlantStageByID(req *routemodels.GetPlantStageRequest) 
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args); err != nil {
+	if err := db.Postgres.Get(&result, GET_PLANT_STAGE_BY_ID_SQL, args); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -489,22 +409,6 @@ func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req *routem
 	/**********************************************************************/
 	var result routemodels.PlantStage
 
-	SQL := `
-	SELECT
-		nutrients.id AS id,
-		nutrients.display_name AS display_name,
-		nutrients.created AS created_at,
-		nutrients.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
-	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
-	WHERE nutrients.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -520,7 +424,7 @@ func (db *Persistence) GetPlantStageByIDWithTransaction(tx *sqlx.Tx, req *routem
 	/
 	/**********************************************************************/
 
-	if err := tx.Get(&result, SQL, args...); err != nil {
+	if err := tx.Get(&result, GET_PLANT_STAGE_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -543,22 +447,6 @@ func (db *Persistence) GetPlantStageCareByID(req *routemodels.GetPlantStageCareB
 	/**********************************************************************/
 	var result routemodels.PlantStage
 
-	SQL := `
-	SELECT
-		nutrients.id AS id,
-		nutrients.display_name AS display_name,
-		nutrients.created AS created_at,
-		nutrients.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
-	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
-	WHERE nutrients.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -573,7 +461,7 @@ func (db *Persistence) GetPlantStageCareByID(req *routemodels.GetPlantStageCareB
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_PLANT_STAGE_CARE_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -596,22 +484,6 @@ func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.T
 	/**********************************************************************/
 	var result routemodels.PlantStage
 
-	SQL := `
-	SELECT
-		nutrients.id AS id,
-		nutrients.display_name AS display_name,
-		nutrients.created AS created_at,
-		nutrients.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
-	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
-	WHERE nutrients.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -626,7 +498,7 @@ func (db *Persistence) GetPlantStageCareByPlantStageIDWithTransaction(tx *sqlx.T
 	/
 	/**********************************************************************/
 
-	if err := tx.Get(&result, SQL, args...); err != nil {
+	if err := tx.Get(&result, GET_PLANT_STAGE_CARE_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -649,22 +521,6 @@ func (db *Persistence) GetPlantStageNutrient(req *routemodels.GetPlantStageNutri
 	/**********************************************************************/
 	var result routemodels.PlantStage
 
-	SQL := `
-	SELECT
-		nutrients.id AS id,
-		nutrients.display_name AS display_name,
-		nutrients.created AS created_at,
-		nutrients.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
-	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
-	WHERE nutrients.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -679,7 +535,7 @@ func (db *Persistence) GetPlantStageNutrient(req *routemodels.GetPlantStageNutri
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_PLANT_STAGE_NUTRIENT_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -701,22 +557,6 @@ func (db *Persistence) GetAllPlantStages(req *routemodels.GetAllPlantStagesReque
 	/
 	/**********************************************************************/
 	var result []routemodels.PlantStage
-
-	SQL := `
-	SELECT
-		nutrients.id AS id,
-		nutrients.display_name AS display_name,
-		nutrients.created AS created_at,
-		nutrients.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
-	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -729,7 +569,7 @@ func (db *Persistence) GetAllPlantStages(req *routemodels.GetAllPlantStagesReque
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_PLANT_STAGE_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -752,21 +592,6 @@ func (db *Persistence) GetAllPlantStagesWithTransaction(tx *sqlx.Tx, req *routem
 	/**********************************************************************/
 	var result []routemodels.PlantStage
 
-	SQL := `
-	SELECT
-		nutrients.id AS id,
-		nutrients.display_name AS display_name,
-		nutrients.created AS created_at,
-		nutrients.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM nutrients
-	LEFT JOIN members AS cre_member ON members.id = nutrients.created_by
-	LEFT JOIN members AS up_member ON members.id = nutrients.updated_by
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -779,7 +604,7 @@ func (db *Persistence) GetAllPlantStagesWithTransaction(tx *sqlx.Tx, req *routem
 	/
 	/**********************************************************************/
 
-	if err := tx.Select(&result, SQL, args...); err != nil {
+	if err := tx.Select(&result, GET_ALL_PLANT_STAGE_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
