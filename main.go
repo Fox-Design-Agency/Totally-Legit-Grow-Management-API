@@ -5,9 +5,14 @@
 package main
 
 import (
-	"fmt"
+	"context"
 	"log"
+	"net"
 	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
 
 	"totally-legit-grow-management/v1/pkg/server"
 	"totally-legit-grow-management/v1/resources/config"
@@ -21,10 +26,10 @@ func main() {
 	/	Configuration
 	/
 	/**********************************************************************/
+	ctx, cancel := context.WithCancel(context.Background())
 
 	cfg := config.LoadConfig()
 
-	// define server
 	svr := server.NewServer(cfg, true)
 
 	/**********************************************************************
@@ -301,12 +306,53 @@ func main() {
 	/	Start Server
 	/
 	/**********************************************************************/
+	httpServer := &http.Server{
+		Addr:        ":8080",
+		Handler:     r,
+		BaseContext: func(_ net.Listener) context.Context { return ctx },
+	}
 	log.Println("Running local on port: ", cfg.Port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", cfg.Port), nil))
+	go func() {
+		if err := httpServer.ListenAndServe(); err != http.ErrServerClosed {
+			log.Fatalf("HTTP server ListenAndServe: %v", err)
+		}
+	}()
 
 	/**********************************************************************
 	/
 	/	Run Shutdown Sequence
 	/
 	/**********************************************************************/
+	signalChan := make(chan os.Signal, 1)
+
+	signal.Notify(
+		signalChan,
+		syscall.SIGHUP,  // kill -SIGHUP XXXX
+		syscall.SIGINT,  // kill -SIGINT XXXX or Ctrl+c
+		syscall.SIGQUIT, // kill -SIGQUIT XXXX
+	)
+	<-signalChan
+	log.Print("os.Interrupt - shutting down...\n")
+
+	go func() {
+		<-signalChan
+		log.Fatal("os.Kill - terminating...\n")
+	}()
+
+	gracefullCtx, cancelShutdown := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancelShutdown()
+
+	if err := httpServer.Shutdown(gracefullCtx); err != nil {
+		log.Printf("shutdown error: %v\n", err)
+		defer os.Exit(1)
+		return
+	} else {
+		log.Printf("gracefully stopped\n")
+	}
+
+	// manually cancel context if not using httpServer.RegisterOnShutdown(cancel)
+	cancel()
+
+	defer os.Exit(0)
+	return
 }
