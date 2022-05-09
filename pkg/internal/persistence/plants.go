@@ -12,13 +12,6 @@ func (db *Persistence) CreatePlant(req *routemodels.CreatePlantRequest) (*routem
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO growing_mediums
-	(display_name)
-	VALUES ($1)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -35,7 +28,7 @@ func (db *Persistence) CreatePlant(req *routemodels.CreatePlantRequest) (*routem
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CREATE_PLANT_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -56,12 +49,6 @@ func (db *Persistence) DeletePlant(req *routemodels.DeletePlantRequest) error {
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
-
-	SQL := `
-	UPDATE growing_mediums SET archived = NOW()
-	WHERE growing_mediums.id = $1
-	`
 
 	/**********************************************************************
 	/
@@ -79,7 +66,7 @@ func (db *Persistence) DeletePlant(req *routemodels.DeletePlantRequest) error {
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_PLANT_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
@@ -128,23 +115,6 @@ func (db *Persistence) GetPlant(req *routemodels.GetPlantRequest) (*routemodels.
 	/
 	/**********************************************************************/
 	var result routemodels.Plant
-
-	SQL := `
-	SELECT
-		growing_mediums.id AS id,
-		growing_mediums.display_name AS display_name,
-		growing_mediums.created AS created_at,
-		growing_mediums.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_mediums
-	LEFT JOIN members AS cre_member ON members.id = growing_mediums.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_mediums.updated_by
-	WHERE growing_mediums.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -161,7 +131,7 @@ func (db *Persistence) GetPlant(req *routemodels.GetPlantRequest) (*routemodels.
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_PLANT_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -184,21 +154,6 @@ func (db *Persistence) GetAllPlants(req *routemodels.GetAllPlantsRequest) (*rout
 	/**********************************************************************/
 	var result []routemodels.Plant
 
-	SQL := `
-	SELECT
-		growing_mediums.id AS id,
-		growing_mediums.display_name AS display_name,
-		growing_mediums.created AS created_at,
-		growing_mediums.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_mediums
-	LEFT JOIN members AS cre_member ON members.id = growing_mediums.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_mediums.updated_by
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -213,7 +168,7 @@ func (db *Persistence) GetAllPlants(req *routemodels.GetAllPlantsRequest) (*rout
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_PLANTS_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
