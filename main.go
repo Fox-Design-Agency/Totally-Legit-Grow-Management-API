@@ -307,7 +307,7 @@ func main() {
 	/
 	/**********************************************************************/
 	httpServer := &http.Server{
-		Addr:        ":8080",
+		Addr:        ":" + cfg.Port,
 		Handler:     r,
 		BaseContext: func(_ net.Listener) context.Context { return ctx },
 	}
