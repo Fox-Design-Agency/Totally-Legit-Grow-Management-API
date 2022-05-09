@@ -49,7 +49,6 @@ func (db *Persistence) DeleteHarvest(req *routemodels.DeleteHarvestRequest) erro
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
 
 	/**********************************************************************
 	/
@@ -67,7 +66,7 @@ func (db *Persistence) DeleteHarvest(req *routemodels.DeleteHarvestRequest) erro
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(DELETE_HARVEST_SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_HARVEST_SQL, args...); err != nil {
 		// handle err
 		return err
 	}

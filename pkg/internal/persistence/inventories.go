@@ -49,7 +49,6 @@ func (db *Persistence) DeleteInventory(req *routemodels.DeleteInventoryRequest) 
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
 
 	/**********************************************************************
 	/
@@ -67,7 +66,7 @@ func (db *Persistence) DeleteInventory(req *routemodels.DeleteInventoryRequest) 
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(DELETE_INVENTORY_SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_INVENTORY_SQL, args...); err != nil {
 		// handle err
 		return err
 	}

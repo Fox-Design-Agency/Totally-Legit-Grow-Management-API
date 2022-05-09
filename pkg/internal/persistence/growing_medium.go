@@ -49,7 +49,6 @@ func (db *Persistence) DeleteGrowingMedium(req *routemodels.DeleteGrowingMediumR
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
 
 	/**********************************************************************
 	/
@@ -67,7 +66,7 @@ func (db *Persistence) DeleteGrowingMedium(req *routemodels.DeleteGrowingMediumR
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(DELETE_GROWING_MEDIUM_SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_GROWING_MEDIUM_SQL, args...); err != nil {
 		// handle err
 		return err
 	}

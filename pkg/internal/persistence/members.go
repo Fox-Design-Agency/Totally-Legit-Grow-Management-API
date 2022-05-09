@@ -47,7 +47,6 @@ func (db *Persistence) DeleteMember(req *routemodels.DeleteMemberRequest) error 
 	/	State Stuff to Return
 	/
 	/**********************************************************************/
-	var result string
 
 	/**********************************************************************
 	/
@@ -63,7 +62,7 @@ func (db *Persistence) DeleteMember(req *routemodels.DeleteMemberRequest) error 
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(DELETE_MEMBER_SQL, args...).Scan(result); err != nil {
+	if _, err := db.Postgres.Exec(DELETE_MEMBER_SQL, args...); err != nil {
 		// handle err
 		return err
 	}
