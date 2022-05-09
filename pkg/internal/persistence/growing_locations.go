@@ -16,13 +16,6 @@ func (db *Persistence) CreateGrowingLocation(req *routemodels.CreateGrowingLocat
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO growing_locations
-	(display_name, growing_group)
-	VALUES ($1, $2)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -40,7 +33,7 @@ func (db *Persistence) CreateGrowingLocation(req *routemodels.CreateGrowingLocat
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(CREATE_GROWING_LOCATION_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -63,13 +56,6 @@ func (db *Persistence) CreateGrowingLocationWithTransaction(tx *sqlx.Tx, req *ro
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	INSERT INTO growing_locations
-	(display_name, growing_group)
-	VALUES ($1, $2)
-	RETURNING id
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -87,7 +73,7 @@ func (db *Persistence) CreateGrowingLocationWithTransaction(tx *sqlx.Tx, req *ro
 	/
 	/**********************************************************************/
 
-	if err := tx.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := tx.QueryRow(CREATE_GROWING_LOCATION_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -110,11 +96,6 @@ func (db *Persistence) DeleteGrowingLocation(req *routemodels.DeleteGrowingLocat
 	/**********************************************************************/
 	var result string
 
-	SQL := `
-	UPDATE growing_locations SET archived = NOW()
-	WHERE growing_locations.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -131,7 +112,7 @@ func (db *Persistence) DeleteGrowingLocation(req *routemodels.DeleteGrowingLocat
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.QueryRow(SQL, args...).Scan(result); err != nil {
+	if err := db.Postgres.QueryRow(DELETE_GROWING_LOCATION_SQL, args...).Scan(result); err != nil {
 		// handle err
 		return err
 	}
@@ -179,23 +160,6 @@ func (db *Persistence) GetGrowingLocationByID(req *routemodels.GetGrowingLocatio
 	/**********************************************************************/
 	var result routemodels.GrowingLocation
 
-	SQL := `
-	SELECT
-		growing_locations.id AS id,
-		growing_locations.growing_group AS growing_group_id,
-		growing_locations.display_name AS display_name,
-		growing_locations.created AS created_at,
-		growing_locations.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_locations
-	LEFT JOIN members AS cre_member ON members.id = growing_locations.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_locations.updated_by
-	WHERE growing_locations.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -212,7 +176,7 @@ func (db *Persistence) GetGrowingLocationByID(req *routemodels.GetGrowingLocatio
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROWING_LOCATION_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -235,23 +199,6 @@ func (db *Persistence) GetGrowingLocationByIDWithTransaction(tx *sqlx.Tx, req *r
 	/**********************************************************************/
 	var result routemodels.GrowingLocation
 
-	SQL := `
-	SELECT
-		growing_locations.id AS id,
-		growing_locations.growing_group AS growing_group_id,
-		growing_locations.display_name AS display_name,
-		growing_locations.created AS created_at,
-		growing_locations.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_locations
-	LEFT JOIN members AS cre_member ON members.id = growing_locations.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_locations.updated_by
-	WHERE growing_locations.id = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -268,7 +215,7 @@ func (db *Persistence) GetGrowingLocationByIDWithTransaction(tx *sqlx.Tx, req *r
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Get(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Get(&result, GET_GROWING_LOCATION_BY_ID_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -291,23 +238,6 @@ func (db *Persistence) GetAllGrowingLocationsByGrowingGroupID(req *routemodels.G
 	/**********************************************************************/
 	var result []routemodels.GrowingLocation
 
-	SQL := `
-	SELECT
-		growing_locations.id AS id,
-		growing_locations.growing_group AS growing_group_id,
-		growing_locations.display_name AS display_name,
-		growing_locations.created AS created_at,
-		growing_locations.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_locations
-	LEFT JOIN members AS cre_member ON members.id = growing_locations.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_locations.updated_by
-	WHERE growing_locations.growing_group = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -324,7 +254,7 @@ func (db *Persistence) GetAllGrowingLocationsByGrowingGroupID(req *routemodels.G
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_GROWING_LOCATIONS_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
@@ -347,23 +277,6 @@ func (db *Persistence) GetAllGrowingLocationsByGrowingGroupIDWithTransaction(tx 
 	/**********************************************************************/
 	var result []routemodels.GrowingLocation
 
-	SQL := `
-	SELECT
-		growing_locations.id AS id,
-		growing_locations.growing_group AS growing_group_id,
-		growing_locations.display_name AS display_name,
-		growing_locations.created AS created_at,
-		growing_locations.updated AS updated_at,
-		cre_member.id AS created_member_id,
-		cre_member.display_name AS created_member_name,
-		up_member.id AS updated_member_id,
-		up_member.display_name AS updated_member_name
-	FROM growing_locations
-	LEFT JOIN members AS cre_member ON members.id = growing_locations.created_by
-	LEFT JOIN members AS up_member ON members.id = growing_locations.updated_by
-	WHERE growing_locations.growing_group = $1
-	`
-
 	/**********************************************************************
 	/
 	/	Define Arguments For SQL Call
@@ -380,7 +293,7 @@ func (db *Persistence) GetAllGrowingLocationsByGrowingGroupIDWithTransaction(tx 
 	/
 	/**********************************************************************/
 
-	if err := db.Postgres.Select(&result, SQL, args...); err != nil {
+	if err := db.Postgres.Select(&result, GET_ALL_GROWING_LOCATIONS_SQL, args...); err != nil {
 		// handle err
 		return nil, err
 	}
