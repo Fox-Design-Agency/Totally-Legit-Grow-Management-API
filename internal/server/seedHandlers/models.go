@@ -6,8 +6,10 @@ package seedhandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	seedcontrol "totally-legit-grow-management/v1/internal/logic/seedsControl"
 )
+
+var _ ISeedHandler = &Seed{}
 
 type ISeedHandler interface {
 	CreateSeed(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type ISeedHandler interface {
 }
 
 type Seed struct {
-	Logic logic.ISeedsLogic
+	Logic seedcontrol.ISeedsLogic
 }

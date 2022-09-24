@@ -2,8 +2,10 @@ package growinglevelhandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	growinglevelcontrol "totally-legit-grow-management/v1/internal/logic/growingLevelsControl"
 )
+
+var _ IGrowingLevelHandler = &GrowingLevel{}
 
 type IGrowingLevelHandler interface {
 	CreateGrowingLevel(w http.ResponseWriter, r *http.Request)
@@ -14,5 +16,5 @@ type IGrowingLevelHandler interface {
 }
 
 type GrowingLevel struct {
-	Logic logic.IGrowingLevelsLogic
+	Logic growinglevelcontrol.IGrowingLevelsLogic
 }

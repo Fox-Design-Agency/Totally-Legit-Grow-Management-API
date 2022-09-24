@@ -2,8 +2,10 @@ package growinggrouphandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	growinggroupcontrol "totally-legit-grow-management/v1/internal/logic/growingGroupsControl"
 )
+
+var _ IGrowingGroupHandler = &GrowingGroup{}
 
 type IGrowingGroupHandler interface {
 	CreateGrowingGroup(w http.ResponseWriter, r *http.Request)
@@ -14,5 +16,5 @@ type IGrowingGroupHandler interface {
 }
 
 type GrowingGroup struct {
-	Logic logic.IGrowingGroupsLogic
+	Logic growinggroupcontrol.IGrowingGroupsLogic
 }

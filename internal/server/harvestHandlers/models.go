@@ -6,8 +6,10 @@ package harvesthandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	harvestcontrol "totally-legit-grow-management/v1/internal/logic/harvestsControl"
 )
+
+var _ IHarvestHandler = &Harvest{}
 
 type IHarvestHandler interface {
 	CreateHarvest(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IHarvestHandler interface {
 }
 
 type Harvest struct {
-	Logic logic.IHarvestsLogic
+	Logic harvestcontrol.IHarvestsLogic
 }

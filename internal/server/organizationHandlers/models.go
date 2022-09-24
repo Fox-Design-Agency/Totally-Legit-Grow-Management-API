@@ -6,8 +6,10 @@ package organizationhandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	organizationcontrol "totally-legit-grow-management/v1/internal/logic/organizationsControl"
 )
+
+var _ IOrganizationHandler = &Organization{}
 
 type IOrganizationHandler interface {
 	CreateOrganization(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IOrganizationHandler interface {
 }
 
 type Organization struct {
-	Logic logic.IOrganizationsLogic
+	Logic organizationcontrol.IOrganizationsLogic
 }

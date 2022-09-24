@@ -6,8 +6,10 @@ package devicehandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	devicecontrol "totally-legit-grow-management/v1/internal/logic/deviceControl"
 )
+
+var _ IDeviceHandler = &DeviceHandler{}
 
 type IDeviceHandler interface {
 	CreateDeviceAction(w http.ResponseWriter, r *http.Request)
@@ -36,5 +38,5 @@ type IDeviceHandler interface {
 }
 
 type DeviceHandler struct {
-	Logic logic.IDeviceLogic
+	Logic devicecontrol.IDeviceLogic
 }

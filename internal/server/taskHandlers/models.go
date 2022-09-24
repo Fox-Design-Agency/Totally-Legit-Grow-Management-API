@@ -6,8 +6,10 @@ package taskhandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	taskcontrol "totally-legit-grow-management/v1/internal/logic/taskControl"
 )
+
+var _ ITaskHandler = &Task{}
 
 type ITaskHandler interface {
 	CreateTask(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type ITaskHandler interface {
 }
 
 type Task struct {
-	Logic logic.ITasksLogic
+	Logic taskcontrol.ITasksLogic
 }

@@ -6,8 +6,10 @@ package producthandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	productcontrol "totally-legit-grow-management/v1/internal/logic/productsControl"
 )
+
+var _ IProductHandler = &Product{}
 
 type IProductHandler interface {
 	CreateProduct(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IProductHandler interface {
 }
 
 type Product struct {
-	Logic logic.IProductsLogic
+	Logic productcontrol.IProductsLogic
 }

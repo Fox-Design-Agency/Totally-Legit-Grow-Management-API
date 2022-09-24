@@ -6,8 +6,10 @@ package memberhandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	memberControl "totally-legit-grow-management/v1/internal/logic/membersControl"
 )
+
+var _ IMemberHandler = &Member{}
 
 type IMemberHandler interface {
 	CreateMember(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IMemberHandler interface {
 }
 
 type Member struct {
-	Logic logic.IMembersLogic
+	Logic memberControl.IMembersLogic
 }

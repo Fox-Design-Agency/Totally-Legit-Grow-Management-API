@@ -6,8 +6,10 @@ package plantstagehandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	plantstagecontrol "totally-legit-grow-management/v1/internal/logic/plantStagesControl"
 )
+
+var _ IPlantStageHandler = &PlantStage{}
 
 type IPlantStageHandler interface {
 	CreatePlantStage(w http.ResponseWriter, r *http.Request)
@@ -23,5 +25,5 @@ type IPlantStageHandler interface {
 }
 
 type PlantStage struct {
-	Logic logic.IPLantStagesLogic
+	Logic plantstagecontrol.IPLantStagesLogic
 }

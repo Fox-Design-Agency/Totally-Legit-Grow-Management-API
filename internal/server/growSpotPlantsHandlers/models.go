@@ -6,8 +6,10 @@ package growspotplanthandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	growspotplantscontrol "totally-legit-grow-management/v1/internal/logic/growSpotPlantsControl"
 )
+
+var _ IGrowSpotPlantsHandlers = &GrowSpotPlants{}
 
 type IGrowSpotPlantsHandlers interface {
 	CreateGrowSpotPlant(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IGrowSpotPlantsHandlers interface {
 }
 
 type GrowSpotPlants struct {
-	Logic logic.IGrowSpotPlantsLogic
+	Logic growspotplantscontrol.IGrowSpotPlantsLogic
 }

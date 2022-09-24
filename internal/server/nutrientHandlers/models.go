@@ -6,8 +6,10 @@ package nutrienthandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	nutrientcontrol "totally-legit-grow-management/v1/internal/logic/nutrientControl"
 )
+
+var _ INutrientHandler = &Nutrient{}
 
 type INutrientHandler interface {
 	CreateNutrient(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type INutrientHandler interface {
 }
 
 type Nutrient struct {
-	Logic logic.INutrientsLogic
+	Logic nutrientcontrol.INutrientsLogic
 }

@@ -6,8 +6,10 @@ package growinglocationshandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	growinglocationcontrol "totally-legit-grow-management/v1/internal/logic/growingLocationsControl"
 )
+
+var _ IGrowingLocationHandlers = &GrowingLocation{}
 
 type IGrowingLocationHandlers interface {
 	CreateGrowingLocation(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IGrowingLocationHandlers interface {
 }
 
 type GrowingLocation struct {
-	Logic logic.IGrowingLocationsLogic
+	Logic growinglocationcontrol.IGrowingLocationsLogic
 }

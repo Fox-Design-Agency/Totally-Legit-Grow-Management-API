@@ -6,8 +6,10 @@ package inventoryhandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	inventorycontrol "totally-legit-grow-management/v1/internal/logic/inventoryControl"
 )
+
+var _ IInventoryHandler = &Inventory{}
 
 type IInventoryHandler interface {
 	CreateInventory(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IInventoryHandler interface {
 }
 
 type Inventory struct {
-	Logic logic.IInventoriesLogic
+	Logic inventorycontrol.IInventoriesLogic
 }

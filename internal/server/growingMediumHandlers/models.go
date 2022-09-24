@@ -6,8 +6,10 @@ package growingmediumhandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	growingmediumcontrol "totally-legit-grow-management/v1/internal/logic/growingMediumControl"
 )
+
+var _ IGrowingMediumHandler = &GrowingMedium{}
 
 type IGrowingMediumHandler interface {
 	CreateGrowingMedium(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IGrowingMediumHandler interface {
 }
 
 type GrowingMedium struct {
-	Logic logic.IGrowingMediumsLogic
+	Logic growingmediumcontrol.IGrowingMediumsLogic
 }

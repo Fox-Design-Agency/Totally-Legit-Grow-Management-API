@@ -6,8 +6,10 @@ package planthandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	plantcontrol "totally-legit-grow-management/v1/internal/logic/plantControl"
 )
+
+var _ IPlantHandlers = &Plant{}
 
 type IPlantHandlers interface {
 	CreatePlant(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IPlantHandlers interface {
 }
 
 type Plant struct {
-	Logic logic.IPlantsLogic
+	Logic plantcontrol.IPlantsLogic
 }

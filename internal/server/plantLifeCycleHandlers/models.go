@@ -6,8 +6,11 @@ package plantlifecyclehandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+
+	plantlifecylecontrol "totally-legit-grow-management/v1/internal/logic/plantLifecyclesControl"
 )
+
+var _ IPlantLifeCycleHandler = &PlantLifeCycle{}
 
 type IPlantLifeCycleHandler interface {
 	CreatePlantLifeCycle(w http.ResponseWriter, r *http.Request)
@@ -18,5 +21,5 @@ type IPlantLifeCycleHandler interface {
 }
 
 type PlantLifeCycle struct {
-	Logic logic.IPlantLifeCyclesLogic
+	Logic plantlifecylecontrol.IPlantLifeCyclesLogic
 }

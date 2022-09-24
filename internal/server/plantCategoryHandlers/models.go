@@ -6,8 +6,10 @@ package plantcategoryhandlers
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/internal/logic"
+	plantcategorycontrol "totally-legit-grow-management/v1/internal/logic/plantCategoriesControl"
 )
+
+var _ IPlantCategoryHandler = &PlantCategory{}
 
 type IPlantCategoryHandler interface {
 	CreatePlantCategory(w http.ResponseWriter, r *http.Request)
@@ -18,5 +20,5 @@ type IPlantCategoryHandler interface {
 }
 
 type PlantCategory struct {
-	Logic logic.IPlantCategoriesLogic
+	Logic plantcategorycontrol.IPlantCategoriesLogic
 }

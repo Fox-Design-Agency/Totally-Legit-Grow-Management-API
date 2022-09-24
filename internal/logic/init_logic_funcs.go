@@ -6,6 +6,7 @@ package logic
 
 import (
 	"log"
+	devicecontrol "totally-legit-grow-management/v1/internal/logic/deviceControl"
 	"totally-legit-grow-management/v1/internal/persistence"
 	"totally-legit-grow-management/v1/resources/config"
 )
@@ -15,8 +16,46 @@ func NewLogicControl(cfg config.Config) (*Logic, error) {
 	if err != nil {
 		log.Fatal("Couldn't Make DB Connection")
 	}
+	// device logic
+	deviceLogic := devicecontrol.InitDeviceLogic(db)
+
+	// growing groups
+
+	//  growing levels
+
+	// growing locations
+
+	// growing medium
+	// grow spot plants
+
+	// grow spots
+
+	// harvests
+
+	// inventory
+
+	// memebrs
+
+	// nutrients
+
+	// organizations
+
+	// plant categories
+
+	// plant
+
+	// plant life cycle
+
+	// plant stages
+
+	// products
+
+	// seeds
+
+	//task
 
 	return &Logic{
+		DeviceLogic: deviceLogic,
 		Persistence: db,
 	}, nil
 }
