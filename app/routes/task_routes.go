@@ -12,9 +12,9 @@ import (
 )
 
 func taskRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/task", svr.CreateTask).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/task", svr.DeleteTask).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/task", svr.EditTask).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/task", svr.GetTask).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/tasks", svr.GetAllTasks).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/task", svr.Task.CreateTask).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/task", svr.Task.DeleteTask).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/task", svr.Task.EditTask).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/task", svr.Task.GetTask).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/tasks", svr.Task.GetAllTasks).Methods(http.MethodGet)
 }

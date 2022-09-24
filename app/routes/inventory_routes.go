@@ -12,9 +12,9 @@ import (
 )
 
 func inventoryRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/inventory", svr.CreateInventory).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/inventory", svr.DeleteInventory).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/inventory", svr.EditInventory).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/inventory", svr.GetInventory).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/inventories", svr.GetAllInventories).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/inventory", svr.Inventory.CreateInventory).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/inventory", svr.Inventory.DeleteInventory).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/inventory", svr.Inventory.EditInventory).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/inventory", svr.Inventory.GetInventory).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/inventories", svr.Inventory.GetAllInventories).Methods(http.MethodGet)
 }

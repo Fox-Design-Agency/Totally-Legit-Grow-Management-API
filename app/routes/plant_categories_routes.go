@@ -12,9 +12,9 @@ import (
 )
 
 func plantCategoriesRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/plant-category", svr.CreatePlantCategory).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/plant-category", svr.DeletePlantCategory).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/plant-category", svr.EditPlantCategory).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/plant-category", svr.GetPlantCategory).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/plant-categories", svr.GetAllPlantCategories).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/plant-category", svr.PlantCategory.CreatePlantCategory).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/plant-category", svr.PlantCategory.DeletePlantCategory).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/plant-category", svr.PlantCategory.EditPlantCategory).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/plant-category", svr.PlantCategory.GetPlantCategory).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/plant-categories", svr.PlantCategory.GetAllPlantCategories).Methods(http.MethodGet)
 }

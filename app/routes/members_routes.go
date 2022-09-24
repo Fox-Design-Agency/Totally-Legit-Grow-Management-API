@@ -12,9 +12,9 @@ import (
 )
 
 func membersRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/member", svr.CreateMember).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/member", svr.DeleteMember).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/member", svr.EditMember).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/member", svr.GetMember).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/members", svr.GetAllMembers).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/member", svr.Member.CreateMember).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/member", svr.Member.DeleteMember).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/member", svr.Member.EditMember).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/member", svr.Member.GetMember).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/members", svr.Member.GetAllMembers).Methods(http.MethodGet)
 }

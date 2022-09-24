@@ -13,6 +13,39 @@ import (
 
 func NewServer(cfg config.Config, shouldMigrate bool) *Server {
 
+	// Device Handlers
+	// Growing Group Handlers
+
+	// GrowingLocation Handlers
+
+	// Growing Medium Handlers
+
+	// Grow Spot Handlers
+
+	// Harvest Handlers
+
+	// Inventory Handlers
+
+	// Member Handlers
+
+	// Nutrient Handlers
+
+	// Organization Handlers
+
+	// Plant Category Handlers
+
+	// Plant Handlers
+
+	// Plant Life Cycle Handlers
+
+	// Plant Stage Handlers
+
+	// Product Handlers
+
+	// Seed Handlers
+
+	// Task Handlers
+
 	control, err := logic.NewLogicControl(cfg)
 	if err != nil {
 		log.Fatal("Logic Layer Not Setup!")
@@ -26,7 +59,5 @@ func NewServer(cfg config.Config, shouldMigrate bool) *Server {
 		}
 	}
 
-	return &Server{
-		Logic: control,
-	}
+	return &Server{}
 }

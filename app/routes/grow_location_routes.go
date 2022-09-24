@@ -12,9 +12,9 @@ import (
 )
 
 func growLocationRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/growing-location", svr.CreateGrowingLocation).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/growing-location", svr.DeleteGrowingLocation).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/growing-location", svr.EditGrowingLocation).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/growing-location", svr.GetGrowingLocation).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/growing-locations", svr.GetAllGrowingLocations).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-location", svr.GrowingLocation.CreateGrowingLocation).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/growing-location", svr.GrowingLocation.DeleteGrowingLocation).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/growing-location", svr.GrowingLocation.EditGrowingLocation).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/growing-location", svr.GrowingLocation.GetGrowingLocation).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-locations", svr.GrowingLocation.GetAllGrowingLocations).Methods(http.MethodGet)
 }

@@ -12,9 +12,9 @@ import (
 )
 
 func productRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/product", svr.CreateProduct).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/product", svr.DeleteProduct).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/product", svr.EditProduct).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/product", svr.GetProduct).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/products", svr.GetAllProducts).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/product", svr.Product.CreateProduct).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/product", svr.Product.DeleteProduct).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/product", svr.Product.EditProduct).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/product", svr.Product.GetProduct).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/products", svr.Product.GetAllProducts).Methods(http.MethodGet)
 }

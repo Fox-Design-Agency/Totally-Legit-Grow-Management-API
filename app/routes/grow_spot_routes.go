@@ -12,9 +12,9 @@ import (
 )
 
 func growSpotRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/growing-spot", svr.CreateGrowSpot).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/growing-spot", svr.DeleteGrowSpot).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/growing-spot", svr.EditGrowSpot).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/growing-spot", svr.GetGrowSpot).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/growing-spots", svr.GetAllGrowSpots).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-spot", svr.GrowSpot.CreateGrowSpot).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/growing-spot", svr.GrowSpot.DeleteGrowSpot).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/growing-spot", svr.GrowSpot.EditGrowSpot).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/growing-spot", svr.GrowSpot.GetGrowSpot).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-spots", svr.GrowSpot.GetAllGrowSpots).Methods(http.MethodGet)
 }

@@ -12,9 +12,9 @@ import (
 )
 
 func seedRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/seed", svr.CreateSeed).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/seed", svr.DeleteSeed).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/seed", svr.EditSeed).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/seed", svr.GetSeed).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/seeds", svr.GetAllSeeds).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/seed", svr.Seed.CreateSeed).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/seed", svr.Seed.DeleteSeed).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/seed", svr.Seed.EditSeed).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/seed", svr.Seed.GetSeed).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/seeds", svr.Seed.GetAllSeeds).Methods(http.MethodGet)
 }

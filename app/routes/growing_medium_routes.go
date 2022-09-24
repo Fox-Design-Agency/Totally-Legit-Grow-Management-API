@@ -12,9 +12,9 @@ import (
 )
 
 func growingMediumRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/growing-medium", svr.CreateGrowingMedium).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/growing-medium", svr.DeleteGrowingMedium).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/growing-medium", svr.EditGrowingMedium).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/growing-medium", svr.GetGrowingMedium).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/growing-mediums", svr.GetAllGrowingMediums).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-medium", svr.GrowingMedium.CreateGrowingMedium).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/growing-medium", svr.GrowingMedium.DeleteGrowingMedium).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/growing-medium", svr.GrowingMedium.EditGrowingMedium).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/growing-medium", svr.GrowingMedium.GetGrowingMedium).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-mediums", svr.GrowingMedium.GetAllGrowingMediums).Methods(http.MethodGet)
 }

@@ -12,9 +12,9 @@ import (
 )
 
 func growingLevelRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/growing-level", svr.CreateGrowingLevel).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/growing-level", svr.DeleteGrowingLevel).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/growing-level", svr.EditGrowingLevel).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/growing-level", svr.GetGrowingLevel).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/growing-levels", svr.GetAllGrowingLevels).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-level", svr.GrowingLevel.CreateGrowingLevel).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/growing-level", svr.GrowingLevel.DeleteGrowingLevel).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/growing-level", svr.GrowingLevel.EditGrowingLevel).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/growing-level", svr.GrowingLevel.GetGrowingLevel).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/growing-levels", svr.GrowingLevel.GetAllGrowingLevels).Methods(http.MethodGet)
 }

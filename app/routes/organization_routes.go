@@ -12,9 +12,9 @@ import (
 )
 
 func organizationRoutes(r *mux.Router, svr *server.Server) {
-	r.HandleFunc("/api/v1/organization", svr.CreateOrganization).Methods(http.MethodPost)
-	r.HandleFunc("/api/v1/organization", svr.DeleteOrganization).Methods(http.MethodDelete)
-	r.HandleFunc("/api/v1/organization", svr.EditOrganization).Methods(http.MethodPut)
-	r.HandleFunc("/api/v1/organization", svr.GetOrganization).Methods(http.MethodGet)
-	r.HandleFunc("/api/v1/organizations", svr.GetAllOrganizations).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/organization", svr.Organization.CreateOrganization).Methods(http.MethodPost)
+	r.HandleFunc("/api/v1/organization", svr.Organization.DeleteOrganization).Methods(http.MethodDelete)
+	r.HandleFunc("/api/v1/organization", svr.Organization.EditOrganization).Methods(http.MethodPut)
+	r.HandleFunc("/api/v1/organization", svr.Organization.GetOrganization).Methods(http.MethodGet)
+	r.HandleFunc("/api/v1/organizations", svr.Organization.GetAllOrganizations).Methods(http.MethodGet)
 }
