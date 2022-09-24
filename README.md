@@ -110,7 +110,7 @@ There should only be one SQL call in a single function. If multiple calls are re
 
 ### Set The Secrets
 
-    create a secretStuff.go file in ./resources/config. It is also listed in the .gitignore, but this will set your env variables for you.
+create a secretStuff.go file in ./resources/config. It is also listed in the .gitignore, but this will set your env variables for you.
 
     package config
 
