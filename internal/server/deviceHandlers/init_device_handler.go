@@ -6,8 +6,6 @@ package devicehandlers
 
 import devicecontrol "totally-legit-grow-management/v1/internal/logic/deviceControl"
 
-var _ IDeviceHandler = &DeviceHandler{}
-
 func InitDeviceHandler(deviceLogic devicecontrol.IDeviceLogic) *DeviceHandler {
 	return &DeviceHandler{
 		Logic: deviceLogic,
