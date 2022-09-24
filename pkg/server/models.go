@@ -6,8 +6,10 @@ package server
 
 import (
 	"totally-legit-grow-management/v1/pkg/internal/logic"
+	devicehandlers "totally-legit-grow-management/v1/pkg/server/device_handlers"
 )
 
 type Server struct {
-	Logic logic.ILogic
+	DeviceHandlers devicehandlers.IDeviceHandler
+	Logic          logic.ILogic
 }
