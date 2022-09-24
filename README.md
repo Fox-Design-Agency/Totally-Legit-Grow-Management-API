@@ -1,6 +1,6 @@
 # Totally Legit Grow Management API
 
-This is the base API that works in conjunction with several other repos to form the Totally Legit Grow System.
+This is the base API that works in conjunction with several other repos to form the Totally Legit Grow Management System.
 
 ## Table of Contents
 
@@ -14,10 +14,11 @@ This is the base API that works in conjunction with several other repos to form 
     - [Logic Pattern](#logic-pattern)
     - [Persistence Pattern](#persistence-pattern)
   - [Clear DB Quickly](#clear-db-quickly)
+  - [Set The Secrets](#set-the-secrets)
 
 ## Overview
 
-This API is responsible for creating and managing grow system. This is through defining global items, such as:
+This API is responsible for creating and managing various grow systems. This is through defining global items, such as:
 
 - Seeds
 - Plants
@@ -106,3 +107,22 @@ There should only be one SQL call in a single function. If multiple calls are re
     CREATE SCHEMA public;
     GRANT ALL ON SCHEMA public TO postgres;
     GRANT ALL ON SCHEMA public TO public;
+
+### Set The Secrets
+
+    create a secretStuff.go file in ./resources/config. It is also listed in the .gitignore, but this will set your env variables for you.
+
+    package config
+
+    import (
+      "os"
+    )
+
+    func setTheSecrets() {
+      os.Setenv("DBHOST", "localhost")
+      os.Setenv("DBNAME", "smart-grow")
+      os.Setenv("DBUSER", "postgres")
+      os.Setenv("DBPASS", "password")
+      os.Setenv("PORT", "9001")
+      os.Setenv("ENVIRONMENT", "local")
+    }
