@@ -4,9 +4,11 @@
 
 package inventorycontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	"totally-legit-grow-management/v1/internal/persistence/inventories"
+)
 
-func InitInventoryLogic(inventoryDB persistence.IInventoriesDB) *InventoryControl {
+func InitInventoryLogic(inventoryDB inventories.IInventoriesDB) *InventoryControl {
 	return &InventoryControl{
 		Persistence: inventoryDB,
 	}

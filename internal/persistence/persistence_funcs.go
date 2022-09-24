@@ -12,10 +12,8 @@ import (
 	migrate "github.com/rubenv/sql-migrate"
 )
 
-var _ IPersistence = &Persistence{}
-
 // MigrateDBUP runs the migration files found in the resources folder up
-func (db *Persistence) MigrateDBUP() error {
+func (db *DBControl) MigrateDBUP() error {
 	// run the migrate here
 	migrations := &migrate.FileMigrationSource{
 		Dir: "resources/migrations",
@@ -31,7 +29,7 @@ func (db *Persistence) MigrateDBUP() error {
 }
 
 //MigrateDBDown runs the migration files found in the resources folder down
-func (db *Persistence) MigrateDBDown() error {
+func (db *DBControl) MigrateDBDown() error {
 	// run the migrate here
 	migrations := &migrate.FileMigrationSource{
 		Dir: "resources/migrations",
@@ -50,7 +48,7 @@ func (db *Persistence) MigrateDBDown() error {
 // to utilize and compose persistence layers calls that require
 // a transaction. This transaction will need to be commited within
 // the logic layer prior to a successful return.
-func (db *Persistence) StartTransaction() (*sqlx.Tx, error) {
+func (db *DBControl) StartTransaction() (*sqlx.Tx, error) {
 	tx, err := db.Postgres.Beginx()
 	if err != nil {
 		// log error

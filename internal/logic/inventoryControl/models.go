@@ -5,7 +5,7 @@
 package inventorycontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	"totally-legit-grow-management/v1/internal/persistence/inventories"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IInventoriesLogic interface {
 }
 
 type InventoryControl struct {
-	Persistence persistence.IInventoriesDB
+	Persistence inventories.IInventoriesDB
 }

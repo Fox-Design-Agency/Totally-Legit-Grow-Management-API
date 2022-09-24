@@ -5,7 +5,7 @@
 package growinglevelcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	growinglevels "totally-legit-grow-management/v1/internal/persistence/growingLevels"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IGrowingLevelsLogic interface {
 }
 
 type GrowingLevelControl struct {
-	Persistence persistence.IGrowingLevelsDB
+	Persistence growinglevels.IGrowingLevelsDB
 }

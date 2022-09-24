@@ -4,9 +4,11 @@
 
 package nutrientcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	"totally-legit-grow-management/v1/internal/persistence/nutrients"
+)
 
-func InitNutrientLogic(nutrientDB persistence.INutrientsDB) *NutrientControl {
+func InitNutrientLogic(nutrientDB nutrients.INutrientsDB) *NutrientControl {
 	return &NutrientControl{
 		Persistence: nutrientDB,
 	}

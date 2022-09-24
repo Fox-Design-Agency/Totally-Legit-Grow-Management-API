@@ -5,7 +5,7 @@
 package devicecontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	devicepersistence "totally-legit-grow-management/v1/internal/persistence/devices"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -37,5 +37,5 @@ type IDeviceLogic interface {
 }
 
 type DeviceControl struct {
-	Persistence persistence.IDevicesDB
+	Persistence devicepersistence.IDevicesDB
 }

@@ -4,9 +4,11 @@
 
 package membercontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	"totally-legit-grow-management/v1/internal/persistence/members"
+)
 
-func InitMembersLogic(memberDB persistence.IMembersDB) *MembersControl {
+func InitMembersLogic(memberDB members.IMembersDB) *MembersControl {
 	return &MembersControl{
 		Persistence: memberDB,
 	}

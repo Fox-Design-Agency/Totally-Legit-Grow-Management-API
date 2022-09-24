@@ -4,9 +4,11 @@
 
 package plantstagescontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	plantstages "totally-legit-grow-management/v1/internal/persistence/plantStages"
+)
 
-func InitPlantStageLogic(plantStageDB persistence.IPlantStagesDB) *PlantStageControl {
+func InitPlantStageLogic(plantStageDB plantstages.IPlantStagesDB) *PlantStageControl {
 	return &PlantStageControl{
 		Persistence: plantStageDB,
 	}

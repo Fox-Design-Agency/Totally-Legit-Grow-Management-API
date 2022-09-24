@@ -4,9 +4,11 @@
 
 package growspotcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	growspots "totally-legit-grow-management/v1/internal/persistence/growSpots"
+)
 
-func InitGrowSpotLogic(growSpotDB persistence.IGrowSpotsDB) *GrowSpotControl {
+func InitGrowSpotLogic(growSpotDB growspots.IGrowSpotsDB) *GrowSpotControl {
 	return &GrowSpotControl{
 		Persistence: growSpotDB,
 	}

@@ -5,7 +5,7 @@
 package growinglocationcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	growinglocations "totally-legit-grow-management/v1/internal/persistence/growingLocations"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IGrowingLocationsLogic interface {
 }
 
 type GrowingLocationControl struct {
-	Persistence persistence.IGrowingLocationsDB
+	Persistence growinglocations.IGrowingLocationsDB
 }

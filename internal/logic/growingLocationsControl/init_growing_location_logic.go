@@ -4,9 +4,9 @@
 
 package growinglocationcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import growinglocations "totally-legit-grow-management/v1/internal/persistence/growingLocations"
 
-func InitGrowingLocationLogic(growingLocationDB persistence.IGrowingLocationsDB) *GrowingLocationControl {
+func InitGrowingLocationLogic(growingLocationDB growinglocations.IGrowingLocationsDB) *GrowingLocationControl {
 	return &GrowingLocationControl{
 		Persistence: growingLocationDB,
 	}

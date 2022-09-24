@@ -4,9 +4,11 @@
 
 package organizationcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	"totally-legit-grow-management/v1/internal/persistence/organizations"
+)
 
-func InitOrganizationLogic(organizationDB persistence.IOrganizationsDB) *OrganizationControl {
+func InitOrganizationLogic(organizationDB organizations.IOrganizationsDB) *OrganizationControl {
 	return &OrganizationControl{
 		Persistence: organizationDB,
 	}

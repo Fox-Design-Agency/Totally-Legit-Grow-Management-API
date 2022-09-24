@@ -4,9 +4,11 @@
 
 package plantlifecyclecontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	plantlifecycle "totally-legit-grow-management/v1/internal/persistence/plantLifeCycles"
+)
 
-func InitPlantLifecycleLogic(plantLifeCycleDB persistence.IPlantLifeCyclesDB) *PlantLifeCycleControl {
+func InitPlantLifecycleLogic(plantLifeCycleDB plantlifecycle.IPlantLifeCyclesDB) *PlantLifeCycleControl {
 	return &PlantLifeCycleControl{
 		Persistence: plantLifeCycleDB,
 	}

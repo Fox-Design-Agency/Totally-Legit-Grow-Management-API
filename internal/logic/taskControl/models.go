@@ -5,7 +5,7 @@
 package taskcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	"totally-legit-grow-management/v1/internal/persistence/tasks"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type ITasksLogic interface {
 }
 
 type TaskControl struct {
-	Persistence persistence.ITasksDB
+	Persistence tasks.ITasksDB
 }

@@ -5,7 +5,7 @@
 package plantcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	"totally-legit-grow-management/v1/internal/persistence/plants"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IPlantsLogic interface {
 }
 
 type PlantControl struct {
-	Persistence persistence.IPlantsDB
+	Persistence plants.IPlantsDB
 }

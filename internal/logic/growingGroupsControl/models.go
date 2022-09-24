@@ -5,7 +5,7 @@
 package growinggroupcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	growinggroups "totally-legit-grow-management/v1/internal/persistence/growingGroups"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IGrowingGroupsLogic interface {
 }
 
 type GrowingGroupControl struct {
-	Persistence persistence.IGrowingGroupsDB
+	Persistence growinggroups.IGrowingGroupsDB
 }

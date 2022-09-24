@@ -5,7 +5,7 @@
 package productcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	"totally-legit-grow-management/v1/internal/persistence/products"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IProductsLogic interface {
 }
 
 type ProductControl struct {
-	Persistence persistence.IProductsDB
+	Persistence products.IProductsDB
 }

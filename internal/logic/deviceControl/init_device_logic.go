@@ -4,9 +4,11 @@
 
 package devicecontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	devicepersistence "totally-legit-grow-management/v1/internal/persistence/devices"
+)
 
-func InitDeviceLogic(deviceDB persistence.IDevicesDB) *DeviceControl {
+func InitDeviceLogic(deviceDB devicepersistence.IDevicesDB) *DeviceControl {
 	return &DeviceControl{
 		Persistence: deviceDB,
 	}

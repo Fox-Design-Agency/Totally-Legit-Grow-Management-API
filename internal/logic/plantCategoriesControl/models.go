@@ -5,7 +5,7 @@
 package plantcategoriescontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	plantcategories "totally-legit-grow-management/v1/internal/persistence/plantCategories"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IPlantCategoriesLogic interface {
 }
 
 type PlantCategoryControl struct {
-	Persistence persistence.IPlantCategoriesDB
+	Persistence plantcategories.IPlantCategoriesDB
 }

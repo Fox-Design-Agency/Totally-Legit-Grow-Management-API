@@ -5,7 +5,7 @@
 package harvestcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	"totally-legit-grow-management/v1/internal/persistence/harvests"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IHarvestsLogic interface {
 }
 
 type HarvestControl struct {
-	Persistence persistence.IHarvestsDB
+	Persistence harvests.IHarvestsDB
 }

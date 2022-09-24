@@ -4,9 +4,9 @@
 
 package growinggroupcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import growinggroups "totally-legit-grow-management/v1/internal/persistence/growingGroups"
 
-func InitGrowingGroupLogic(growingGroupDB persistence.IGrowingGroupsDB) *GrowingGroupControl {
+func InitGrowingGroupLogic(growingGroupDB growinggroups.IGrowingGroupsDB) *GrowingGroupControl {
 	return &GrowingGroupControl{
 		Persistence: growingGroupDB,
 	}

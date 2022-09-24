@@ -5,7 +5,7 @@
 package membercontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	"totally-legit-grow-management/v1/internal/persistence/members"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IMembersLogic interface {
 }
 
 type MembersControl struct {
-	Persistence persistence.IMembersDB
+	Persistence members.IMembersDB
 }

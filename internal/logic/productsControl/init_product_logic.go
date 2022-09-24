@@ -4,9 +4,11 @@
 
 package productcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	"totally-legit-grow-management/v1/internal/persistence/products"
+)
 
-func InitProductLogic(productDB persistence.IProductsDB) *ProductControl {
+func InitProductLogic(productDB products.IProductsDB) *ProductControl {
 	return &ProductControl{
 		Persistence: productDB,
 	}

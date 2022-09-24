@@ -4,9 +4,11 @@
 
 package growingmediumcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	growingmedium "totally-legit-grow-management/v1/internal/persistence/growingMedium"
+)
 
-func InitGrowingMediumLogic(growingMediumDB persistence.IGrowingMediumsDB) *GrowingMediumControl {
+func InitGrowingMediumLogic(growingMediumDB growingmedium.IGrowingMediumsDB) *GrowingMediumControl {
 	return &GrowingMediumControl{
 		Persistence: growingMediumDB,
 	}

@@ -4,9 +4,9 @@
 
 package growinglevelcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import growinglevels "totally-legit-grow-management/v1/internal/persistence/growingLevels"
 
-func InitGrowingLevelLogic(growingLevelDB persistence.IGrowingLevelsDB) *GrowingLevelControl {
+func InitGrowingLevelLogic(growingLevelDB growinglevels.IGrowingLevelsDB) *GrowingLevelControl {
 	return &GrowingLevelControl{
 		Persistence: growingLevelDB,
 	}

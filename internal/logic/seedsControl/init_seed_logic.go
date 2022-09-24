@@ -4,9 +4,9 @@
 
 package seedcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import "totally-legit-grow-management/v1/internal/persistence/seeds"
 
-func InitSeedLogic(seedDB persistence.ISeedsDB) *SeedControl {
+func InitSeedLogic(seedDB seeds.ISeedsDB) *SeedControl {
 	return &SeedControl{
 		Persistence: seedDB,
 	}

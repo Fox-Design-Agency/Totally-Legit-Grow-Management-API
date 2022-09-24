@@ -4,9 +4,9 @@
 
 package taskcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import "totally-legit-grow-management/v1/internal/persistence/tasks"
 
-func InitTaskLogic(taskDB persistence.ITasksDB) *TaskControl {
+func InitTaskLogic(taskDB tasks.ITasksDB) *TaskControl {
 	return &TaskControl{
 		Persistence: taskDB,
 	}

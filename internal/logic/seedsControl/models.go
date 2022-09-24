@@ -5,7 +5,7 @@
 package seedcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	"totally-legit-grow-management/v1/internal/persistence/seeds"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type ISeedsLogic interface {
 }
 
 type SeedControl struct {
-	Persistence persistence.ISeedsDB
+	Persistence seeds.ISeedsDB
 }

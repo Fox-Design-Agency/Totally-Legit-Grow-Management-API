@@ -5,7 +5,7 @@
 package nutrientcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	"totally-legit-grow-management/v1/internal/persistence/nutrients"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type INutrientsLogic interface {
 }
 
 type NutrientControl struct {
-	Persistence persistence.INutrientsDB
+	Persistence nutrients.INutrientsDB
 }

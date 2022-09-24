@@ -5,7 +5,7 @@
 package growspotcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	growspots "totally-legit-grow-management/v1/internal/persistence/growSpots"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IGrowSpotsLogic interface {
 }
 
 type GrowSpotControl struct {
-	Persistence persistence.IGrowSpotsDB
+	Persistence growspots.IGrowSpotsDB
 }

@@ -4,9 +4,11 @@
 
 package harvestcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	"totally-legit-grow-management/v1/internal/persistence/harvests"
+)
 
-func InitHarvestLogic(harvestDB persistence.IHarvestsDB) *HarvestControl {
+func InitHarvestLogic(harvestDB harvests.IHarvestsDB) *HarvestControl {
 	return &HarvestControl{
 		Persistence: harvestDB,
 	}

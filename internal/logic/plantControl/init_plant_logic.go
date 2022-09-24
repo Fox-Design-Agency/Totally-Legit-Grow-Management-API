@@ -4,9 +4,9 @@
 
 package plantcontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import "totally-legit-grow-management/v1/internal/persistence/plants"
 
-func InitPlantLogic(plantDB persistence.IPlantsDB) *PlantControl {
+func InitPlantLogic(plantDB plants.IPlantsDB) *PlantControl {
 	return &PlantControl{
 		Persistence: plantDB,
 	}

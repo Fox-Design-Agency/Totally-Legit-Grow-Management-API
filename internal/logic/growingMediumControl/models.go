@@ -5,7 +5,7 @@
 package growingmediumcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	growingmedium "totally-legit-grow-management/v1/internal/persistence/growingMedium"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IGrowingMediumsLogic interface {
 }
 
 type GrowingMediumControl struct {
-	Persistence persistence.IGrowingMediumsDB
+	Persistence growingmedium.IGrowingMediumsDB
 }

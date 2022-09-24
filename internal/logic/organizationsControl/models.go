@@ -5,7 +5,7 @@
 package organizationcontrol
 
 import (
-	"totally-legit-grow-management/v1/internal/persistence"
+	"totally-legit-grow-management/v1/internal/persistence/organizations"
 	routemodels "totally-legit-grow-management/v1/internal/route-models"
 )
 
@@ -21,5 +21,5 @@ type IOrganizationsLogic interface {
 }
 
 type OrganizationControl struct {
-	Persistence persistence.IOrganizationsDB
+	Persistence organizations.IOrganizationsDB
 }

@@ -4,9 +4,11 @@
 
 package plantcategoriescontrol
 
-import "totally-legit-grow-management/v1/internal/persistence"
+import (
+	plantcategories "totally-legit-grow-management/v1/internal/persistence/plantCategories"
+)
 
-func InitPlantCategoriesLogic(plantCategoryDB persistence.IPlantCategoriesDB) *PlantCategoryControl {
+func InitPlantCategoriesLogic(plantCategoryDB plantcategories.IPlantCategoriesDB) *PlantCategoryControl {
 	return &PlantCategoryControl{
 		Persistence: plantCategoryDB,
 	}
