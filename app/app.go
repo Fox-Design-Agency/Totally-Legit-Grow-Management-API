@@ -14,7 +14,7 @@ import (
 	"syscall"
 	"time"
 	"totally-legit-grow-management/v1/app/routes"
-	"totally-legit-grow-management/v1/pkg/server"
+	"totally-legit-grow-management/v1/internal/server"
 	"totally-legit-grow-management/v1/resources/config"
 
 	"github.com/gorilla/mux"

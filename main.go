@@ -9,7 +9,7 @@ import (
 	"os"
 
 	"totally-legit-grow-management/v1/app"
-	"totally-legit-grow-management/v1/pkg/server"
+	"totally-legit-grow-management/v1/internal/server"
 	"totally-legit-grow-management/v1/resources/config"
 )
 

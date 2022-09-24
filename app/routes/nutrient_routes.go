@@ -6,7 +6,7 @@ package routes
 
 import (
 	"net/http"
-	"totally-legit-grow-management/v1/pkg/server"
+	"totally-legit-grow-management/v1/internal/server"
 
 	"github.com/gorilla/mux"
 )
