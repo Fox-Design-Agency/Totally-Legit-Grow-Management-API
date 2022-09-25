@@ -3,3 +3,25 @@
 // license that can be found in the LICENSE file.
 
 package plantlifecyclecontrol_test
+
+import (
+	"github.com/golang/mock/gomock"
+	. "github.com/onsi/ginkgo/v2"
+)
+
+var _ = Describe("", func() {
+	var (
+		mockCtrl *gomock.Controller
+	)
+	BeforeEach(func() {
+		mockCtrl = gomock.NewController(GinkgoT())
+	})
+
+	AfterEach(func() {
+		mockCtrl.Finish()
+	})
+
+	Describe("", func() {
+
+	})
+})
